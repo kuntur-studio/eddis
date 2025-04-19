@@ -1,0 +1,115 @@
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/styles/branches-widget.scss ***!
+  \****************************************************************************************************************************************************************************************************************************/
+#branches-widget-root {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 30px;
+  margin-bottom: 120px;
+}
+#branches-widget-root:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 50%;
+  height: 100%;
+  content: "";
+  background-color: #2a4095;
+}
+@media screen and (max-width: 575px) {
+  #branches-widget-root {
+    position: relative;
+    padding-top: 0px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+  #branches-widget-root:before {
+    display: none;
+  }
+}
+#branches-widget-root .tab-content {
+  padding: 20px;
+  border: 1px solid #ebebeb;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 992px) {
+  #branches-widget-root .tab-content {
+    padding: 20px;
+    margin-bottom: 85px;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+#branches-widget-root .nav-link {
+  color: #666;
+}
+#branches-widget-root .sedes-text label {
+  font-size: 0.9em;
+  color: #2a4095;
+}
+#branches-widget-root .sedes-text h3 {
+  font-family: Stolzl-Medium;
+  font-size: 1.2em;
+  color: #666;
+}
+#branches-widget-root .sedes-text h6 {
+  font-family: Stolzl-Regular;
+  font-size: 0.9em;
+  color: #666;
+}
+#branches-widget-root .sedes-text h6 svg {
+  color: #2a4095 !important;
+}
+
+/*.popup {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 400px;
+
+    .popup-content {
+        position: relative;
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .popup-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .popup-item {
+            display: block;
+            padding: 5px;
+            color: #007bff;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+*/

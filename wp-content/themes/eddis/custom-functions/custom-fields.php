@@ -1,0 +1,190 @@
+<?php
+
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
+
+// Campos personalizados para configuración general del tema
+// Menues, redes sociales, elementos del footer, etc
+add_action('carbon_fields_register_fields', 'edd_register_theme_options');
+function edd_register_theme_options() {
+	$social_labels = array(
+		'plural_name' => 'Redes Sociales',
+		'singular_name' => 'Red Social',
+	);
+	
+	Container::make( 'theme_options', 'Configuración General')
+		->set_icon('dashicons-superhero')
+		->add_tab('Gestor de Menú', [
+            Field::make('complex', 'menu_items', 'Ítems del Menú')
+                ->set_layout('tabbed-horizontal') // O 'tabbed-vertical' si prefieres
+                ->add_fields([
+                    Field::make('text', 'title', 'Título')
+                        ->set_required(true),
+                    
+                    Field::make('checkbox', 'dropdown_menu', 'Menú desplegable'),
+					
+					Field::make('select', 'dropdown_type', 'Tipo de Desplegable')
+                        ->add_options([
+                            'one_column' => '1 Columna',
+							'one_column_banner' => '1 Columna + Banner',
+							'two_columns_banner' => '2 Columnas + Banner',
+							'two_columns_3_2' => '2 Columnas + 3 y 2 columnas internas',
+							'courses' => 'Cursos',
+                        ])
+						->set_conditional_logic([
+								[
+									'field' => 'dropdown_menu',
+									'value' => true, // Solo se muestra si 'dropdown_menu' es VERDADERO
+								]
+							]),
+                    
+                    Field::make('text', 'link', 'Enlace')
+                        ->set_conditional_logic([
+                            [
+                                'field' => 'dropdown_menu',
+                                'value' => false,
+                            ]
+                        ]),
+
+                    Field::make('checkbox', 'active', 'Activo'),
+
+                ])
+				->set_header_template('Columna <%- $_index + 1 %>') //Esto va al final porque sino no funciona
+				// Aparentemente add_fields elimina la configuración establecida por set_header_template
+		])
+		->add_tab('Redes Sociales', [
+        Field::make('complex', 'social_networks', 'Redes Sociales')
+			->setup_labels($social_labels)
+            ->add_fields([
+                Field::make('icon_select', 'icon', 'Icono')
+					->set_options(edd_get_social_icons()), // Ver admin.php
+                Field::make('text', 'link', 'Enlace')->set_attribute('type', 'url'),
+            ]),
+    	])
+		->add_tab('Datos de Contacto', [
+			// Teléfono
+			Field::make('text', 'contact_phone', 'Teléfono')
+				->set_attribute('placeholder', 'Ingresa el número de teléfono'),
+
+			Field::make('checkbox', 'contact_phone_active', 'Activo'),
+
+			Field::make('separator', 'separator_1', ' '),
+
+			// WhatsApp
+			Field::make('text', 'contact_whatsapp', 'WhatsApp')
+				->set_attribute('placeholder', 'Ingresa el número de WhatsApp'),
+
+			Field::make('checkbox', 'contact_whatsapp_active', 'Activo'),
+
+			Field::make('separator', 'separator_2', ' '),
+
+			// Correo Electrónico
+			Field::make('text', 'contact_email', 'Correo Electrónico')
+				->set_attribute('placeholder', 'Ingresa la dirección de correo electrónico'),
+
+			Field::make('checkbox', 'contact_email_active', 'Activo'),
+		])
+		->add_tab('Marketing', [
+			Field::make('html', 'gtm_label')
+				->set_html('<h3>Google Tag Manager</h3>'),
+
+			Field::make('text', 'gtm_service_tag', 'Service Tag')
+				->set_attribute('placeholder', 'Ingresa el ID del Service Tag'),
+
+			Field::make('checkbox', 'gtm_active', 'Activo')
+		]);
+}
+
+// Este hook intercepta el guardado de los datos
+add_filter('carbon_fields_save_value', function($value, $field, $container) {
+	// Borra el valor si dropdown_menu es falso
+    if ($field->get_name() === 'dropdown_type') {
+        $dropdown_menu = carbon_get_theme_option('dropdown_menu');
+        if (!$dropdown_menu) {
+            return null;
+        }
+    }
+    return $value;
+}, 10, 3);
+
+
+
+
+
+// Campos personalizados para el custom type sedes
+add_action('carbon_fields_register_fields', 'edd_register_sedes_custom_fields');
+function edd_register_sedes_custom_fields() {
+	Container::make('post_meta', 'Datos de la Sede')
+		->where('post_type', '=', 'sedes')
+		->add_fields([
+			Field::make('text', 'eddis_system_id', 'ID sistema Eddis'),
+			Field::make('rich_text', 'description', 'Descripción'),
+			Field::make('text', 'address', 'Dirección'),
+			Field::make('rich_text', 'map_iframe', 'Mapa Iframe'),
+			Field::make('text', 'email', 'Correo electrónico'),
+			Field::make('text', 'phone', 'Teléfono'),
+			Field::make('text', 'facebook_link', 'Facebook Sede'),
+			Field::make('text', 'instagram_link', 'Instagram Sede'),
+		]);
+}
+
+
+
+
+// Campos personalizados para productos de la tienda
+add_action('carbon_fields_register_fields', 'edd_register_product_custom_fields');
+function edd_register_product_custom_fields() {
+	require_once('admin.php');
+	
+	Container::make('post_meta', 'Detalles del Curso')
+		->where('post_type', '=', 'product') // Solo en productos (cursos)
+		->add_fields([
+			Field::make('text', 'plan_id', 'Plan ID')->set_attribute('type', 'number'),
+			Field::make('checkbox', 'enable_payment', 'Habilitar Pago de Matrícula con Mercado Pago?'),
+			Field::make('checkbox', 'show_inscription_fields', 'Mostrar campos de inscripción'),
+			Field::make('text', 'list_price', 'Precio de lista')->set_attribute('type', 'number'),
+			Field::make('image', 'featured_image', 'Imagen destacada'),
+			Field::make('image', 'cover_image', 'Imagen de portada'),
+			Field::make('text', 'duration', 'Duración'),
+			Field::make('textarea', 'short_description', 'Descripción corta'),
+
+			Field::make('complex', 'highlight_bullets', 'Bullets Destacados')
+				->add_fields([
+					Field::make('icon_select', 'highlight_icon', 'Ícono Destacado')
+						->set_options(edd_get_product_bullet_icons()) // Ver admin.php
+						->set_default_value('graduation-cap'),
+				
+				Field::make('text', 'title', 'Título'),
+				Field::make('text', 'description', 'Descripción'),
+			]),
+
+			Field::make('complex', 'content_blocks', 'Contenido')
+				->add_fields([
+					Field::make('text', 'title', 'Título'),
+					Field::make('rich_text', 'content', 'Contenido'),
+				]),
+
+			Field::make('file', 'study_plan_file', 'Plan de estudios Descargable'),
+
+			Field::make('complex', 'study_plan', 'Plan de Estudios')
+				->add_fields([
+					Field::make('text', 'title', 'Título'),
+					Field::make('rich_text', 'content', 'Contenido'),
+				]),
+
+			Field::make('complex', 'testimonials', 'Testimonios')
+				->add_fields([
+					Field::make('image', 'image', 'Imagen'),
+					Field::make('textarea', 'content', 'Contenido'),
+					Field::make('text', 'name', 'Nombre'),
+					Field::make('text', 'course', 'Curso'),
+				]),
+
+			Field::make('association', 'related_programs', 'Programas relacionados')
+				->set_types([
+					['type' => 'post', 'post_type' => 'product']
+				]),
+
+			Field::make('checkbox', 'reserve_spot', 'Reserva tu lugar')
+		]);
+}
