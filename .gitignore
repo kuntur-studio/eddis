@@ -7,3 +7,4 @@ wp-content/advanced-cache.php
 *.log
 tmp/
 temp_can_delete/
+wp-content/themes/eddis/custom-functions/carbon-field-extensions/carbon-field-template/
