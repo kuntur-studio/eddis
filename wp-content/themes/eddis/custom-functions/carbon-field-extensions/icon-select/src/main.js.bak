@@ -1,0 +1,49 @@
+/**
+ * External dependencies.
+ */
+import { Component } from '@wordpress/element';
+
+class IconSelectField extends Component {
+    /**
+	 * Handles the change of the select.
+	 *
+	 * @param  {Object} e
+	 * @return {void}
+	 */
+	handleChange = ( e ) => {
+		const { id, onChange } = this.props;
+
+		onChange( id, e.target.value );
+	}
+
+    /**
+     * Renders the component.
+     *
+     * @return {Object}
+     */
+    render() {
+    	const { id, name, value, field } = this.props;
+        const options = field.options ? Object.entries(field.options) : [];
+		const { handleChange } = this;
+		
+		return (
+			<select 
+				id={id}
+				name={name}
+				value={value}
+				className="cf-icon-select__select"
+				onChange={this.handleChange}
+			>
+				{options.length > 0 ? (
+					options.map(([key, label]) => (
+						<option key={key} value={key} dangerouslySetInnerHTML={{ __html: label }} />
+					))
+				) : (
+					<option disabled>No hay opciones disponibles</option>
+				)}
+			</select>
+		);
+	}
+}
+
+export default IconSelectField;
