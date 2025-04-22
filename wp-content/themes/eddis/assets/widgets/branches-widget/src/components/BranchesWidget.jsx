@@ -11,7 +11,7 @@ class BranchesWidget extends Component {
         };
     }
 
-    setActiveBranch = (branch) => {
+    setActiveBranch = (branch, province) => {
         this.setState({ 
             activeBranch: branch,
             activeProvince: province 
