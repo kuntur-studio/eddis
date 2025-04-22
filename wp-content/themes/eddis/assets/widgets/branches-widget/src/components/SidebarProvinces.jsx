@@ -7,7 +7,7 @@ const SidebarProvinces = ({ data, onSelectBranch }) => {
   const buttonRefs = useRef({});
   const timeoutRef = useRef(null);
 
-  // Manejar clic fuera del popup y tecla ESC
+  // Manejar clic fuera y tecla ESC
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (activeProvince && 
@@ -38,7 +38,7 @@ const SidebarProvinces = ({ data, onSelectBranch }) => {
     timeoutRef.current = setTimeout(() => {
       setActiveProvince(null);
       setIsClosing(false);
-    }, 300); // Debe coincidir con la duración de la transición CSS
+    }, 300); // Coincide con la duración CSS
   };
 
   const togglePopup = (province) => {
@@ -103,7 +103,7 @@ const SidebarProvinces = ({ data, onSelectBranch }) => {
                           className: "popup-item",
                           onClick: (e) => {
                             e.preventDefault();
-                            onSelectBranch(branchData);
+                            onSelectBranch(branchData, provinceData.province);
                             closePopup();
                           },
                           href: `#${branchData.id}`,

@@ -7,16 +7,20 @@ class BranchesWidget extends Component {
         super(props);
         this.state = {
             activeBranch: null,
+            activeProvince: null
         };
     }
 
     setActiveBranch = (branch) => {
-        this.setState({ activeBranch: branch });
+        this.setState({ 
+            activeBranch: branch,
+            activeProvince: province 
+          });
     };
 
     render() {
         const { data } = this.props;
-        const { activeBranch } = this.state;
+        const { activeBranch, activeProvince } = this.state;
 
         return createElement(
         "div", // Contenedor principal
@@ -32,7 +36,7 @@ class BranchesWidget extends Component {
             createElement(
                 "div", // Columna para ContentBranch
                 { className: "col-xl-10 col-lg-10 col-sm-8 col-md-8 col-xs-12 col-12" },
-                createElement(ContentBranch, { branch: activeBranch })
+                createElement(ContentBranch, { branch: activeBranch, province: activeProvince })
             )
         )
     );
