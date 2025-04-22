@@ -6,3 +6,4 @@ wp-content/object-cache.php
 wp-content/advanced-cache.php
 *.log
 tmp/
+temp_can_delete/
