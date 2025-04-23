@@ -102,7 +102,7 @@ function localize_branches_data() {
 
                             $branch_data = [
                                 'id' => $branch_id,
-                                'title' => 'Pepe'.get_post_field('post_title', $branch_id, 'raw'),
+                                'title' => get_post_field('post_title', $branch_id, 'raw'),
                                 'eddis_system_id' => carbon_get_post_meta($branch_id, 'eddis_system_id'),
                                 'description' => carbon_get_post_meta($branch_id, 'description'),
                                 'address' => carbon_get_post_meta($branch_id, 'address'),
