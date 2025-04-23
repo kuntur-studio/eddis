@@ -178,6 +178,66 @@ $section-margin-bottom: 120px;
     width: 1em;
 }
 
+/* Animaciones para el contenido */
+.branch-transition {
+    position: relative;
+    overflow: hidden;
+    
+    .tab-panel {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+  
+    /* Efecto de entrada */
+    &[data-branch-id] .tab-panel {
+      animation: branchFadeIn 0.6s ease forwards;
+    }
+  
+    /* Elementos individuales con animación escalonada */
+    .branch-element {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: 
+        opacity 0.4s ease,
+        transform 0.4s ease;
+      
+      &:nth-child(1) { transition-delay: 0.1s; }
+      &:nth-child(2) { transition-delay: 0.2s; }
+      &:nth-child(3) { transition-delay: 0.3s; }
+      &:nth-child(4) { transition-delay: 0.4s; }
+      &:nth-child(5) { transition-delay: 0.5s; }
+    }
+  
+    &[data-branch-id] .branch-element {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    /* Animación para el mapa */
+    .branch-map {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 
+        opacity 0.5s ease 0.3s,
+        transform 0.5s ease 0.3s;
+    }
+  
+    &[data-branch-id] .branch-map {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes branchFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 // Estilos para el contenido de la sucursal
 /*.branch {
     &-content {
