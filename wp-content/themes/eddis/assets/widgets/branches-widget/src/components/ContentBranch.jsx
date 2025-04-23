@@ -1,6 +1,6 @@
 const { createElement } = wp.element;
 
-const ContentBranch = ({ branch, province }) => {
+const ContentBranch = ({ branch, province, animationKey }) => {
   if (!branch) {
     return createElement(
       'div',
@@ -21,7 +21,7 @@ const ContentBranch = ({ branch, province }) => {
     'div',
     { 
       className: 'tab-content branch-transition',
-      'data-branch-id': branch.id // Usamos este atributo para las animaciones
+      key: `branch-${animationKey}` // Clave única para forzar recreación
     },
     createElement(
       'div',
