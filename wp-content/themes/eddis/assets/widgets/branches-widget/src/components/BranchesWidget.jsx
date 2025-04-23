@@ -35,11 +35,15 @@ class BranchesWidget extends Component {
                 { className: "col-xl-2 col-lg-2 col-sm-4 col-md-4 col-xs-12 col-12" },
                 createElement(SidebarProvinces, { data, onSelectBranch: this.setActiveBranch })
             ),
-            createElement(ContentBranch, { 
-                branch: activeBranch,
-                province: activeProvince,
-                animationKey: this.state.animationKey // Pasamos la clave
-              })
+            createElement(
+                "div", // Columna para ContentBranch
+                { className: "col-xl-10 col-lg-10 col-sm-8 col-md-8 col-xs-12 col-12" },
+                createElement(ContentBranch, { 
+                    branch: activeBranch,
+                    province: activeProvince,
+                    animationKey: this.state.animationKey // Pasamos la clave
+                })
+            )
         )
     );
     }
