@@ -42,7 +42,7 @@ const ContentBranch = ({ branch, province, animationKey, error }) => {
     },
     createElement(
       'div',
-      { className: 'tab-panel branch-fade-content' },
+      { className: 'tab-panel' },
       createElement(
         'div',
         { className: 'container' },
@@ -59,19 +59,19 @@ const ContentBranch = ({ branch, province, animationKey, error }) => {
               // Provincia
               createElement(
                 'label',
-                null,
+                { className: 'branch-element' },
                 province
               ),
               // Título
               createElement(
                 'h4',
-                null,
+                { className: 'branch-element' },
                 branch.title
               ),
               // Dirección
               createElement(
                 'h6',
-                null,
+                { className: 'branch-element' },
                 createElement(
                   'svg',
                   {
@@ -91,7 +91,7 @@ const ContentBranch = ({ branch, province, animationKey, error }) => {
               // Teléfono
               branch.phone && createElement(
                 'h6',
-                null,
+                { className: 'branch-element' },
                 createElement(
                   'svg',
                   {
@@ -111,7 +111,10 @@ const ContentBranch = ({ branch, province, animationKey, error }) => {
               // Email
               branch.email && createElement(
                 'a',
-                { href: `mailto:${branch.email}` },
+                { 
+                  href: `mailto:${branch.email}`,
+                  className: 'branch-element'
+                },
                 createElement(
                   'h6',
                   null,

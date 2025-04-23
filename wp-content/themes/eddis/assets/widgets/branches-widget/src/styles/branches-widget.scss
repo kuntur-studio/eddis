@@ -58,8 +58,7 @@ $section-margin-bottom: 120px;
         border-radius: 10px;
         background-color: $white;
         box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .1);
-        
-        // Nueva animación fade
+
         &.branch-fade-container .tab-panel {
             animation: contentFade 0.5s ease-in-out forwards;
         }
@@ -127,6 +126,18 @@ $section-margin-bottom: 120px;
         transform 0.3s ease, 
         visibility 0.3s;
 
+    &-enter {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+
+    &-exit {
+        opacity: 0;
+        transform: translateY(-10px);
+        visibility: hidden;
+    }
+
     &-content {
         max-height: 70vh;
         overflow-y: auto;
@@ -152,38 +163,30 @@ $section-margin-bottom: 120px;
             text-decoration: none;
         }
     }
+}
 
-    // Estados de animación
-    &-enter {
+/* Animación para el mapa */
+.mapa-google-sedes {
+    opacity: 0;
+    animation: mapFadeIn 0.8s ease 0.3s forwards;
+    
+    iframe {
+        transition: opacity 0.5s ease;
+    }
+}
+
+@keyframes mapFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
         opacity: 1;
         transform: translateY(0);
-        visibility: visible;
-    }
-
-    &-exit {
-        opacity: 0;
-        transform: translateY(-10px);
-        visibility: hidden;
     }
 }
 
-// Estilos del mapa
-.mapa-google-sedes iframe {
-    width: 100%!important;
-    height: 600px!important;
-}
-
-// Estilos para los iconos
-.svg-inline--fa {
-    &.fa-w-12 {
-        width: .75em;
-    }
-    &.fa-w-16 {
-        width: 1em;
-    }
-}
-
-// Animación de fade simplificada
+/* Animación de fade para el contenido */
 @keyframes contentFade {
     0% {
         opacity: 0;
@@ -204,6 +207,24 @@ $section-margin-bottom: 120px;
         font-size: 2em;
         margin-bottom: 10px;
         color: $error-color !important;
+    }
+}
+
+// Estilos base para el mapa
+.mapa-google-sedes iframe {
+    width: 100%!important;
+    height: 600px!important;
+    border: none;
+    border-radius: 8px;
+}
+
+// Estilos para los iconos
+.svg-inline--fa {
+    &.fa-w-12 {
+        width: .75em;
+    }
+    &.fa-w-16 {
+        width: 1em;
     }
 }
 
