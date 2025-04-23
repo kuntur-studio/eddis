@@ -5,7 +5,7 @@
  * verifica si está activa la configuración e imprime al output el script 
  * con el service tag correspondiente
  * */
-function edd_google_tag_manager() { echo 'Test'; // Para verificar que el script se está ejecutando
+function edd_google_tag_manager() {
     // Obtener valores desde la configuración
     $active = carbon_get_theme_option('gtm_active');
     $tag = carbon_get_theme_option('gtm_service_tag');
@@ -25,7 +25,7 @@ GTM;
 }
 
 // Este hook se utiliza para imprimir html en el encabezado de las páginas del frontend
-function wp_head_hook() { echo 'wp_head_hook'; // Para verificar que el script se está ejecutando
+function wp_head_hook() {
     if (is_admin()) {
         return; // Evita que se ejecute en el panel de administración
     }
