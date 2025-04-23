@@ -3,6 +3,7 @@ $primary-color: #2a4095;
 $text-color: #666;
 $border-color: #ebebeb;
 $background-color: #f9f9f9;
+$active-button-color: #007bff;
 $white: #fff;
 
 $font-size-small: .9em;
@@ -71,6 +72,11 @@ $section-margin-bottom: 120px;
 
     .nav-link {
         color: $text-color;
+
+        &.active {
+            color: $white;
+            background-color: $active-button-color;
+        }
     }
 
     .branch-info {
@@ -144,8 +150,10 @@ $section-margin-bottom: 120px;
     // Items del popup
     &-item {
         display: block;
-        padding: 5px;
-        color: $primary-color;
+        margin: 0 0 5px 0;
+        font-size: $font-size-small;
+        font-weight: $font-weight-bold;
+        color: $text-color;
         text-decoration: none;
         transition: background-color 0.2s ease;
 
@@ -155,13 +163,6 @@ $section-margin-bottom: 120px;
         }
     }
 
-    // Encabezados
-    &-header {
-        margin: 0 0 5px 0;
-        font-size: $font-size-small;
-        color: $text-color;
-        font-weight: $font-weight-bold;
-    }
 }
 
 .mapa-google-sedes iframe {

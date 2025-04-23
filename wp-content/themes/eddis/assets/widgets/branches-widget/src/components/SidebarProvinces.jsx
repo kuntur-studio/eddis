@@ -94,7 +94,6 @@ const SidebarProvinces = ({ data, onSelectBranch }) => {
                   createElement(
                     "div",
                     { key: cityData.name, className: "city-group" },
-                    createElement("h6", { className: "popup-header" }, cityData.name),
                     cityData.branches.map((branchData) =>
                       createElement(
                         "a",
