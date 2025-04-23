@@ -20,7 +20,7 @@ function edd_google_tag_manager() {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','{$tag}');</script>
         <!-- End Google Tag Manager -->
-GTM;
+GTM, PHP_EOL;
     }
 }
 
