@@ -6,10 +6,10 @@
     <title>Nuevo Sitio Web</title>
 	<?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
 
     <header>
-        <h1>Este es el header</h1>
+        <h1>Este es el header cambiado</h1>
     </header>
 
     <main>
