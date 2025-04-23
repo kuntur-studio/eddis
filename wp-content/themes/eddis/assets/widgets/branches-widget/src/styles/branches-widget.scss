@@ -46,6 +46,10 @@ $section-margin-bottom: 120px;
         margin-bottom: $section-padding-bottom;
     }
 
+    .container:first-child {
+        position: relative;
+    }
+
     .tab-content {
         padding: 20px;
         border: 1px solid $border-color;
@@ -69,7 +73,7 @@ $section-margin-bottom: 120px;
         color: $text-color;
     }
 
-    .sedes-text {
+    .branch-info {
         label {
             font-size: $font-size-small;
             color: $primary-color;
