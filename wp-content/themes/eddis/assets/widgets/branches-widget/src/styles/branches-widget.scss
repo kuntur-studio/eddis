@@ -160,8 +160,21 @@ $section-margin-bottom: 120px;
     }
 }
 
+.mapa-google-sedes iframe {
+    width: 100%!important;
+    height: 600px!important;
+}
+
+.svg-inline--fa.fa-w-12 {
+    width: .75em;
+}
+
+.svg-inline--fa.fa-w-16 {
+    width: 1em;
+}
+
 // Estilos para el contenido de la sucursal
-.branch {
+/*.branch {
     &-content {
       padding: 20px;
       background: $white;
@@ -213,7 +226,7 @@ $section-margin-bottom: 120px;
         height: 250px;
       }
     }
-  }
+  }*/
 
 /*.popup {
     position: absolute;
