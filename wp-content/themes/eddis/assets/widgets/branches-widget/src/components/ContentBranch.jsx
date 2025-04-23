@@ -1,7 +1,7 @@
 const { createElement } = wp.element;
 
-const ContentBranch = ({ branch, province, animationKey }) => {
-  if (!branch) {
+const ContentBranch = ({ branch, province, animationKey, error }) => {
+  if (error) {
     return createElement(
       'div',
       { className: 'container' },
@@ -10,8 +10,25 @@ const ContentBranch = ({ branch, province, animationKey }) => {
         { className: 'row' },
         createElement(
           'div',
-          { className: 'col-12' },
-          'Seleccione una sucursal para ver los detalles'
+          { className: 'col-12 branch-error' },
+          createElement(
+            'svg',
+            {
+              className: 'svg-inline--fa fa-exclamation-circle fa-w-16',
+              'aria-hidden': 'true',
+              focusable: 'false',
+              'data-prefix': 'fas',
+              'data-icon': 'exclamation-circle',
+              role: 'img',
+              xmlns: 'http://www.w3.org/2000/svg',
+              viewBox: '0 0 512 512'
+            },
+            createElement('path', { 
+              fill: 'currentColor', 
+              d: 'M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z' 
+            })
+          ),
+          'Error al cargar los datos de la sucursal'
         )
       )
     );
@@ -20,12 +37,12 @@ const ContentBranch = ({ branch, province, animationKey }) => {
   return createElement(
     'div',
     { 
-      className: 'tab-content branch-transition',
-      key: `branch-${animationKey}` // Clave única para forzar recreación
+      className: 'tab-content branch-fade-container',
+      key: `branch-${animationKey}`
     },
     createElement(
       'div',
-      { className: 'tab-panel' },
+      { className: 'tab-panel branch-fade-content' },
       createElement(
         'div',
         { className: 'container' },
@@ -42,19 +59,19 @@ const ContentBranch = ({ branch, province, animationKey }) => {
               // Provincia
               createElement(
                 'label',
-                { className: 'branch-element' },
+                null,
                 province
               ),
               // Título
               createElement(
                 'h4',
-                { className: 'branch-element' },
+                null,
                 branch.title
               ),
               // Dirección
               createElement(
                 'h6',
-                { className: 'branch-element' },
+                null,
                 createElement(
                   'svg',
                   {
@@ -74,7 +91,7 @@ const ContentBranch = ({ branch, province, animationKey }) => {
               // Teléfono
               branch.phone && createElement(
                 'h6',
-                { className: 'branch-element' },
+                null,
                 createElement(
                   'svg',
                   {
@@ -94,10 +111,7 @@ const ContentBranch = ({ branch, province, animationKey }) => {
               // Email
               branch.email && createElement(
                 'a',
-                { 
-                  href: `mailto:${branch.email}`,
-                  className: 'branch-element'
-                },
+                { href: `mailto:${branch.email}` },
                 createElement(
                   'h6',
                   null,
@@ -126,7 +140,7 @@ const ContentBranch = ({ branch, province, animationKey }) => {
             { className: 'col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12' },
             createElement(
               'div',
-              { className: 'mapa-google-sedes branch-map' },
+              { className: 'mapa-google-sedes' },
               createElement(
                 'p',
                 null,
