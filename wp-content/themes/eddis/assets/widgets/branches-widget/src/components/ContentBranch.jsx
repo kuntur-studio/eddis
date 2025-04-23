@@ -35,7 +35,7 @@ const ContentBranch = ({ branch, province }) => {
                         { className: 'col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12' },
                         createElement(
                             'div',
-                            { className: 'sedes-text mt-3' },
+                            { className: 'branch-info mt-3' },
                                 // Provincia
                                 createElement(
                                     'label',
