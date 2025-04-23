@@ -20,6 +20,7 @@ require_once(get_stylesheet_directory().'/custom-functions/assets.php');
 require_once(get_stylesheet_directory().'/custom-functions/common.php');
 require_once(get_stylesheet_directory().'/custom-functions/custom-fields.php');
 require_once(get_stylesheet_directory().'/custom-functions/custom-post-types.php');
+require_once(get_stylesheet_directory().'/custom-functions/frontend.php');
 require_once(get_stylesheet_directory().'/custom-functions/maintenance-mode.php');
 require_once(get_stylesheet_directory().'/custom-functions/other.php');
 require_once(get_stylesheet_directory().'/custom-functions/security.php');
