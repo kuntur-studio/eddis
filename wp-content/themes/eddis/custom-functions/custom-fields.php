@@ -16,7 +16,7 @@ function edd_register_theme_options() {
 	
 	Container::make( 'theme_options', 'Configuración General')
 		->set_icon('dashicons-superhero')
-		->add_tab('Gestor de Menú', [
+		->add_tab('Gestión de Menú', [
             Field::make('complex', 'menu_items', 'Ítems del Menú')
                 ->set_layout('tabbed-horizontal') // O 'tabbed-vertical' si prefieres
                 ->add_fields([
@@ -54,6 +54,34 @@ function edd_register_theme_options() {
 				->set_header_template('Columna <%- $_index + 1 %>') //Esto va al final porque sino no funciona
 				// Aparentemente add_fields elimina la configuración establecida por set_header_template
 		])
+
+		->add_tab('Footer', [
+            Field::make('complex', 'footer_menu_items', 'Ítems del Menú')
+			->add_fields([
+				Field::make('text', 'title', 'Título')
+					->set_required(true),
+				Field::make('checkbox', 'footer_is_internal_link', 'Interno')
+					->set_default_value(true), 
+				Field::make('select', 'footer_page', 'Página')
+					->set_options(edd_get_pages_list())
+					->set_conditional_logic([
+						[
+							'field' => 'footer_is_internal_link',
+							'value' => true,
+						]
+					])
+				->set_required(true),
+				Field::make('text', 'footer_external_url', 'URL externa')
+					->set_conditional_logic([
+						[
+							'field' => 'footer_is_internal_link',
+							'value' => false,
+						]
+					])
+				->set_required(true),
+			])
+		])
+
 		->add_tab('Redes Sociales', [
         Field::make('complex', 'social_networks', 'Redes Sociales')
 			->setup_labels($social_labels)
@@ -63,6 +91,7 @@ function edd_register_theme_options() {
                 Field::make('text', 'link', 'Enlace')->set_attribute('type', 'url'),
             ]),
     	])
+
 		->add_tab('Datos de Contacto', [
 			// Teléfono
 			Field::make('text', 'contact_phone', 'Teléfono')
@@ -86,6 +115,7 @@ function edd_register_theme_options() {
 
 			Field::make('checkbox', 'contact_email_active', 'Activo'),
 		])
+
 		->add_tab('Marketing', [
 			Field::make('html', 'gtm_label')
 				->set_html('<h3>Google Tag Manager</h3>'),
@@ -95,6 +125,7 @@ function edd_register_theme_options() {
 
 			Field::make('checkbox', 'gtm_active', 'Activo')
 		])
+
 		->add_tab('Gestión de Assets', [
         	Field::make('complex', 'crb_assets', 'Assets JS/CSS')
 				->add_fields([
