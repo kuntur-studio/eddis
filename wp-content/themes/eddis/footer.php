@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
                             <h3>Contacto</h3>
-                            <h2><a class="tel-footer" href="tel:+<?php the_field('telefono', 'option');?>"><i class="fas fa-phone"></i> <?php the_field('telefono', 'option');?></a></h2>
+                            <h2><a class="tel-footer" href="tel:+<?php /*the_field('telefono', 'option');*/?>"><i class="fas fa-phone"></i> <?php /*the_field('telefono', 'option');*/?></a></h2>
                             <ul class="menu ">
                             <?php /*if( have_rows('menu_footer_contacto','option') ):?>
                                 <?php while ( have_rows('menu_footer_contacto','option') ) : the_row();?>
