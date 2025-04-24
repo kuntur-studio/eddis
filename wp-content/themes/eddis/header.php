@@ -19,19 +19,34 @@
         <div class="container">
             <div class="d-none d-lg-block d-lx-block d-sm-none d-md-none">
                 <div class="row">
+                <?php
+                // SOCIAL NETWORKS
+                $social_networks = carbon_get_theme_option('social_networks');
+                if (!empty($social_networks)) : ?>
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12">
                         <div class="text-lg-left text-md-center text-sm-center text-center seguinos-header">
                             Seguinos:
-                            <?php if( have_rows('redes_sociales', 'option') ):?>
-                                <?php while ( have_rows('redes_sociales', 'option') ) : the_row();?>
-                                    <a class="social-icon" target="_blank" href="<?php the_sub_field('link', 'option');?>" class="m-1"><?php the_sub_field('icon', 'option');?></a>
-                                <?php endwhile;?>
-                            <?php endif;?>
+                                <?php foreach ($social_networks as $network) : ?>
+                                    <a class="social-icon" target="_blank" href="<?php echo esc_url($network['link']); ?>" class="m-1">
+                                        <?php echo $network['icon']; // Asume que el icono es HTML o una clase CSS ?>
+                                    </a>
+                                <?php endforeach; ?>
                         </div>		
                     </div>
+                <?php endif; ?>
+                <?php
+                // PHONE NUMBER
+                $phone_active = carbon_get_theme_option('contact_phone_active');
+                $phone_number = carbon_get_theme_option('contact_phone');
+
+                if ($phone_active && !empty($phone_number)) : ?>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-12">
-                        <a href="tel:+<?php the_field('telefono', 'option');?>" class="phone-number"><i class="fas fa-phone mr-1"></i> <b><?php the_field('telefono', 'option');?></b></a>
+                        <a href="tel:+<?php echo esc_attr($phone_number); ?>" class="phone-number">
+                            <i class="fas fa-phone mr-1"></i> 
+                            <b><?php echo esc_html($phone_number); ?></b>
+                        </a>
                     </div>
+                <?php endif; ?>
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12">
                         <p class="text-lg-right text-md-right text-sm-center text-center">
                         <a href="javascript:mostrar();" class="m-3"><i class="fas fa-search"></i> Buscar</a>
@@ -42,14 +57,17 @@
             </div>
 
             <div class="row d-lg-none d-xl-none d-sm-none d-md-none d-flex flex-direction-row align-items-center justify-content-center">
-                    <a href="tel:+<?php the_field('telefono', 'option');?>"><i class="fas fa-phone mr-1"></i> !Hablemos!</a>
+                <?php if ($phone_active && !empty($phone_number)) : ?>
+                    <a href="tel:+<?php echo esc_attr($phone_number); ?>"><i class="fas fa-phone mr-1"></i> !Hablemos!</a>
+                <?php endif; ?>
                     <a href="javascript:mostrar();" class="m-3"><i class="fas fa-search"></i> Buscar</a>
                     <a target="_blank" href="https://eddis.educativa.org/acceso.cgi?id_curso=" class="text-white">Campus virtual <i class="fas fa-chevron-right ml-2"></i></a>
             </div>
 
         </div>
     </div>
-
+    
+    <!-- BEGIN NAVIGATION MENU -->
     <nav class="navbar navbar-expand-lg navbar-light navbarlogo">
         <div class="container">
             <a href="<?php bloginfo('url');?>">
@@ -61,12 +79,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbarprincipal navbar-nav ml-auto">
-                    <?php include 'navigation-menu.php'; ?>
+                    <?php get_template_part('template-parts/menu'); ?>
                 </ul>
             </div>
         </div>
     </nav>
-
+    <!-- END NAVIGATION MENU -->
 
 
     <!--BEGIN SEARCH HEADER-->
