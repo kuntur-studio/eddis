@@ -32,3 +32,21 @@ function edd_filter_dropdown_ubicaciones($args, $taxonomy, $context) {
     return $args;
 }
 add_filter('taxonomy_parent_dropdown_args', 'edd_filter_dropdown_ubicaciones', 10, 3);
+
+// Obtengo la lista de páginas para el campo de selección
+// del gestor de assets
+function edd_get_pages_list() {
+    $pages = get_pages();
+    $options = [];
+
+    foreach ($pages as $page) {
+        $options[$page->ID] = $page->post_title;
+    }
+
+    $options['home'] = 'Página de Inicio';
+    $options['archive'] = 'Archivos';
+    $options['search'] = 'Búsqueda';
+    $options['404'] = 'Página 404';
+
+    return $options;
+}

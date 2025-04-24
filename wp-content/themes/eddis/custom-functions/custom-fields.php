@@ -7,6 +7,8 @@ use Carbon_Fields\Field;
 // Menues, redes sociales, elementos del footer, etc
 add_action('carbon_fields_register_fields', 'edd_register_theme_options');
 function edd_register_theme_options() {
+	require_once('admin.php');
+
 	$social_labels = array(
 		'plural_name' => 'Redes Sociales',
 		'singular_name' => 'Red Social',
@@ -120,7 +122,7 @@ function edd_register_theme_options() {
 					Field::make('multiselect', 'load_pages', 'Páginas donde cargar')
 						->set_options(array_merge(
 							['all' => 'Todas las páginas'],
-							get_pages_list()
+							edd_get_pages_list()
 						)),
 
 					Field::make('checkbox', 'load_in_admin', 'Cargar en Admin'),
