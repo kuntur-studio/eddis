@@ -92,7 +92,48 @@ function edd_register_theme_options() {
 				->set_attribute('placeholder', 'Ingresa el ID del Service Tag'),
 
 			Field::make('checkbox', 'gtm_active', 'Activo')
-		]);
+		])
+		->add_tab('Gestión de Assets', [
+        	Field::make('complex', 'crb_assets', 'Assets JS/CSS')
+				->add_fields([
+					Field::make('select', 'asset_type', 'Tipo de Asset')
+						->set_options([
+							'js' => 'JavaScript',
+							'css' => 'CSS',
+						])
+						->set_required(true),
+
+					Field::make('text', 'asset_name', 'Nombre del Asset')
+						->set_required(true),
+
+					Field::make('text', 'asset_url', 'URL o ruta del archivo')
+						->set_attribute('placeholder', 'https://... o /ruta/al/archivo.js o .css')
+						->set_required(true),
+
+					Field::make('select', 'load_location', 'Ubicación de carga')
+						->set_options([
+							'header' => 'Header',
+							'footer' => 'Footer',
+						])
+						->set_default_value('footer'),
+
+					Field::make('multiselect', 'load_pages', 'Páginas donde cargar')
+						->set_options(array_merge(
+							['all' => 'Todas las páginas'],
+							get_pages_list()
+						)),
+
+					Field::make('checkbox', 'load_in_admin', 'Cargar en Admin'),
+				])
+				->set_header_template('
+					<% if (asset_name) { %>
+						<%- asset_name %> (<%- asset_type.toUpperCase() %>)
+					<% } else { %>
+						Nuevo Asset
+					<% } %>
+				')
+				->set_layout('tabbed-horizontal'),
+    	]);
 }
 
 // Este hook intercepta el guardado de los datos

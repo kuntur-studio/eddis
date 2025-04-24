@@ -6,7 +6,7 @@ get_header();
 ?>
 <div class="container my-5">
     <h1>Nuestras Sedes</h1>
-    <div id="branches-widget-root"></div>
+    <?php get_template_part('template-parts/sedes'); ?>
 </div>
 
 <!-- Contenido de la página -->
