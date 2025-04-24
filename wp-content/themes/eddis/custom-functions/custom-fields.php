@@ -69,8 +69,7 @@ function edd_register_theme_options() {
 							'field' => 'is_internal',
 							'value' => true,
 						]
-					])
-				->set_required(true),
+					]),
 				Field::make('text', 'external_url', 'URL externa')
 					->set_conditional_logic([
 						[
