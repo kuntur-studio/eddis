@@ -133,7 +133,8 @@ function edd_register_theme_options() {
 					<% } else { %>
 						Nuevo Asset
 					<% } %>
-				'),
+				')
+				->set_collapsed(true),
 				//->set_layout('tabbed-horizontal'),
     	]);
 }
