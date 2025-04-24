@@ -57,35 +57,36 @@ function edd_register_theme_options() {
 
 		->add_tab('Footer', [
             Field::make('complex', 'footer_menu_items', 'Ítems del Menú')
-			->add_fields([
-				Field::make('text', 'title', 'Título')
+				->add_fields([
+					Field::make('text', 'title', 'Título')
+						->set_required(true),
+					Field::make('checkbox', 'is_internal', 'Interno')
+						->set_default_value(true), 
+					Field::make('select', 'page', 'Página')
+						->set_options(edd_get_pages_list())
+						->set_conditional_logic([
+							[
+								'field' => 'is_internal',
+								'value' => true,
+							]
+						]),
+					Field::make('text', 'external_url', 'URL externa')
+						->set_conditional_logic([
+							[
+								'field' => 'is_internal',
+								'value' => false,
+							]
+						])
 					->set_required(true),
-				Field::make('checkbox', 'is_internal', 'Interno')
-					->set_default_value(true), 
-				Field::make('select', 'page', 'Página')
-					->set_options(edd_get_pages_list())
-					->set_conditional_logic([
-						[
-							'field' => 'is_internal',
-							'value' => true,
-						]
-					]),
-				Field::make('text', 'external_url', 'URL externa')
-					->set_conditional_logic([
-						[
-							'field' => 'is_internal',
-							'value' => false,
-						]
-					])
-				->set_required(true),
-			])
-			->set_header_template('
-				<% if (title) { %>
-					<%- title %>
-				<% } else { %>
-					Nuevo Ítem
-				<% } %>
-        	'),
+				])
+				->set_header_template('
+					<% if (title) { %>
+						<%- title %>
+					<% } else { %>
+						Nuevo Ítem
+					<% } %>
+				')
+				->set_collapsed(true),
 		])
 
 		->add_tab('Redes Sociales', [
