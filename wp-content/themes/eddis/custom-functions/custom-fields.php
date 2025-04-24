@@ -60,26 +60,33 @@ function edd_register_theme_options() {
 			->add_fields([
 				Field::make('text', 'title', 'Título')
 					->set_required(true),
-				Field::make('checkbox', 'footer_is_internal_link', 'Interno')
+				Field::make('checkbox', 'is_internal', 'Interno')
 					->set_default_value(true), 
-				Field::make('select', 'footer_page', 'Página')
+				Field::make('select', 'page', 'Página')
 					->set_options(edd_get_pages_list())
 					->set_conditional_logic([
 						[
-							'field' => 'footer_is_internal_link',
+							'field' => 'is_internal',
 							'value' => true,
 						]
 					])
 				->set_required(true),
-				Field::make('text', 'footer_external_url', 'URL externa')
+				Field::make('text', 'external_url', 'URL externa')
 					->set_conditional_logic([
 						[
-							'field' => 'footer_is_internal_link',
+							'field' => 'is_internal',
 							'value' => false,
 						]
 					])
 				->set_required(true),
 			])
+			->set_header_template('
+				<% if (title) { %>
+					<%- title %>
+				<% } else { %>
+					Nuevo Ítem
+				<% } %>
+        	'),
 		])
 
 		->add_tab('Redes Sociales', [
