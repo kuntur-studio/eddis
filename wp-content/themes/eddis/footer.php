@@ -71,7 +71,7 @@
                             <p><?php /*echo carbon_get_theme_option('sede_central');*/ ?></p>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center mt-2 mb-2">
-                        <p class="woocommerce-mini-cart__buttons buttons boton-de-arrepentimiento"><a href="https://www.eddis.edu.ar/arrepentimiento-de-compra/" class="btn btn-primary d-inline-block">Botón de arrepentimiento</a></p>
+                        <p class="woocommerce-mini-cart__buttons buttons boton-de-arrepentimiento"><a href="/arrepentimiento-de-compra/" class="btn btn-primary d-inline-block">Botón de arrepentimiento</a></p>
                         </div>
                     </div>
                     <!-- Acá iba el formulario del footer -->
