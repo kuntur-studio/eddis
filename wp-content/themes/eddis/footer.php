@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-12 col-xs-12">
                     <a href="<?php bloginfo('url');?>">
-                        <img width="140" class="logo img-fluid" src="<?php bloginfo('template_directory');?>/assets/images/logo_eddis_invertido.svg">
+                        <img width="140" class="logo img-fluid" src="<?php bloginfo('template_directory');?>/assets/img/logo_eddis_invertido.svg">
                     </a>
                 </div>
                 <div class="col-lg-12">
