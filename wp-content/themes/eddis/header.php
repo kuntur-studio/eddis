@@ -25,7 +25,7 @@
                 $social_networks = carbon_get_theme_option('social_networks');
                 if (!empty($social_networks)) : ?>
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12">
-                        <div class="text-lg-left text-md-center text-sm-center text-center seguinos-header">
+                        <div class="text-lg-start text-md-center text-sm-center text-center seguinos-header">
                             Seguinos:
                                 <?php foreach ($social_networks as $network) : ?>
                                     <a class="social-icon" target="_blank" href="<?php echo esc_url($network['link']); ?>" class="m-1">
@@ -49,7 +49,7 @@
                     </div>
                 <?php endif; ?>
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12">
-                        <p class="text-lg-right text-md-right text-sm-center text-center">
+                        <p class="text-lg-right text-md-end text-sm-center text-center">
                         <a href="javascript:mostrar();" class="m-3"><i class="fas fa-search"></i> Buscar</a>
                         <a target="_blank" href="https://eddis.educativa.org/acceso.cgi?id_curso=" class="text-white btn-header-top">Campus virtual <i class="fas fa-chevron-right ml-2"></i></a>
                         </p>		

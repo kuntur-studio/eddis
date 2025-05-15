@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center menufooter">
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center menufooter">
                             <h3>Menú</h3>
                             <ul class="menu ">
                             <?php
@@ -28,7 +28,7 @@
                             ?>
                             </ul>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                             <h3>Redes</h3>
                             <?php
                             $social_networks = carbon_get_theme_option('social_networks');
@@ -40,7 +40,7 @@
                             endif;
                             ?>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                             <h3>Contacto</h3>
                             <h2>
                                 <?php
@@ -66,11 +66,11 @@
                                 <li><a href="/contacto/">Contacto</a></li>
                             </ul>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center mt-2 mb-2 sedecentralfooter">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center mt-2 mb-2 sedecentralfooter">
                             <h3>Sede Central</h3>
                             <p><?php /*echo carbon_get_theme_option('sede_central');*/ ?></p>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center mt-2 mb-2">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center mt-2 mb-2">
                         <p class="woocommerce-mini-cart__buttons buttons boton-de-arrepentimiento"><a href="/arrepentimiento-de-compra/" class="btn btn-primary d-inline-block">Botón de arrepentimiento</a></p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <p class="text-lg-left text-sm-center text-center">© Copyright <?php echo date("Y");?> | <?php bloginfo('name');?> | Todos los derechos reservados</p>
+                        <p class="text-lg-start text-sm-center text-center">© Copyright <?php echo date("Y");?> | <?php bloginfo('name');?> | Todos los derechos reservados</p>
                     </div>
                 </div>
             </div>
