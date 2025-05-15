@@ -215,10 +215,12 @@ function edd_enqueue_single_asset($asset) {
 // Front-end
 add_action('wp_enqueue_scripts', 'edd_enqueue_frontend_assets');
 function edd_enqueue_frontend_assets() {
-    require_once get_template_directory() . '/custom-functions/developer.php';
+    //require_once get_template_directory() . '/custom-functions/developer.php';
     
     if (is_admin()) return;
-    edd_write_log('Iniciando carga de assets frontend');
+
+    // edd_write_log('Iniciando carga de assets frontend');
+
     // Cargar style.css principal del tema
     $style_path = get_template_directory() . '/style.css';
     $style_url = get_template_directory_uri() . '/style.css';
@@ -246,12 +248,12 @@ function edd_enqueue_frontend_assets() {
         $widget_js_path = $assets_path . 'widgets/branches-widget/dist/branches-widget.min.js';
         $widget_css_path = $assets_path . 'widgets/branches-widget/dist/branches-widget.min.css';
         
-        edd_write_log('Ruta CSS: ' . $widget_css_path);
-        edd_write_log('URL CSS: ' . $widget_css_url);
-        edd_write_log('Existe archivo CSS: ' . (file_exists($widget_css_path) ? 'Sí' : 'No'));
+        // edd_write_log('Ruta CSS: ' . $widget_css_path);
+        // edd_write_log('URL CSS: ' . $widget_css_url);
+        // edd_write_log('Existe archivo CSS: ' . (file_exists($widget_css_path) ? 'Sí' : 'No'));
         
         // Debug de dependencias
-        edd_write_log('Estado de bootstrap-css: ' . (wp_style_is('bootstrap-css', 'registered') ? 'Registrado' : 'NO registrado'));
+        // edd_write_log('Estado de bootstrap-css: ' . (wp_style_is('bootstrap-css', 'registered') ? 'Registrado' : 'NO registrado'));
 
         wp_enqueue_script(
             'branches-widget',

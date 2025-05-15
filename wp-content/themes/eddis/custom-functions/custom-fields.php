@@ -176,7 +176,7 @@ function edd_register_theme_options() {
 				//->set_layout('tabbed-horizontal'),
     	])
 		
-		->add_tab('Widgets Especiales', [
+		->add_tab('Widgets', [
 			Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
 				->set_option_value('yes')
 				->set_default_value(true),
