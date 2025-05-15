@@ -220,20 +220,9 @@ function edd_enqueue_frontend_assets() {
     if (is_admin()) return;
 
     // edd_write_log('Iniciando carga de assets frontend');
-
-    // Cargar style.css principal del tema
-    $style_path = get_template_directory() . '/style.css';
-    $style_url = get_template_directory_uri() . '/style.css';
-
-    if (file_exists($style_path)) {
-        wp_enqueue_style(
-            'theme-main-style',
-            $style_url,
-            [],
-            filemtime($style_path)
-        );
-    }
     
+    // Cargar los assets definidos en el panel de Gestión de Assets de la página
+    // de Configuración General
     $assets = carbon_get_theme_option('assets');
     foreach ($assets as $asset) {
         if (edd_should_load_in_frontend($asset)) {
@@ -241,6 +230,7 @@ function edd_enqueue_frontend_assets() {
         }
     }
 
+    // Cargar el widget de sedes (si corresponde)
     if (edd_should_load_branches_widget()) {
         $assets_path = get_template_directory() . '/assets/';
         $assets_uri = get_template_directory_uri() . '/assets/';
@@ -278,6 +268,19 @@ function edd_enqueue_frontend_assets() {
         // }, 9999);
         
         edd_localize_branches_data();
+    }
+
+    // Cargar style.css principal del tema
+    $style_path = get_template_directory() . '/style.css';
+    $style_url = get_template_directory_uri() . '/style.css';
+
+    if (file_exists($style_path)) {
+        wp_enqueue_style(
+            'theme-main-style',
+            $style_url,
+            [],
+            filemtime($style_path)
+        );
     }
 }
 
