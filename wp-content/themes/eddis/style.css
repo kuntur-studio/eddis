@@ -6,6 +6,65 @@ Description: Nueva versión del sitio web de Eddis Educativa desarrollado por Ku
 Version: 2.0
 */
 
+@font-face {
+	font-family: Stolzl-Bold;
+	font-style: normal;
+	font-weight: 400;
+	src: url('assets/fonts/Stolzl-Bold.eot?#iefix') format('embedded-opentype'),url('assets/fonts/Stolzl-Bold.otf') format('opentype'),url('assets/fonts/Stolzl-Bold.woff') format('woff'),url('assets/fonts/Stolzl-Bold.ttf') format('truetype'),url('assets/fonts/Stolzl-Bold.svg#Stolzl-Bold') format('svg');
+}
+
+@font-face {
+	font-family: Stolzl-Book;
+	font-style: normal;
+	font-weight: 400;
+	src: url('assets/fonts/Stolzl-Book.eot?#iefix') format('embedded-opentype'),url('assets/fonts/Stolzl-Book.otf') format('opentype'),url('assets/fonts/Stolzl-Book.woff') format('woff'),url('assets/fonts/Stolzl-Book.ttf') format('truetype'),url('assets/fonts/Stolzl-Book.svg#Stolzl-Book') format('svg');
+}
+
+@font-face {
+	font-family: Stolzl-Light;
+	font-style: normal;
+	font-weight: 400;
+	src: url('assets/fonts/Stolzl-Light.eot?#iefix') format('embedded-opentype'),url('assets/fonts/Stolzl-Light.otf') format('opentype'),url('assets/fonts/Stolzl-Light.woff') format('woff'),url('assets/fonts/Stolzl-Light.ttf') format('truetype'),url('assets/fonts/Stolzl-Light.svg#Stolzl-Light') format('svg');
+}
+
+@font-face {
+	font-family: Stolzl-Medium;
+	font-style: normal;
+	font-weight: 400;
+	src: url('assets/fonts/Stolzl-Medium.eot?#iefix') format('embedded-opentype'),url('assets/fonts/Stolzl-Medium.otf') format('opentype'),url('assets/fonts/Stolzl-Medium.woff') format('woff'),url('assets/fonts/Stolzl-Medium.ttf') format('truetype'),url('assets/fonts/Stolzl-Medium.svg#Stolzl-Medium') format('svg');
+}
+
+@font-face {
+	font-family: Stolzl-Regular;
+	font-style: normal;
+	font-weight: 400;
+	src: url('assets/fonts/Stolzl-Regular.eot?#iefix') format('embedded-opentype'),url('assets/fonts/Stolzl-Regular.otf') format('opentype'),url('assets/fonts/Stolzl-Regular.woff') format('woff'),url('assets/fonts/Stolzl-Regular.ttf') format('truetype'),url('assets/fonts/Stolzl-Regular.svg#Stolzl-Regular') format('svg');
+}
+
+@font-face {
+	font-family: Stolzl-Thin;
+	font-style: normal;
+	font-weight: 400;
+	src: url('assets/fonts/Stolzl-Thin.eot?#iefix') format('embedded-opentype'),url('assets/fonts/Stolzl-Thin.otf') format('opentype'),url('assets/fonts/Stolzl-Thin.woff') format('woff'),url('assets/fonts/Stolzl-Thin.ttf') format('truetype'),url('assets/fonts/Stolzl-Thin.svg#Stolzl-Thin') format('svg');
+}
+
+html {
+	margin-top: 0!important;
+	font-family: Stolzl-Regular,sans-serif;
+}
+
+body {
+	font-family: Stolzl-Regular,sans-serif;
+	background-color: #fff!important;
+}
+
+a,
+a:active,
+a:focus,
+a:hover {
+	text-decoration: none;
+}
+
 /*!***** Footer *******/
 footer {
     width: 100%;
