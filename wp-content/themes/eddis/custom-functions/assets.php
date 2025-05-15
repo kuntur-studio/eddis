@@ -215,8 +215,10 @@ function edd_enqueue_single_asset($asset) {
 // Front-end
 add_action('wp_enqueue_scripts', 'edd_enqueue_frontend_assets');
 function edd_enqueue_frontend_assets() {
+    require_once get_template_directory() . '/custom-functions/developer.php';
+    
     if (is_admin()) return;
-
+    edd_write_log('Iniciando carga de assets frontend');
     // Cargar style.css principal del tema
     $style_path = get_template_directory() . '/style.css';
     $style_url = get_template_directory_uri() . '/style.css';
@@ -244,6 +246,13 @@ function edd_enqueue_frontend_assets() {
         $widget_js_path = $assets_path . 'widgets/branches-widget/dist/branches-widget.min.js';
         $widget_css_path = $assets_path . 'widgets/branches-widget/dist/branches-widget.min.css';
         
+        edd_write_log('Ruta CSS: ' . $widget_css_path);
+        edd_write_log('URL CSS: ' . $widget_css_url);
+        edd_write_log('Existe archivo CSS: ' . (file_exists($widget_css_path) ? 'Sí' : 'No'));
+        
+        // Debug de dependencias
+        edd_write_log('Estado de bootstrap-css: ' . (wp_style_is('bootstrap-css', 'registered') ? 'Registrado' : 'NO registrado'));
+
         wp_enqueue_script(
             'branches-widget',
             $assets_uri . 'widgets/branches-widget/dist/branches-widget.min.js',
@@ -258,6 +267,13 @@ function edd_enqueue_frontend_assets() {
             ['bootstrap-css'],
             filemtime($widget_css_path)
         );
+
+        // Verificar si el style fue encolado correctamente
+        add_action('wp_footer', function() {
+            global $wp_styles;
+            edd_write_log('Styles encolados: ' . print_r($wp_styles->queue, true));
+            edd_write_log('Estado branches-widget-css: ' . (wp_style_is('branches-widget-css', 'enqueued') ? 'Encolado' : 'NO encolado'));
+        }, 9999);
         
         edd_localize_branches_data();
     }
@@ -266,7 +282,7 @@ function edd_enqueue_frontend_assets() {
 // Admin
 add_action('admin_enqueue_scripts', 'edd_enqueue_admin_assets');
 function edd_enqueue_admin_assets($hook_suffix) {
-    $assets = carbon_get_theme_option('crb_assets');
+    $assets = carbon_get_theme_option('assets');
     foreach ($assets as $asset) {
         if (edd_should_load_in_admin($asset, $hook_suffix)) {
             edd_enqueue_single_asset($asset);
