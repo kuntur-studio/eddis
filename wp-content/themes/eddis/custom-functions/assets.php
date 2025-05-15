@@ -1,6 +1,4 @@
 <?php
-$base_path = get_template_directory_uri().'/assets/'; // Ruta base para assets
-
 /**
  * Determina si un asset debe cargarse en el front-end
  */
@@ -142,7 +140,6 @@ function edd_localize_branches_data() {
     );
 }
 
-
 /**
  * Normaliza la URL del asset según las reglas:
  * - Externos: URLs con http/https (se usan tal cual)
@@ -153,8 +150,6 @@ function edd_localize_branches_data() {
  * @return string|false URL normalizada o false si no cumple las reglas
  */
 function edd_get_normalized_asset_url($url) {
-    global $base_path;
-    
     // 1. Validar URL externa
     if (filter_var($url, FILTER_VALIDATE_URL)) {
         return $url; // Retorna URLs https://... sin cambios
@@ -175,7 +170,7 @@ function edd_get_normalized_asset_url($url) {
     }
     
     // Construir ruta final (asegurar que comienza con /assets/)
-    return $base_path . $clean_path;
+    return get_template_directory_uri() . '/assets/' . $clean_path;
 }
 
 /**
@@ -188,7 +183,7 @@ function edd_get_asset_version($url) {
     }
     
     // Ruta local absoluta en el servidor
-    $local_path = get_template_directory() . '/' . ltrim($url, '/');
+    $local_path = get_template_directory() . '/assets/' . ltrim($url, '/');
     
     return file_exists($local_path) ? filemtime($local_path) : null;
 }
@@ -230,8 +225,8 @@ function edd_enqueue_frontend_assets() {
         wp_enqueue_style(
             'theme-main-style',
             $style_url,
-            [], // Sin dependencias
-            filemtime($style_path) // Versión basada en modificación
+            [],
+            filemtime($style_path)
         );
     }
     
@@ -243,19 +238,25 @@ function edd_enqueue_frontend_assets() {
     }
 
     if (edd_should_load_branches_widget()) {
+        $assets_path = get_template_directory() . '/assets/';
+        $assets_uri = get_template_directory_uri() . '/assets/';
+        
+        $widget_js_path = $assets_path . 'widgets/branches-widget/dist/branches-widget.min.js';
+        $widget_css_path = $assets_path . 'widgets/branches-widget/dist/branches-widget.min.css';
+        
         wp_enqueue_script(
             'branches-widget',
-            "{$base_path}widgets/branches-widget/dist/branches-widget.min.js",
+            $assets_uri . 'widgets/branches-widget/dist/branches-widget.min.js',
             ['wp-element'],
-            filemtime("{$base_path}widgets/branches-widget/dist/branches-widget.min.js"),
+            filemtime($widget_js_path),
             true
         );
         
         wp_enqueue_style(
             'branches-widget-css',
-            "{$base_path}widgets/branches-widget/dist/branches-widget.min.css"
+            $assets_uri . 'widgets/branches-widget/dist/branches-widget.min.css',
             ['bootstrap-css'],
-            filemtime("{$base_path}widgets/branches-widget/dist/branches-widget.min.css")
+            filemtime($widget_css_path)
         );
         
         edd_localize_branches_data();
@@ -272,6 +273,3 @@ function edd_enqueue_admin_assets($hook_suffix) {
         }
     }
 }
-
-add_action('wp_enqueue_scripts', 'edd_enqueue_frontend_assets');
-add_action('admin_enqueue_scripts', 'edd_enqueue_admin_assets');
