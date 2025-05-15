@@ -271,11 +271,11 @@ function edd_enqueue_frontend_assets() {
         );
 
         // Verificar si el style fue encolado correctamente
-        add_action('wp_footer', function() {
-            global $wp_styles;
-            edd_write_log('Styles encolados: ' . print_r($wp_styles->queue, true));
-            edd_write_log('Estado branches-widget-css: ' . (wp_style_is('branches-widget-css', 'enqueued') ? 'Encolado' : 'NO encolado'));
-        }, 9999);
+        // add_action('wp_footer', function() {
+        //     global $wp_styles;
+        //     edd_write_log('Styles encolados: ' . print_r($wp_styles->queue, true));
+        //     edd_write_log('Estado branches-widget-css: ' . (wp_style_is('branches-widget-css', 'enqueued') ? 'Encolado' : 'NO encolado'));
+        // }, 9999);
         
         edd_localize_branches_data();
     }
