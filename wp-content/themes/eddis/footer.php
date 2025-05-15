@@ -35,7 +35,9 @@
                             if (!empty($social_networks)) :
                                 foreach ($social_networks as $network) :
                                     ?>
-                                    <a class="social-icon transition-280"  target="_blank" href="<?php echo esc_url($network['link']); ?>" class="m-1"><?php echo $network['icon']; ?></a>
+                                    <a class="social-icon transition-280 m-1"  target="_blank" href="<?php echo esc_url($network['link']); ?>">
+                                        <i class="<?php echo esc_attr($network['icon']); ?>"></i>
+                                    </a>
                                 <?php endforeach;
                             endif;
                             ?>
@@ -70,9 +72,9 @@
                             <h3>Sede Central</h3>
                             <p><?php /*echo carbon_get_theme_option('sede_central');*/ ?></p>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center mt-2 mb-2">
-                        <p class="woocommerce-mini-cart__buttons buttons boton-de-arrepentimiento"><a href="/arrepentimiento-de-compra/" class="btn btn-primary d-inline-block">Botón de arrepentimiento</a></p>
-                        </div>
+                        <!--div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center mt-2 mb-2">
+                            <p class="woocommerce-mini-cart__buttons buttons boton-de-arrepentimiento"><a href="/arrepentimiento-de-compra/" class="btn btn-primary d-inline-block">Botón de arrepentimiento</a></p>
+                        </div-->
                     </div>
                     <!-- Acá iba el formulario del footer -->
                 </div>

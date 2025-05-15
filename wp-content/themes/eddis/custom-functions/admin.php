@@ -10,12 +10,18 @@ function edd_get_product_bullet_icons() {
 }
 
 function edd_get_social_icons() {
-	return [
-        'facebook-square' => '<i class="fab fa-facebook-square"></i> Facebook',
-        'instagram'	      => '<i class="fab fa-instagram"></i> Instagram',
-		'youtube'         => '<i class="fab fa-youtube"></i> Youtube',
-		'x-twitter'       => '<i class="fa-brands fa-x-twitter"></i> X (Twitter)',
-		'whatsapp'        => '<i class="fa-brands fa-whatsapp"></i> Whatsapp',
+    return [
+        'fa-brands fa-square-facebook'  => '<i class="fa-brands fa-square-facebook"></i> Facebook',
+        'fa-brands fa-instagram'        => '<i class="fa-brands fa-instagram"></i> Instagram',
+        'fa-brands fa-youtube'          => '<i class="fa-brands fa-youtube"></i> YouTube',
+        'fa-brands fa-x'                => '<i class="fa-brands fa-x"></i> X (Twitter)',
+        'fa-brands fa-whatsapp'         => '<i class="fa-brands fa-whatsapp"></i> WhatsApp',
+        'fa-brands fa-linkedin'         => '<i class="fa-brands fa-linkedin"></i> LinkedIn',
+        'fa-brands fa-tiktok'           => '<i class="fa-brands fa-tiktok"></i> TikTok',
+        'fa-brands fa-telegram'         => '<i class="fa-brands fa-telegram"></i> Telegram',
+        'fa-brands fa-discord'          => '<i class="fa-brands fa-discord"></i> Discord',
+        'fa-solid fa-envelope'          => '<i class="fa-solid fa-envelope"></i> Email',
+        'fa-solid fa-phone'             => '<i class="fa-solid fa-phone"></i> Teléfono',
     ];
 }
 
