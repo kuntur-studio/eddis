@@ -134,7 +134,7 @@ function edd_register_theme_options() {
 		])
 
 		->add_tab('Gestión de Assets', [
-        	Field::make('complex', 'crb_assets', 'Assets JS/CSS')
+        	Field::make('complex', 'assets', 'Assets JS/CSS')
 				->add_fields([
 					Field::make('select', 'asset_type', 'Tipo de Asset')
 						->set_options([
@@ -147,7 +147,7 @@ function edd_register_theme_options() {
 						->set_required(true),
 
 					Field::make('text', 'asset_url', 'URL o ruta del archivo')
-						->set_attribute('placeholder', 'https://... o /ruta/al/archivo.js o .css')
+						->set_attribute('placeholder', 'https://... o /ruta/al/archivo.js o .css dentro de assets')
 						->set_required(true),
 
 					Field::make('select', 'load_location', 'Ubicación de carga')
@@ -174,7 +174,22 @@ function edd_register_theme_options() {
 				')
 				->set_collapsed(true),
 				//->set_layout('tabbed-horizontal'),
-    	]);
+    	])
+		
+		->add_tab('Widgets Especiales', [
+			Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
+				->set_option_value('yes')
+				->set_default_value(true),
+			
+			Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
+				->set_options(array_merge(
+					['all' => 'Todas las páginas'],
+					edd_get_pages_list()
+				))
+				->set_default_value(['home', '3', '7'])
+						
+
+		]);
 }
 
 // Este hook intercepta el guardado de los datos

@@ -1,57 +1,66 @@
 <?php
-$base_path = get_template_directory_uri();
+$base_path = get_template_directory_uri().'/assets/'; // Ruta base para assets
 
-function enqueue_font_awesome() {
-	global $base_path;
-	wp_enqueue_style('fontawesome', "$base_path/assets/fontawesome/css/all.min.css");
+/**
+ * Determina si un asset debe cargarse en el front-end
+ */
+function edd_should_load_in_frontend($asset) {
+    // Si no hay páginas definidas, no cargar
+    if (empty($asset['load_pages'])) {
+        return false;
+    }
+
+    // Verificar condiciones específicas
+    $load_pages = (array) $asset['load_pages'];
+    $current_page_id = get_queried_object_id();
+
+    // Lógica de carga
+    return 
+        in_array('all', $load_pages) ||
+        (is_front_page() && in_array('home', $load_pages)) ||
+        (is_archive() && in_array('archive', $load_pages)) ||
+        (is_search() && in_array('search', $load_pages)) ||
+        (is_404() && in_array('404', $load_pages)) ||
+        (is_singular() && in_array($current_page_id, $load_pages));
 }
 
-function enqueue_boostrap_styles() {
-	global $base_path;
-	wp_enqueue_style( 'bootstrap-css', "$base_path/assets/bootstrap/css/bootstrap.min.css" );
+/**
+ * Determina si un asset debe cargarse en el admin
+ */
+function edd_should_load_in_admin($asset, $hook_suffix = '') {
+    // Solo si está marcado para admin
+    if (empty($asset['load_in_admin'])) {
+        return false;
+    }
+
+    // Opcional: cargar solo en páginas específicas del admin
+    if (isset($asset['admin_pages']) && !empty($asset['admin_pages'])) {
+        return in_array($hook_suffix, (array) $asset['admin_pages']);
+    }
+
+    return true;
 }
 
-function enqueue_boostrap_scripts() {
-	global $base_path;
-	wp_enqueue_script( 'bootstrap-js', "$base_path/assets/bootstrap/js/bootstrap.min.js", array( 'jquery' ), null, true );
+/**
+ * Determina si el widget de sedes debe cargarse
+ */
+function edd_should_load_branches_widget() {
+    if (!carbon_get_theme_option('enable_branches_widget')) {
+        return false;
+    }
+
+    $target_pages = carbon_get_theme_option('branches_widget_pages');
+    
+    // Si está marcado "all" o estamos en una página seleccionada
+    return in_array('all', (array)$target_pages) || 
+           (in_array('home', (array)$target_pages) && is_front_page()) ||
+           (is_page() && in_array(strval(get_queried_object_id()), (array)$target_pages));
 }
 
-function edd_enqueue_frontend_assets() {
-	global $base_path;
-	
-	enqueue_font_awesome();
-	
-	// Cargo el widget de sedes en las páginas en que se utiliza
-	if (is_front_page() || is_page('sedes') || is_page('contacto')) {
-		enqueue_boostrap_styles();
-		wp_enqueue_script(
-			'branches-widget', // Nombre del script
-			"$base_path/assets/widgets/branches-widget/dist/branches-widget.min.js", // Ruta al archivo del script
-			['wp-element'], // Array de dependencias
-			filemtime("$base_path/assets/widgets/branches-widget/dist/branches-widget.min.js"), // Versión del script
-			true // Cargar el script en el footer
-		);
-		
-		localize_branches_data(); // Cargo los datos de las sedes
-		
-		// Cargo la hoja de estilos del widget
-		wp_enqueue_style(
-			'branches-widget-css', // Handle único
-			"$base_path/assets/widgets/branches-widget/dist/branches-widget.min.css", // Ruta al archivo CSS
-			['bootstrap-css'], // Dependencias
-			filemtime(dirname(__FILE__) . '/assets/widgets/branches-widget/dist/branches-widget.css') // Versión (evita caché)
-		);
-	}
-}
-
-function edd_enqueue_admin_assets() {
-    enqueue_font_awesome();
-}
-
-add_action('wp_enqueue_scripts', 'edd_enqueue_frontend_assets');
-add_action('admin_enqueue_scripts', 'edd_enqueue_admin_assets');
-
-function localize_branches_data() {
+/**
+ * Localiza los datos de las sedes para el widget
+ */
+function edd_localize_branches_data() {
     $branches_data = []; 
 
     // Obtener todas las provincias (términos padre)
@@ -132,3 +141,137 @@ function localize_branches_data() {
         $branches_data
     );
 }
+
+
+/**
+ * Normaliza la URL del asset según las reglas:
+ * - Externos: URLs con http/https (se usan tal cual)
+ * - Internos: Rutas relativas a la carpeta /assets/ del tema (se auto-completan)
+ * - Rutas absolutas (/wp-content/...) no están permitidas (devuelve false)
+ * 
+ * @param string $url Ruta del asset
+ * @return string|false URL normalizada o false si no cumple las reglas
+ */
+function edd_get_normalized_asset_url($url) {
+    global $base_path;
+    
+    // 1. Validar URL externa
+    if (filter_var($url, FILTER_VALIDATE_URL)) {
+        return $url; // Retorna URLs https://... sin cambios
+    }
+    
+    // 2. Rechazar rutas absolutas
+    if (strpos($url, '/') === 0) {
+        trigger_error('Rutas absolutas no permitidas. Usa rutas relativas a /assets/', E_USER_WARNING);
+        return false;
+    }
+    
+    // 3. Validar ruta interna (relativa a /assets/)
+    // Asegurar que no hay intentos de directory traversal (../)
+    $clean_path = ltrim($url, '/');
+    if (strpos($clean_path, '../') !== false || strpos($clean_path, '..\\') !== false) {
+        trigger_error('Directory traversal no permitido en rutas de assets', E_USER_WARNING);
+        return false;
+    }
+    
+    // Construir ruta final (asegurar que comienza con /assets/)
+    return $base_path . $clean_path;
+}
+
+/**
+ * Obtiene la versión del asset (filemtime para locales, null para externos)
+ */
+function edd_get_asset_version($url) {    
+    // Si es una URL externa, no usar filemtime
+    if (filter_var($url, FILTER_VALIDATE_URL)) {
+        return null;
+    }
+    
+    // Ruta local absoluta en el servidor
+    $local_path = get_template_directory() . '/' . ltrim($url, '/');
+    
+    return file_exists($local_path) ? filemtime($local_path) : null;
+}
+
+// Función compartida
+function edd_enqueue_single_asset($asset) {
+    $handle = sanitize_title($asset['asset_name']);
+    $url = edd_get_normalized_asset_url($asset['asset_url']);
+    $ver = edd_get_asset_version($asset['asset_url']);
+
+    if ($asset['asset_type'] === 'js') {
+        wp_enqueue_script(
+            $handle,
+            $url,
+            [],
+            $ver,
+            $asset['load_location'] === 'footer'
+        );
+    } else {
+        wp_enqueue_style(
+            $handle,
+            $url,
+            [],
+            $ver
+        );
+    }
+}
+
+// Front-end
+add_action('wp_enqueue_scripts', 'edd_enqueue_frontend_assets');
+function edd_enqueue_frontend_assets() {
+    if (is_admin()) return;
+
+    // Cargar style.css principal del tema
+    $style_path = get_template_directory() . '/style.css';
+    $style_url = get_template_directory_uri() . '/style.css';
+
+    if (file_exists($style_path)) {
+        wp_enqueue_style(
+            'theme-main-style',
+            $style_url,
+            [], // Sin dependencias
+            filemtime($style_path) // Versión basada en modificación
+        );
+    }
+    
+    $assets = carbon_get_theme_option('assets');
+    foreach ($assets as $asset) {
+        if (edd_should_load_in_frontend($asset)) {
+            edd_enqueue_single_asset($asset);
+        }
+    }
+
+    if (edd_should_load_branches_widget()) {
+        wp_enqueue_script(
+            'branches-widget',
+            "{$base_path}widgets/branches-widget/dist/branches-widget.min.js",
+            ['wp-element'],
+            filemtime("{$base_path}widgets/branches-widget/dist/branches-widget.min.js"),
+            true
+        );
+        
+        wp_enqueue_style(
+            'branches-widget-css',
+            "{$base_path}widgets/branches-widget/dist/branches-widget.min.css"
+            ['bootstrap-css'],
+            filemtime("{$base_path}widgets/branches-widget/dist/branches-widget.min.css")
+        );
+        
+        edd_localize_branches_data();
+    }
+}
+
+// Admin
+add_action('admin_enqueue_scripts', 'edd_enqueue_admin_assets');
+function edd_enqueue_admin_assets($hook_suffix) {
+    $assets = carbon_get_theme_option('crb_assets');
+    foreach ($assets as $asset) {
+        if (edd_should_load_in_admin($asset, $hook_suffix)) {
+            edd_enqueue_single_asset($asset);
+        }
+    }
+}
+
+add_action('wp_enqueue_scripts', 'edd_enqueue_frontend_assets');
+add_action('admin_enqueue_scripts', 'edd_enqueue_admin_assets');
