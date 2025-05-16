@@ -210,7 +210,7 @@ class Kliken_Marketing_Channel implements MarketingChannelInterface {
 	 * @return \Automattic\WooCommerce\Admin\Marketing\MarketingCampaignType[]
 	 */
 	public function get_supported_campaign_types(): array {
-		return $this->_supported_campaign_types;
+		return $this->_supported_campaign_types ?? [];
 	}
 
 	/**
@@ -252,6 +252,16 @@ class Kliken_Marketing_Channel implements MarketingChannelInterface {
 	 */
 	private function generate_supported_campaign_types() {
 		return [
+			'facebook-social-shopping' => new MarketingCampaignType(
+				'facebook-social-shopping',
+				$this,
+				/* translators: "Facebook", "Instagram" are brand names. Do not translate. */
+				__( 'Social Boost for Facebook & Instagram', 'kliken-ads-pixel-for-meta' ),
+				/* translators:" Facebook", "Instagram" are brand names. Do not translate. */
+				__( 'Automate a month of premium-quality Facebook & Instagram posts with a social content AI campaign. Get 5 free posts—then just $20/month.', 'kliken-ads-pixel-for-meta' ),
+				KK_FB_WC_WOOKLIKEN_BASE_URL . 'meta/default.aspx?goto=socialshopnew&acct=' . $this->_plugin_settings['account_id'],
+				KK_FB_WC_PLUGIN_URL . '/assets/SocialBoostLogo.png'
+			),
 			'facebook-shopping-ads' => new MarketingCampaignType(
 				'facebook-shopping-ads',
 				$this,
@@ -283,11 +293,14 @@ class Kliken_Marketing_Channel implements MarketingChannelInterface {
 	 * @return \Automattic\WooCommerce\Admin\Marketing\MarketingCampaignType|null
 	 */
 	private function get_marketing_campaign_type_for_campaign( $api_campaign ) {
-		if ( 'FacebookShoppingAds' === $api_campaign['productType'] ) {
-			return $this->_supported_campaign_types['facebook-shopping-ads'];
+		switch ( $api_campaign['productType'] ) {
+			case 'FacebookShoppingAds':
+				return $this->_supported_campaign_types['facebook-shopping-ads'];
+			case 'FacebookSocialBoostShopping':
+				return $this->_supported_campaign_types['facebook-social-shopping'];
+			default:
+				return null;
 		}
-
-		return null;
 	}
 
 	/**
@@ -310,7 +323,7 @@ class Kliken_Marketing_Channel implements MarketingChannelInterface {
 	 *
 	 * @param mixed $api_campaign Campaign data, from API.
 	 * @param mixed $type Type of the Price value. Could be "cost" or "revenue".
-	 * @return Price|null
+	 * @return null|Price
 	 */
 	private function get_price_value_for_campaign( $api_campaign, $type ) {
 		if ( ! isset( $api_campaign[ $type ] ) ) {
