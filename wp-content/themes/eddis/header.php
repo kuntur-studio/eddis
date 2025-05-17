@@ -78,7 +78,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbarprincipal navbar-nav ml-auto">
+                <ul class="navbarprincipal navbar-nav ms-auto">
                     <?php get_template_part('template-parts/menu'); ?>
                 </ul>
             </div>
