@@ -2,6 +2,7 @@
 $menu_items = carbon_get_theme_option('menu_items');
 if (!empty($menu_items)): ?>
     <?php foreach ($menu_items as $item): ?>
+        <?php print_r($item); ?>
         <!-- Si es menu simple -->
         <?php if (!$item['dropdown_menu']): ?>
             <?php if ($item['active']): ?>
