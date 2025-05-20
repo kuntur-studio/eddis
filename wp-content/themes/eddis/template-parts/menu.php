@@ -2,13 +2,14 @@
 $menu_items = carbon_get_theme_option('menu_items');
 if (!empty($menu_items)): ?>
     <?php foreach ($menu_items as $item): ?>
-        <?php print_r($item); ?>
         <!-- Si es menu simple -->
         <?php if (!$item['dropdown_menu']): ?>
             <?php if ($item['active']): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo esc_url($item['link']); ?>">
-                        <?php if ($item['title'] === 'Ver Carrito') { 
+                        <?php if ($item['title'] === 'Ver Carrito') {?>
+                            <!-- Si es elemento carrito -->
+                        <?php
                             echo '<img class="cart-icon" src="wp-content/themes/eddis/assets/img/shopping-cart.png" />';
                         } else { 
                             echo esc_html($item['title']); 
@@ -243,6 +244,7 @@ if (!empty($menu_items)): ?>
 
             <!-- Si es menú de cursos -->
             <?php elseif ($item['dropdown_type'] === 'courses'): ?>
+                <?php print_r($item); ?>
             <li class="nav-item dropdown" style="position: static!important;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php echo esc_html($item['title']); ?>
