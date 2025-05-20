@@ -8,7 +8,7 @@ if (!empty($menu_items)): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo esc_url($item['link']); ?>">
                         <?php if ($item['title'] === 'Ver Carrito') { 
-                            echo '<img class="cart-icon" src="//eddis.edu.ar/wp-content/uploads/2023/08/Carrito-chico.png" />';
+                            echo '<img class="cart-icon" src="wp-content/themes/eddis/assets/img/shopping-cart.png" />';
                         } else { 
                             echo esc_html($item['title']); 
                         } ?>
@@ -240,7 +240,7 @@ if (!empty($menu_items)): ?>
                 </div>
             </li>
 
-            <!-- Si es 1 columna + desplegable -->
+            <!-- Si es menú de cursos -->
             <?php elseif ($item['dropdown_type'] === 'courses'): ?>
             <li class="nav-item dropdown" style="position: static!important;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -209,6 +209,12 @@ a:hover {
     padding: 0.5rem;
 }
 
+.cart-icon {
+	width: 65%;
+	vertical-align: sub;
+	margin-top: 19px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
     .bar-menu-utc {
