@@ -11,7 +11,7 @@ if (!empty($menu_items)): ?>
                             <?php if ($item['title'] === 'Ver Carrito') {?>
                                 <!-- Si es elemento carrito -->
                             <?php
-                                echo '<img class="cart-icon" src="wp-content/themes/eddis/assets/img/shopping-cart.png" />';
+                                echo '<img class="cart-icon" src="/wp-content/themes/eddis/assets/img/shopping-cart.png" />';
                             } else { 
                                 echo esc_html($item['title']); 
                             } ?>

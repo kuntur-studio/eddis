@@ -3,7 +3,115 @@
 Template Name: Página de Contacto
 */
 get_header();
-?>Contacto
-<!-- Contenido de la página -->
+?>
+    <section class="portada" style="background-image: url(<?php bloginfo('template_directory');?>/assets/images/bg-portada-contacto.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!--BEGIN SECTION BREADCRUMBS -->
+                    <?php if ( function_exists('yoast_breadcrumb') ) : ?>
+                        <div class="custom-breadcrumbs">
+                            <div class="container">
+                                <div class="row">
+                                    <?php yoast_breadcrumb( '<nav class="text-nowrap bd-highlight" id="breadcrumbs">','</nav>' );?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif ?>
+                    <!--END SECTION BREADCRUMBS -->
+                    <h1 class="global-title">
+                        <strong>Contacto</strong>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-sm-6 col-md-6 col-xs-12 col-12">
+                    <h2 class="global-title"><strong>Formulario</strong></h2>
+                    <p class="global-subtitle">Completá el siguiente formulario para obtener más información.</p>
+					<iframe
+                        src="https://link.ventux.io/widget/form/hCbxXDK2uBIkj5AUkHDs"
+                        style="width:100%;height:100%;border:none;border-radius:0px"
+                        id="inline-hCbxXDK2uBIkj5AUkHDs" 
+                        data-layout="{'id':'INLINE'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Formulario de contacto - AR "
+                        data-height="708"
+                        data-layout-iframe-id="inline-hCbxXDK2uBIkj5AUkHDs"
+                        data-form-id="hCbxXDK2uBIkj5AUkHDs"
+                        title="Formulario de contacto - AR "
+                    >
+</iframe>
+<script src="https://link.ventux.io/js/form_embed.js"></script>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-sm-6 col-md-6 col-xs-12 col-12">
+                    <h2 class="global-title mb-5"><strong>Contacto</strong></h2>
+                    <?php if( have_rows('datos_de_contacto') ):?>
+                        <?php while ( have_rows('datos_de_contacto') ) : the_row();?>
+                            <?php if(get_sub_field('link')):?>
+                                <a target="_blank" href="<?php the_sub_field('link');?>" class="global-subtitle d-block mb-3"><?php the_sub_field('icono');?> <?php the_sub_field('descripcion');?></a>
+                            <?php else:?>
+                                <p class="global-subtitle"><?php the_sub_field('icono');?> <?php the_sub_field('descripcion');?></p>
+                            <?php endif;?>
+                        <?php endwhile;?>
+                    <?php endif;?>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="banner-content" style="background-image: url(<?php bloginfo('template_directory');?>/assets/images/bg-banner.jpg)">
+                        <div class="row">
+                            <div class="col-5">
+                                <h2 class="global-title text-white"><strong>Seguinos!</strong></h2>
+                                <?php if( have_rows('redes_sociales', 'option') ):?>
+                                    <?php while ( have_rows('redes_sociales', 'option') ) : the_row();?>
+                                        <a class="social-icon transition-280"  target="_blank" href="<?php the_sub_field('link', 'option');?>" class="m-1"><?php the_sub_field('icon', 'option');?></a>
+                                    <?php endwhile;?>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <?php get_template_part('template-parts/sedes'); ?>
+
+    <section class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="banner-content" style="background-image: url(<?php bloginfo('template_directory');?>/assets/images/bg-banner.jpg)">
+                        <div class="row">
+                            <div class="col-5">
+                                <h2 class="global-title text-white"><strong>Seguinos!</strong></h2>
+                                <?php if( have_rows('redes_sociales', 'option') ):?>
+                                    <?php while ( have_rows('redes_sociales', 'option') ) : the_row();?>
+                                        <a class="social-icon transition-280"  target="_blank" href="<?php the_sub_field('link', 'option');?>" class="m-1"><?php the_sub_field('icon', 'option');?></a>
+                                    <?php endwhile;?>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <?php get_footer(); ?>
 

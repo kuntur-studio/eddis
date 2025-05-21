@@ -158,10 +158,7 @@ function edd_register_theme_options() {
 						->set_default_value('footer'),
 
 					Field::make('multiselect', 'load_pages', 'Páginas donde cargar')
-						->set_options(array_merge(
-							['all' => 'Todas las páginas'],
-							edd_get_pages_list()
-						)),
+						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list()),
 
 					Field::make('checkbox', 'load_in_admin', 'Cargar en Admin'),
 				])
@@ -182,11 +179,8 @@ function edd_register_theme_options() {
 				->set_default_value(true),
 			
 			Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
-				->set_options(array_merge(
-					['all' => 'Todas las páginas'],
-					edd_get_pages_list()
-				))
-				->set_default_value(['home', '3', '7'])
+				->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
+				->set_default_value(['home', '764', '770'])
 						
 
 		]);
