@@ -260,8 +260,19 @@ a:hover {
     width: 98%;
     max-width: 98%;
     min-width: 98%;
+    line-height: normal;
     transform: translateX(-50%);
 }
+/*.navbarprincipal .dropdown-menu {
+	position: relative;
+	left: 50%;
+	float: none;
+	width: 98%;
+	max-width: 98%;
+	min-width: 98%;
+	line-height: normal;
+	transform: translateX(-50%);
+}*/
 
 .navbar .nav-item {
     padding: 0 10px;

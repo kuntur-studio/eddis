@@ -1,10 +1,13 @@
 jQuery(document).ready(function($) {
+    // Funcionalidad del botón de scroll arriba
+    // Al hacer clic en el botón, se desplaza suavemente hacia arriba
     $('.ir-arriba').click(function(){
         $('body, html').animate({
             scrollTop: '0px'
         }, 1000);
     });
 
+    // Mostrar u ocultar el botón de scroll arriba
     $(window).scroll(function(){
         if( $(this).scrollTop() > 600 ){
             $('.ir-arriba').slideDown(100);
@@ -12,4 +15,16 @@ jQuery(document).ready(function($) {
             $('.ir-arriba').slideUp(100);
         }
     });
+
+    // Funcionalidad del menú desplegable.
+    // Al pasar el mouse en un elemento del menú, se despliega el submenú.
+    // no es funcionalidad estandar de bootstrap.
+    // Aplica solo en pantallas grandes.
+    if (window.matchMedia('(max-width: 992px)').matches) {} else {
+        $('nav li.dropdown').hover(function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(280);
+        }, function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280);
+        });
+    }
 });
