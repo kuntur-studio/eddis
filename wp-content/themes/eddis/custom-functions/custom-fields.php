@@ -22,10 +22,15 @@ function edd_register_theme_options() {
                 ->add_fields([
                     Field::make('text', 'title', 'Título')
                         ->set_required(true),
-                    
-                    Field::make('checkbox', 'dropdown_menu', 'Menú desplegable'),
-					
-					Field::make('select', 'dropdown_type', 'Tipo de Desplegable')
+
+                    Field::make('select', 'item_type', 'Tipo')
+                        ->add_options([
+                            'simple' => 'Simple',
+                            'dropdown' => 'Desplegable',
+							'cart' => 'Carrito',
+                        ]),
+
+					Field::make('select', 'dropdown_type', 'Modo de visualización')
                         ->add_options([
                             'one_column' => '1 Columna',
 							'one_column_banner' => '1 Columna + Banner',
@@ -35,8 +40,8 @@ function edd_register_theme_options() {
                         ])
 						->set_conditional_logic([
 								[
-									'field' => 'dropdown_menu',
-									'value' => true, // Solo se muestra si 'dropdown_menu' es VERDADERO
+									'field' => 'item_type',
+									'value' => 'dropdown', // Solo se muestra si el item es desplegable
 								]
 							]),
                     

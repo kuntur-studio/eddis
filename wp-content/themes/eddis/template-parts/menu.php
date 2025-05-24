@@ -3,23 +3,22 @@ $menu_items = carbon_get_theme_option('menu_items');
 if (!empty($menu_items)): ?>
     <?php foreach ($menu_items as $item): ?>
         <?php if ($item['active']): ?>
-            <?php if (!$item['dropdown_menu']): ?>
+            <?php if ($item['item_type'] === 'simple'): ?>
                 <!-- Si es menu simple -->
-                
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo esc_url($item['link']); ?>">
-                            <?php if ($item['title'] === 'Ver Carrito') {?>
-                                <!-- Si es elemento carrito -->
-                            <?php
-                                echo '<img class="cart-icon" src="/wp-content/themes/eddis/assets/img/shopping-cart.png" />';
-                            } else { 
-                                echo esc_html($item['title']); 
-                            } ?>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo esc_url($item['link']); ?>">
+                            echo esc_html($item['title']); 
+                    </a>
+                </li>
+            <?php elseif ($item['item_type'] === 'cart'): ?>
+                <!-- Si es menu carrito -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo esc_url($item['link']); ?>">
+                        <img class="cart-icon" src="/wp-content/themes/eddis/assets/img/shopping-cart.png" />
+                    </a>
+                </li>
             <?php else: ?>
                 <!-- Si es menu desplegable -->
-
                 <?php if ($item['dropdown_type'] === 'one_column'): ?>
                 <!-- Si es 1 columna -->
                 <li class="nav-item dropdown single-column" style="position: relative!important;">
