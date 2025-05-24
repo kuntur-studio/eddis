@@ -7,7 +7,7 @@ if (!empty($menu_items)): ?>
                 <!-- Si es menu simple -->
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo esc_url($item['link']); ?>">
-                            echo esc_html($item['title']); 
+                        <?php echo esc_html($item['title']); ?>
                     </a>
                 </li>
             <?php elseif ($item['item_type'] === 'cart'): ?>
