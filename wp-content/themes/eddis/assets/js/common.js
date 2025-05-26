@@ -27,4 +27,13 @@ jQuery(document).ready(function($) {
             $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280);
         });
     }
+
+    // Funcionalidad del submenú en el menú de navegación.
+    // Al hacer mouseover en un elemento del submenú, se marca como seleccionado y
+    // se visualiza la información relacionada en la segunda columna.
+    // Esto se usa en el menú de cursos.
+    $('.tab-menu a').hover(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
 });

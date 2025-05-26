@@ -22,7 +22,7 @@ if (!empty($menu_items)): ?>
                 <?php if ($item['dropdown_type'] === 'one_column'): ?>
                 <!-- Si es 1 columna -->
                 <li class="nav-item dropdown single-column" style="position: relative!important;">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
                     </a>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
@@ -49,7 +49,7 @@ if (!empty($menu_items)): ?>
                 <?php elseif ($item['dropdown_type'] === 'one_column_banner'): ?>
                 <!-- Si es 1 columna + banner -->
                 <li class="nav-item dropdown" style="position: static!important;">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
                     </a>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
@@ -90,7 +90,7 @@ if (!empty($menu_items)): ?>
                 <?php elseif ($item['dropdown_type'] === 'two_columns_banner'): ?>
                 <!-- Si es 2 columna + banner -->
                 <li class="nav-item dropdown" style="position: static!important;">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
                     </a>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
@@ -145,7 +145,7 @@ if (!empty($menu_items)): ?>
                 <?php elseif ($item['dropdown_type'] === 'two_columns_3_2'): ?>
                 <!-- Si es 2 columna + desplegable -->
                 <li class="nav-item dropdown" style="position: static!important;">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
                     </a>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
@@ -244,7 +244,7 @@ if (!empty($menu_items)): ?>
                 <?php elseif ($item['dropdown_type'] === 'courses'): ?>
                 <!-- Si es menú de cursos -->
                 <li class="nav-item dropdown" style="position: static!important;">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
                     </a>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
@@ -263,7 +263,7 @@ if (!empty($menu_items)): ?>
                                         <ul class="nav tab-menu nav-pills tab-menu-cursos" id="tabCursos">
                                             <?php foreach ($product_categories as $category): ?>
                                                 <li>
-                                                    <a href="#<?php echo esc_attr($category->slug); ?>" data-toggle="tab">
+                                                    <a href="#<?php echo esc_attr($category->slug); ?>" data-bs-toggle="tab">
                                                         <?php echo esc_html($category->name); ?>
                                                     </a>
                                                 </li>

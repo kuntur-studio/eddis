@@ -73,7 +73,7 @@
             <a href="<?php bloginfo('url');?>">
                 <img width="140" class="img-fluid" src="<?php bloginfo('template_directory');?>/assets/img/logo_eddis_normal.svg">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
