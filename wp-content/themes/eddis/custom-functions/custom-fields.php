@@ -82,12 +82,19 @@ function edd_register_theme_options() {
 						->set_conditional_logic([
 							[
 								'field' => 'dropdown_type',
-								'value' => [
-									'one_column',
-									'one_column_banner',
-									'two_columns_banner',
-									'five_columns_3_2',
-								],
+								'value' => 'one_column',
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'one_column_banner',
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'two_columns_banner'
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2'
 							]
 						]),
 
@@ -100,12 +107,19 @@ function edd_register_theme_options() {
 						->set_conditional_logic([
 							[
 								'field' => 'dropdown_type',
-								'value' => [
-									'one_column',
-									'one_column_banner',
-									'two_columns_banner',
-									'five_columns_3_2',
-								],
+								'value' => 'one_column',
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'one_column_banner',
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'two_columns_banner'
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2'
 							]
 						]),
 
@@ -114,10 +128,11 @@ function edd_register_theme_options() {
 						->set_conditional_logic([
 							[
 								'field' => 'dropdown_type',
-								'value' => [
-									'two_columns_banner',
-									'five_columns_3_2',
-								],
+								'value' => 'two_columns_banner'
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2'
 							]
 						]),
 
@@ -130,10 +145,11 @@ function edd_register_theme_options() {
 						->set_conditional_logic([
 							[
 								'field' => 'dropdown_type',
-								'value' => [
-									'two_columns_banner',
-									'five_columns_3_2',
-								],
+								'value' => 'two_columns_banner'
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2'
 							]
 						]),
 
