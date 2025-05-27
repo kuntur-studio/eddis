@@ -28,7 +28,7 @@ if (!empty($menu_items)): ?>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
                         <div class="container">
                             <div class="row">
-                                <div class="text-lg-left text-md-center text-sm-center text-center">
+                                <div class="text-lg-start text-md-center text-sm-center text-center">
                                     <nav class="links-card-menu-utc">
                                         <?php 
                                         $column1_items = carbon_get_theme_option('menu_items_column1_items');
@@ -55,7 +55,7 @@ if (!empty($menu_items)): ?>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                     <h3 style="font-size: 1.3em!important;"><?php echo esc_html(carbon_get_theme_option('menu_items_column1_title')); ?></h3>
                                     <nav class="links-card-menu-utc">
                                         <?php 
@@ -69,7 +69,7 @@ if (!empty($menu_items)): ?>
                                         <?php endif; ?>
                                     </nav>
                                 </div>
-                                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                     <div class="card-utc-menu">
                                         <div class="row">
                                             <div class="col-lg-4" style="padding: 5em 3em; background-color:<?php echo esc_attr(carbon_get_theme_option('menu_items_banner_bg_color')); ?>;">
@@ -96,7 +96,7 @@ if (!empty($menu_items)): ?>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                     <h3 style="font-size: 1.3em!important;"><?php echo esc_html(carbon_get_theme_option('menu_items_column1_title')); ?></h3>
                                     <nav class="links-card-menu-utc">
                                         <?php 
@@ -110,7 +110,7 @@ if (!empty($menu_items)): ?>
                                         <?php endif; ?>
                                     </nav>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                     <h3 style="font-size: 1.3em!important;"><?php echo esc_html(carbon_get_theme_option('menu_items_column2_title')); ?></h3>
                                     <nav class="links-card-menu-utc">
                                         <?php 
@@ -124,7 +124,7 @@ if (!empty($menu_items)): ?>
                                         <?php endif; ?>
                                     </nav>
                                 </div>
-                                <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                     <div class="card-utc-menu">
                                         <div class="row">
                                             <div class="col-lg-4" style="padding: 5em 3em; background-color:<?php echo esc_attr(carbon_get_theme_option('menu_items_banner_bg_color')); ?>;">
@@ -156,7 +156,7 @@ if (!empty($menu_items)): ?>
                                 <div class="col-lx-6 col-lg-6 col-sm-12 col-md-12 col-xs-12 col-12">
                                     <h2><?php echo esc_html(carbon_get_theme_option('menu_items_large_column1_title')); ?></h2>
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                             <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column1_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
@@ -170,7 +170,7 @@ if (!empty($menu_items)): ?>
                                                 <?php endif; ?>
                                             </nav>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                             <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column2_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
@@ -184,7 +184,7 @@ if (!empty($menu_items)): ?>
                                                 <?php endif; ?>
                                             </nav>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                             <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column3_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
@@ -205,7 +205,7 @@ if (!empty($menu_items)): ?>
                                 <div class="col-lx-6 col-lg-6 col-sm-12 col-md-12 col-xs-12 col-12">
                                     <h2><?php echo esc_html(carbon_get_theme_option('menu_items_large_column2_title')); ?></h2>
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                             <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column4_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
@@ -219,7 +219,7 @@ if (!empty($menu_items)): ?>
                                                 <?php endif; ?>
                                             </nav>
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                             <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column5_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
@@ -250,7 +250,7 @@ if (!empty($menu_items)): ?>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center menu-border-right">
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center menu-border-right">
                                     <?php 
                                     // Obtener categorías de producto padre (ajusta el término padre según tu estructura)
                                     $product_categories = get_terms([
@@ -271,7 +271,7 @@ if (!empty($menu_items)): ?>
                                         </ul>
                                     <?php endif; ?>
                                 </div>
-                                <div class="col-lg-7 offset-lg-1 col-md-12 col-sm-12 col-xs-12 text-lg-left text-md-center text-sm-center text-center">
+                                <div class="col-lg-7 offset-lg-1 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
                                     <div class="tab-content">
                                         <?php 
                                         if (!empty($product_categories) && !is_wp_error($product_categories)):

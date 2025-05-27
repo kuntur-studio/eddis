@@ -17,46 +17,252 @@ function edd_register_theme_options() {
 	Container::make( 'theme_options', 'Configuración General')
 		->set_icon('dashicons-superhero')
 		->add_tab('Gestión de Menú', [
-            Field::make('complex', 'menu_items', 'Ítems del Menú')
-                ->set_layout('tabbed-horizontal') // O 'tabbed-vertical' si prefieres
-                ->add_fields([
-                    Field::make('text', 'title', 'Título')
-                        ->set_required(true),
+			Field::make('complex', 'menu_items', 'Ítems del Menú')
+				->set_layout('tabbed-horizontal') // O 'tabbed-vertical' si prefieres
+				->add_fields([
+					Field::make('text', 'title', 'Título')
+						->set_required(true),
 
-                    Field::make('select', 'item_type', 'Tipo')
-                        ->add_options([
-                            'simple' => 'Simple',
-                            'dropdown' => 'Desplegable',
+					Field::make('select', 'item_type', 'Tipo')
+						->add_options([
+							'simple' => 'Simple',
+							'dropdown' => 'Desplegable',
 							'cart' => 'Carrito',
-                        ]),
+						]),
 
 					Field::make('select', 'dropdown_type', 'Modo de visualización')
-                        ->add_options([
-                            'one_column' => '1 Columna',
+						->add_options([
+							'one_column' => '1 Columna',
 							'one_column_banner' => '1 Columna + Banner',
 							'two_columns_banner' => '2 Columnas + Banner',
-							'two_columns_3_2' => '2 Columnas + 3 y 2 columnas internas',
+							'five_columns_3_2' => '5 Columnas (3 + 2)',
 							'courses' => 'Cursos',
-                        ])
+						])
 						->set_conditional_logic([
-								[
-									'field' => 'item_type',
-									'value' => 'dropdown', // Solo se muestra si el item es desplegable
-								]
-							]),
-                    
-                    Field::make('text', 'link', 'Enlace')
-                        ->set_conditional_logic([
-                            [
-                                'field' => 'dropdown_menu',
-                                'value' => false,
-                            ]
-                        ]),
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown', // Solo se muestra si el item es desplegable
+							]
+						]),
 
-                    Field::make('checkbox', 'active', 'Activo'),
+					Field::make('text', 'link', 'Enlace')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_menu',
+								'value' => false,
+							]
+						]),
 
-                ])
-				->set_header_template('Columna <%- $_index + 1 %>') //Esto va al final porque sino no funciona
+					Field::make('checkbox', 'active', 'Activo'),
+
+					// Campos para dropdown: one_column, one_column_banner, two_columns_banner
+					Field::make('text', 'column1_title', 'Título de la Columna 1')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['one_column', 'one_column_banner', 'two_columns_banner'],
+							]
+						]),
+
+					Field::make('complex', 'column1_items', 'Ítems Columna 1')
+						->add_fields([
+							Field::make('text', 'title', 'Título'),
+							Field::make('text', 'link', 'Enlace'),
+						])
+						->set_layout('tabbed-horizontal')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['one_column', 'one_column_banner', 'two_columns_banner'],
+							]
+						]),
+
+					Field::make('text', 'column2_title', 'Título de la Columna 2')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['two_columns_banner'],
+							]
+						]),
+
+					Field::make('complex', 'column2_items', 'Ítems Columna 2')
+						->add_fields([
+							Field::make('text', 'title', 'Título'),
+							Field::make('text', 'link', 'Enlace'),
+						])
+						->set_layout('tabbed-horizontal')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['two_columns_banner'],
+							]
+						]),
+
+					// Banner para los dropdowns con banner
+					Field::make('color', 'banner_bg_color', 'Color de fondo del banner')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['one_column_banner', 'two_columns_banner'],
+							]
+						]),
+
+					Field::make('text', 'banner_title', 'Título del banner')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['one_column_banner', 'two_columns_banner'],
+							]
+						]),
+
+					Field::make('textarea', 'banner_description', 'Descripción del banner')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['one_column_banner', 'two_columns_banner'],
+							]
+						]),
+
+					Field::make('image', 'banner_image', 'Imagen del banner')
+						->set_value_type('url')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['one_column_banner', 'two_columns_banner'],
+							]
+						]),
+
+					Field::make('text', 'banner_link', 'Enlace del banner')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => ['one_column_banner', 'two_columns_banner'],
+							]
+						]),
+
+					// Campos para dropdown: five_columns_3_2
+					Field::make('text', 'wrapper1_title', 'Título grupo 3 columnas')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('text', 'wrapper2_title', 'Título grupo 2 columnas')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('text', 'column1_title', 'Título de la Columna 1')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('complex', 'column1_items', 'Ítems Columna 1')
+						->add_fields([
+							Field::make('text', 'title', 'Título'),
+							Field::make('text', 'link', 'Enlace'),
+						])
+						->set_layout('tabbed-horizontal')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('text', 'column2_title', 'Título de la Columna 2')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('complex', 'column2_items', 'Ítems Columna 2')
+						->add_fields([
+							Field::make('text', 'title', 'Título'),
+							Field::make('text', 'link', 'Enlace'),
+						])
+						->set_layout('tabbed-horizontal')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('text', 'column3_title', 'Título de la Columna 3')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('complex', 'column3_items', 'Ítems Columna 3')
+						->add_fields([
+							Field::make('text', 'title', 'Título'),
+							Field::make('text', 'link', 'Enlace'),
+						])
+						->set_layout('tabbed-horizontal')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('text', 'column4_title', 'Título de la Columna 4')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('complex', 'column4_items', 'Ítems Columna 4')
+						->add_fields([
+							Field::make('text', 'title', 'Título'),
+							Field::make('text', 'link', 'Enlace'),
+						])
+						->set_layout('tabbed-horizontal')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('text', 'column5_title', 'Título de la Columna 5')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+
+					Field::make('complex', 'column5_items', 'Ítems Columna 5')
+						->add_fields([
+							Field::make('text', 'title', 'Título'),
+							Field::make('text', 'link', 'Enlace'),
+						])
+						->set_layout('tabbed-horizontal')
+						->set_conditional_logic([
+							[
+								'field' => 'dropdown_type',
+								'value' => 'five_columns_3_2',
+							]
+						]),
+				])
+				->set_header_template('Columna <%- $_index + 1 %>') // Esto va al final porque sino no funciona
 				// Aparentemente add_fields elimina la configuración establecida por set_header_template
 		])
 
