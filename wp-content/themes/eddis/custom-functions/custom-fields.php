@@ -82,7 +82,13 @@ function edd_register_theme_options() {
 						->set_conditional_logic([
 							[
 								'field' => 'dropdown_type',
-								'value' => 'one_column',
+								'value' => [
+									'one_column',
+									'one_column_banner',
+									'two_columns_banner',
+									'five_columns_3_2',
+								],
+								'compare' => 'IN'
 							]
 						]),
 
@@ -95,7 +101,13 @@ function edd_register_theme_options() {
 						->set_conditional_logic([
 							[
 								'field' => 'dropdown_type',
-								'value' => 'one_column',
+								'value' => [
+									'one_column',
+									'one_column_banner',
+									'two_columns_banner',
+									'five_columns_3_2',
+								],
+								'compare' => 'IN'
 							]
 						]),
 
@@ -103,12 +115,9 @@ function edd_register_theme_options() {
 					Field::make('text', 'column2_title', 'Título de la Columna 2')
 						->set_conditional_logic([
 							[
-								'field' => 'dropdown_type',
-								'value' => 'two_columns_banner'
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'five_columns_3_2'
+								'field'   => 'dropdown_type',
+								'value'   => ['two_columns_banner', 'five_columns_3_2'],
+								'compare' => 'IN'
 							]
 						]),
 
@@ -120,12 +129,9 @@ function edd_register_theme_options() {
 						->set_layout('tabbed-horizontal')
 						->set_conditional_logic([
 							[
-								'field' => 'dropdown_type',
-								'value' => 'two_columns_banner'
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'five_columns_3_2'
+								'field'   => 'dropdown_type',
+								'value'   => ['two_columns_banner', 'five_columns_3_2'],
+								'compare' => 'IN'
 							]
 						]),
 
@@ -199,24 +205,27 @@ function edd_register_theme_options() {
 					Field::make('color', 'banner_bg_color', 'Color de fondo del banner')
 						->set_conditional_logic([
 							[
-								'field' => 'dropdown_type',
-								'value' => ['one_column_banner', 'two_columns_banner'],
+								'field'   => 'dropdown_type',
+								'value'   => ['one_column_banner', 'two_columns_banner'],
+								'compare' => 'IN'
 							]
 						]),
 
 					Field::make('text', 'banner_title', 'Título del banner')
 						->set_conditional_logic([
 							[
-								'field' => 'dropdown_type',
-								'value' => ['one_column_banner', 'two_columns_banner'],
+								'field'   => 'dropdown_type',
+								'value'   => ['one_column_banner', 'two_columns_banner'],
+								'compare' => 'IN'
 							]
 						]),
 
 					Field::make('textarea', 'banner_description', 'Descripción del banner')
 						->set_conditional_logic([
 							[
-								'field' => 'dropdown_type',
-								'value' => ['one_column_banner', 'two_columns_banner'],
+								'field'   => 'dropdown_type',
+								'value'   => ['one_column_banner', 'two_columns_banner'],
+								'compare' => 'IN'
 							]
 						]),
 
@@ -224,16 +233,18 @@ function edd_register_theme_options() {
 						->set_value_type('url')
 						->set_conditional_logic([
 							[
-								'field' => 'dropdown_type',
-								'value' => ['one_column_banner', 'two_columns_banner'],
+								'field'   => 'dropdown_type',
+								'value'   => ['one_column_banner', 'two_columns_banner'],
+								'compare' => 'IN'
 							]
 						]),
 
 					Field::make('text', 'banner_link', 'Enlace del banner')
 						->set_conditional_logic([
 							[
-								'field' => 'dropdown_type',
-								'value' => ['one_column_banner', 'two_columns_banner'],
+								'field'   => 'dropdown_type',
+								'value'   => ['one_column_banner', 'two_columns_banner'],
+								'compare' => 'IN'
 							]
 						]),
 				])
