@@ -83,18 +83,6 @@ function edd_register_theme_options() {
 							[
 								'field' => 'dropdown_type',
 								'value' => 'one_column',
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'one_column_banner',
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'two_columns_banner'
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'five_columns_3_2'
 							]
 						]),
 
@@ -108,18 +96,6 @@ function edd_register_theme_options() {
 							[
 								'field' => 'dropdown_type',
 								'value' => 'one_column',
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'one_column_banner',
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'two_columns_banner'
-							],
-							[
-								'field' => 'dropdown_type',
-								'value' => 'five_columns_3_2'
 							]
 						]),
 
