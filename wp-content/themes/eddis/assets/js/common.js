@@ -35,5 +35,8 @@ jQuery(document).ready(function($) {
     $('.tab-menu a').hover(function (e) {
             e.preventDefault()
             $(this).tab('show')
-        })
+    });
+
+    // Inicializar el primer tab del menú de cursos al cargar la página
+    $('#tabCursos a:first').tab('show');
 });
