@@ -36,10 +36,10 @@ jQuery(document).ready(function($) {
             },
             // Mouse leave
             function() {
-            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280, function() {
-                // Solo limpia active de los nav-links dentro de este menú específico
-                $(this).find('.nav-link.active').removeClass('active');
-            });
+                const $dropdownContainer = $(this);
+                $dropdownContainer.find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280, function() {
+                    $dropdownContainer.find('.nav-link.active').removeClass('active');
+                });
             }
         );
     }
