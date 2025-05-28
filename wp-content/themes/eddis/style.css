@@ -112,6 +112,10 @@ p {
 	color: #fff;
 }
 
+.bar-menu-utc a:hover {
+	color: var(--primary-color);
+}
+
 /* ===== BOTÓN IR ARRIBA ===== */
 .ir-arriba {
     position: fixed;
