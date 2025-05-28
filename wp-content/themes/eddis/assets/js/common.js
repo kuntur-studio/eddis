@@ -23,23 +23,21 @@ jQuery(document).ready(function($) {
     // Aplica solo en pantallas grandes.
     if (window.matchMedia('(max-width: 992px)').matches) {} else {
         let coursesMenuFirstInteraction = true;
-  
-        $('nav li.dropdown').hover(
-            // Mouse enter
+        const $dropdownParent = $('nav li.dropdown'); // Contenedor principal
+        
+        $dropdownParent.hover(
             function() {
-                $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(280);
-                
-                if (coursesMenuFirstInteraction && $('#tabCursos .tab-pane.active').length === 0) {
-                    $('#tabCursos a:first').tab('show');
-                }
-                coursesMenuFirstInteraction = false;
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(280);
+            
+            if (coursesMenuFirstInteraction && $('#tabCursos .tab-pane.active').length === 0) {
+                $('#tabCursos a:first').tab('show');
+            }
+            coursesMenuFirstInteraction = false;
             },
-            // Mouse leave
             function() {
-                const $dropdownContainer = $(this);
-                $dropdownContainer.find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280, function() {
-                    $dropdownContainer.find('.nav-link.active').removeClass('active');
-                });
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280, function() {
+                $dropdownParent.find('.nav-link.active').removeClass('active');
+            });
             }
         );
     }

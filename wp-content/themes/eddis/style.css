@@ -490,6 +490,27 @@ a:hover {
     }
 }
 
+.navbarprincipal .nav-item:hover .nav-link:not(.active) {
+  color: #242221 !important;
+  transition: none !important;
+}
+
+.navbarprincipal .nav-link.active {
+  color: var(--primary-color) !important;
+  transition: color 0.1s ease !important;
+}
+
+/* Elimina la transición general del nav-link */
+.navbarprincipal .nav-link {
+  transition: none !important;
+}
+
+/* Mantiene el estilo de hover dentro del dropdown */
+.tab-menu-cursos li a:hover {
+  color: var(--primary-color) !important;
+  transition: color 0.1s ease !important;
+}
+
 /******** Footer *******/
 /* ===== ESTILOS GENERALES DEL FOOTER ===== */
 .page-footer {
