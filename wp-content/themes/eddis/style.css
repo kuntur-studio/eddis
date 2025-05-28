@@ -220,7 +220,6 @@ p {
     width: 100%;
     padding: 0.5em;
     color: white;
-    border: none;
     border-radius: 8px;
     background-color: var(--primary-color);
     cursor: pointer;
