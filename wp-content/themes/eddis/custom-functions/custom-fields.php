@@ -202,15 +202,6 @@ function edd_register_theme_options() {
 						]),
 
 					// Banner para los dropdowns con banner (one_column_banner, two_columns_banner)
-					Field::make('color', 'banner_bg_color', 'Color de fondo del banner')
-						->set_conditional_logic([
-							[
-								'field'   => 'dropdown_type',
-								'value'   => ['one_column_banner', 'two_columns_banner'],
-								'compare' => 'IN'
-							]
-						]),
-
 					Field::make('text', 'banner_title', 'Título del banner')
 						->set_conditional_logic([
 							[
@@ -221,6 +212,15 @@ function edd_register_theme_options() {
 						]),
 
 					Field::make('textarea', 'banner_description', 'Descripción del banner')
+						->set_conditional_logic([
+							[
+								'field'   => 'dropdown_type',
+								'value'   => ['one_column_banner', 'two_columns_banner'],
+								'compare' => 'IN'
+							]
+						]),
+
+					Field::make('color', 'banner_bg_color', 'Color de fondo del banner')
 						->set_conditional_logic([
 							[
 								'field'   => 'dropdown_type',

@@ -31,7 +31,7 @@ if (!empty($menu_items)): ?>
                                 <div class="text-lg-start text-md-center text-sm-center text-center">
                                     <nav class="links-card-menu-utc">
                                         <?php 
-                                        $column1_items = carbon_get_theme_option('menu_items_column1_items');
+                                        $column1_items = $item['column1_items'] ?? [];
                                         if (!empty($column1_items)): ?>
                                             <?php foreach ($column1_items as $col1_item): ?>
                                                 <a href="<?php echo esc_url($col1_item['link']); ?>" class="transition-280 text-dark single-column-menu-item">
@@ -56,10 +56,10 @@ if (!empty($menu_items)): ?>
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
-                                    <h3 style="font-size: 1.3em!important;"><?php echo esc_html(carbon_get_theme_option('menu_items_column1_title')); ?></h3>
+                                    <h3 style="font-size: 1.3em!important;"><?php echo esc_html($item('column1_title')); ?></h3>
                                     <nav class="links-card-menu-utc">
                                         <?php 
-                                        $column1_items = carbon_get_theme_option('menu_items_column1_items');
+                                        $column1_items = $item['column1_items'] ?? [];
                                         if (!empty($column1_items)): ?>
                                             <?php foreach ($column1_items as $col1_item): ?>
                                                 <a href="<?php echo esc_url($col1_item['link']); ?>" class="transition-280 text-dark">
@@ -100,7 +100,7 @@ if (!empty($menu_items)): ?>
                                     <h3 style="font-size: 1.3em!important;"><?php echo esc_html(carbon_get_theme_option('menu_items_column1_title')); ?></h3>
                                     <nav class="links-card-menu-utc">
                                         <?php 
-                                        $column1_items = carbon_get_theme_option('menu_items_column1_items');
+                                        $column1_items = $item['column1_items'] ?? [];
                                         if (!empty($column1_items)): ?>
                                             <?php foreach ($column1_items as $col1_item): ?>
                                                 <a href="<?php echo esc_url($col1_item['link']); ?>" class="transition-280 text-dark">
@@ -114,7 +114,7 @@ if (!empty($menu_items)): ?>
                                     <h3 style="font-size: 1.3em!important;"><?php echo esc_html(carbon_get_theme_option('menu_items_column2_title')); ?></h3>
                                     <nav class="links-card-menu-utc">
                                         <?php 
-                                        $column2_items = carbon_get_theme_option('menu_items_column2_items');
+                                        $column2_items = $item['column2_items'] ?? [];
                                         if (!empty($column2_items)): ?>
                                             <?php foreach ($column2_items as $col2_item): ?>
                                                 <a href="<?php echo esc_url($col2_item['link']); ?>" class="transition-280 text-dark">
@@ -142,8 +142,8 @@ if (!empty($menu_items)): ?>
                     </div>
                 </li>
 
-                <?php elseif ($item['dropdown_type'] === 'two_columns_3_2'): ?>
-                <!-- Si es 2 columna + desplegable -->
+                <?php elseif ($item['dropdown_type'] === 'five_columns_3_2'): ?>
+                <!-- Si es 5 columnas (3 + 2) -->
                 <li class="nav-item dropdown" style="position: static!important;">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
@@ -154,13 +154,13 @@ if (!empty($menu_items)): ?>
 
                                 <!-- Columna grande 1 -->
                                 <div class="col-lx-6 col-lg-6 col-sm-12 col-md-12 col-xs-12 col-12">
-                                    <h2><?php echo esc_html(carbon_get_theme_option('menu_items_large_column1_title')); ?></h2>
+                                    <h2><?php echo esc_html($item('wrapper1_title')); ?></h2>
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
-                                            <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column1_title')); ?></h3>
+                                            <h3><?php echo esc_html($item('column1_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
-                                                $column1_items = carbon_get_theme_option('menu_items_column1_items');
+                                                $column1_items = $item['column1_items'] ?? [];
                                                 if (!empty($column1_items)): ?>
                                                     <?php foreach ($column1_items as $col1_item): ?>
                                                         <a href="<?php echo esc_url($col1_item['link']); ?>" class="transition-280 text-dark">
@@ -174,7 +174,7 @@ if (!empty($menu_items)): ?>
                                             <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column2_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
-                                                $column2_items = carbon_get_theme_option('menu_items_column2_items');
+                                                $column2_items = $item['column2_items'] ?? [];
                                                 if (!empty($column2_items)): ?>
                                                     <?php foreach ($column2_items as $col2_item): ?>
                                                         <a href="<?php echo esc_url($col2_item['link']); ?>" class="transition-280 text-dark">
@@ -185,10 +185,10 @@ if (!empty($menu_items)): ?>
                                             </nav>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
-                                            <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column3_title')); ?></h3>
+                                            <h3><?php echo esc_html($item('column3_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
-                                                $column3_items = carbon_get_theme_option('menu_items_column3_items');
+                                                $column3_items = $item['column3_items'] ?? [];
                                                 if (!empty($column3_items)): ?>
                                                     <?php foreach ($column3_items as $col3_item): ?>
                                                         <a href="<?php echo esc_url($col3_item['link']); ?>" class="transition-280 text-dark">
@@ -203,13 +203,13 @@ if (!empty($menu_items)): ?>
 
                                 <!-- Columna grande 2 -->
                                 <div class="col-lx-6 col-lg-6 col-sm-12 col-md-12 col-xs-12 col-12">
-                                    <h2><?php echo esc_html(carbon_get_theme_option('menu_items_large_column2_title')); ?></h2>
+                                    <h2><?php echo esc_html($item('wrapper2_title')); ?></h2>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
-                                            <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column4_title')); ?></h3>
+                                            <h3><?php echo esc_html($item('column4_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
-                                                $column4_items = carbon_get_theme_option('menu_items_column4_items');
+                                                $column4_items = $item['column4_items'] ?? [];
                                                 if (!empty($column4_items)): ?>
                                                     <?php foreach ($column4_items as $col4_item): ?>
                                                         <a href="<?php echo esc_url($col4_item['link']); ?>" class="transition-280 text-dark">
@@ -220,10 +220,10 @@ if (!empty($menu_items)): ?>
                                             </nav>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-lg-start text-md-center text-sm-center text-center">
-                                            <h3><?php echo esc_html(carbon_get_theme_option('menu_items_column5_title')); ?></h3>
+                                            <h3><?php echo esc_html($item('column5_title')); ?></h3>
                                             <nav class="links-card-menu-utc">
                                                 <?php 
-                                                $column5_items = carbon_get_theme_option('menu_items_column5_items');
+                                                $column5_items = $item['column5_items'] ?? [];
                                                 if (!empty($column5_items)): ?>
                                                     <?php foreach ($column5_items as $col5_item): ?>
                                                         <a href="<?php echo esc_url($col5_item['link']); ?>" class="transition-280 text-dark">
