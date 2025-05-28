@@ -37,11 +37,21 @@ jQuery(document).ready(function($) {
             $(this).tab('show')
     });
 
-    // Inicializar el primer tab del menú de cursos al cargar la página
     // $('#tabCursos a:first').tab('show');
+    // Inicializar el primer tab del menú de cursos al cargar sin abrir el dropdown
     const firstTab = document.querySelector('#tabCursos a');
     if (firstTab) {
-    const tab = new bootstrap.Tab(firstTab);
-    tab.show();
+        new bootstrap.Tab(firstTab).show();
+
+        // Evita que el dropdown quede abierto al iniciar
+        document.querySelectorAll('.dropdown.show').forEach(el => el.classList.remove('show'));
+        document.querySelectorAll('.dropdown-menu.show').forEach(el => el.classList.remove('show'));
     }
+
+    // Limpiar selección cuando el mouse sale del menú
+    document.querySelector('#tabCursos')?.addEventListener('mouseleave', () => {
+        document.querySelector('#tabCursos a.active')?.classList.remove('active');
+        document.querySelector('.tab-content .tab-pane.active')?.classList.remove('active', 'show');
+    });
+
 });
