@@ -421,7 +421,7 @@ p {
     color: #242221;
 }
 
-.column-nav a:hover {
+.column-nav a:hover:not(.btn) {
     color: var(--primary-color);
 }
 
