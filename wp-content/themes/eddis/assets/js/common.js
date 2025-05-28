@@ -38,5 +38,10 @@ jQuery(document).ready(function($) {
     });
 
     // Inicializar el primer tab del menú de cursos al cargar la página
-    $('#tabCursos a:first').tab('show');
+    // $('#tabCursos a:first').tab('show');
+    const firstTab = document.querySelector('#tabCursos a');
+    if (firstTab) {
+    const tab = new bootstrap.Tab(firstTab);
+    tab.show();
+    }
 });
