@@ -77,6 +77,10 @@ p {
 	font-size: 1.1em;
 }
 
+.transition-280 {
+	transition: 280ms;
+}
+
 .btn {
   font-size: 0.875rem; /* 14px en rem */
   font-weight: 400;
@@ -579,7 +583,6 @@ p {
     margin: 0 0.3em;
     font-size: 1.3em;
     color: white;
-    transition: color 0.28s ease;
 }
 
 .page-footer .social-icon:hover {
