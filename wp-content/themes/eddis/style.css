@@ -166,7 +166,7 @@ p {
 }
 
 /* ===== BARRA DE BÚSQUEDA FLOTANTE ===== */
-#flotante {
+#floatSearchBox {
     position: fixed;
     top: 0;
     left: 0;
@@ -177,14 +177,14 @@ p {
     transition: opacity 0.5s ease;
 }
 
-#flotante #close {
+#floatSearchBox #close {
     position: absolute;
     top: 0;
     right: 30px;
     z-index: 9999;
 }
 
-#flotante #close a {
+#floatSearchBox #close a {
     display: block;
     width: 50px;
     height: 95px;
@@ -268,7 +268,7 @@ p {
         margin-top: 20%;
     }
     
-    #flotante {
+    #floatSearchBox {
         padding-top: 20%;
     }
     

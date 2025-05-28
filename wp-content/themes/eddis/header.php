@@ -49,7 +49,7 @@
                 <?php endif; ?>
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12 offset-lg-3">
                         <p class="text-lg-end text-md-end text-sm-center text-center">
-                        <a href="javascript:mostrar();" class="m-3"><i class="fas fa-search"></i> Buscar</a>
+                        <a href="javascript:showSearchBox();" class="m-3"><i class="fas fa-search"></i> Buscar</a>
                         <a target="_blank" href="https://eddis.educativa.org/acceso.cgi?id_curso=" class="text-white btn-header-top">Campus virtual <i class="fas fa-chevron-right ml-2"></i></a>
                         </p>		
                     </div>
@@ -60,7 +60,7 @@
                 <?php if ($phone_active && !empty($phone_number)) : ?>
                     <a href="tel:+<?php echo esc_attr($phone_number); ?>"><i class="fas fa-phone mr-1"></i> !Hablemos!</a>
                 <?php endif; ?>
-                    <a href="javascript:mostrar();" class="m-3"><i class="fas fa-search"></i> Buscar</a>
+                    <a href="javascript:showSearchBox();" class="m-3"><i class="fas fa-search"></i> Buscar</a>
                     <a target="_blank" href="https://eddis.educativa.org/acceso.cgi?id_curso=" class="text-white">Campus virtual <i class="fas fa-chevron-right ml-2"></i></a>
             </div>
 
@@ -88,8 +88,8 @@
 
 
     <!--BEGIN SEARCH HEADER-->
-    <div id="flotante" style="visibility: hidden; opacity: 0">
-        <div id="close"><a href="javascript:cerrar();"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+    <div id="floatSearchBox" style="visibility: hidden; opacity: 0">
+        <div id="close"><a href="javascript:hideSearchBox();"><i class="fa fa-times" aria-hidden="true"></i></a></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-12 col-xs-12 col-12">

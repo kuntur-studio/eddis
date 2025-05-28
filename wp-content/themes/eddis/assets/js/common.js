@@ -50,21 +50,16 @@ jQuery(document).ready(function($) {
             e.preventDefault()
             $(this).tab('show')
     });
-
-    // $('#tabCursos a:first').tab('show');
-    // Inicializar el primer tab del menú de cursos al cargar sin abrir el dropdown
-    // const firstTab = document.querySelector('#tabCursos a');
-    // if (firstTab) {
-    //     new bootstrap.Tab(firstTab).show();
-
-    //     // Evita que el dropdown quede abierto al iniciar
-    //     document.querySelectorAll('.dropdown.show').forEach(el => el.classList.remove('show'));
-    //     document.querySelectorAll('.dropdown-menu.show').forEach(el => el.classList.remove('show'));
-    // }
-
-    // // Limpiar selección cuando el mouse sale del menú
-    // document.querySelector('#tabCursos')?.addEventListener('mouseleave', () => {
-    //     document.querySelector('#tabCursos a.active')?.classList.remove('active');
-    //     document.querySelector('.tab-content .tab-pane.active')?.classList.remove('active', 'show');
-    // });
 });
+
+function showSearchBox() {
+    div = document.getElementById('floatSearchBox');
+    div.style.visibility = 'visible';
+    div.style.opacity = '1';
+}
+
+function hideSearchBox() {
+    div = document.getElementById('floatSearchBox');
+    div.style.visibility = 'hidden';
+    div.style.opacity = '0';
+}
