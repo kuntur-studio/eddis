@@ -439,7 +439,7 @@ a:hover {
 }
 
 .dropdown-menu .single-column-menu-item:hover {
-    color: var(--primary-color);
+    color: var(--primary-color)!important;
 }
 
 /* ===== RESPONSIVE ===== */
