@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+    let firstInteraction = true;
     // Funcionalidad del botón de scroll arriba
     // Al hacer clic en el botón, se desplaza suavemente hacia arriba
     $('.ir-arriba').click(function(){
@@ -21,11 +22,26 @@ jQuery(document).ready(function($) {
     // no es funcionalidad estandar de bootstrap.
     // Aplica solo en pantallas grandes.
     if (window.matchMedia('(max-width: 992px)').matches) {} else {
-        $('nav li.dropdown').hover(function() {
-            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(280);
-        }, function() {
-            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280);
-        });
+        let coursesMenuFirstInteraction = true;
+  
+        $('nav li.dropdown').hover(
+            // Mouse enter
+            function() {
+                $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(280);
+                
+                if (coursesMenuFirstInteraction && $('#tabCursos .tab-pane.active').length === 0) {
+                    $('#tabCursos a:first').tab('show');
+                }
+                coursesMenuFirstInteraction = false;
+            },
+            // Mouse leave
+            function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280, function() {
+                // Solo limpia active de los nav-links dentro de este menú específico
+                $(this).find('.nav-link.active').removeClass('active');
+            });
+            }
+        );
     }
 
     // Funcionalidad del submenú en el menú de navegación.

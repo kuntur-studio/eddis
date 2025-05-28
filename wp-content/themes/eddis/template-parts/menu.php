@@ -259,13 +259,11 @@ if (!empty($menu_items)): ?>
                                         'parent'     => 0, // Cambia esto según tu estructura de categorías
                                     ]);
                                     
-                                    if (!empty($product_categories) && !is_wp_error($product_categories)):
-                                        $is_first = true;?>
+                                    if (!empty($product_categories) && !is_wp_error($product_categories)): ?>
                                         <ul class="nav tab-menu nav-pills tab-menu-cursos" id="tabCursos">
-                                            <?php foreach ($product_categories as $category): 
-                                                $is_first = false; // Para que solo el primer elemento sea activo ?>
+                                            <?php foreach ($product_categories as $category): ?>
                                                 <li>
-                                                    <a href="#<?php echo esc_attr($category->slug); ?>" class="<?php echo $is_first ? 'active' : ''; ?>" data-bs-toggle="tab">
+                                                    <a href="#<?php echo esc_attr($category->slug); ?>" data-bs-toggle="tab">
                                                         <?php echo esc_html($category->name); ?>
                                                     </a>
                                                 </li>
@@ -277,12 +275,10 @@ if (!empty($menu_items)): ?>
                                     <div class="tab-content">
                                         <?php 
                                         if (!empty($product_categories) && !is_wp_error($product_categories)):
-                                            $is_first = true; // Para que solo el primer elemento sea activo
                                             foreach ($product_categories as $category): ?>
-                                                <div class="tab-pane well fade <?php echo $is_first ? 'show active' : ''; ?>" id="<?php echo esc_attr($category->slug); ?>">
+                                                <div class="tab-pane well" id="<?php echo esc_attr($category->slug); ?>"> 
                                                     <div class="column-nav d-flex flex-row justify-content-between flex-wrap">
                                                         <?php
-                                                        $is_first = false; // Para que solo el primer elemento sea activo
                                                         // Obtener productos de esta categoría
                                                         $args = [
                                                             'post_type'      => 'product',
