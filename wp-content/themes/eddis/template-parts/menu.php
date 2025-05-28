@@ -308,7 +308,8 @@ if (!empty($menu_items)): ?>
                                                         </a>
                                                     </div>
                                                 </div>
-                                            <?php endforeach;
+                                            <?php $is_first = false;
+                                            endforeach;
                                         endif; ?>
                                     </div>
                                 </div>
