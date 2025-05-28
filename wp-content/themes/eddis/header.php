@@ -28,7 +28,7 @@
                             Seguinos:
                                 <?php foreach ($social_networks as $network) : ?>
                                     <a class="social-icon" target="_blank" href="<?php echo esc_url($network['link']); ?>" class="m-1">
-                                        <?php echo $network['icon']; // Asume que el icono es HTML o una clase CSS ?>
+                                        <i class="<?php echo esc_attr($network['icon']); ?>"></i>
                                     </a>
                                 <?php endforeach; ?>
                         </div>		
