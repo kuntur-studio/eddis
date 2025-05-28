@@ -193,8 +193,13 @@ p {
     color: var(--primary-color);
 }
 
+#floatSearchBox .search-form input:focus,
+#floatSearchBox .search-form input:hover {
+	box-shadow: none!important;
+}
+
 .box-search-home {
-    padding: 2em;
+    padding: 1.875em;
     margin-top: 33%;
     border-radius: 10px;
     background-color: white;
@@ -213,18 +218,12 @@ p {
 .search-form input[type="submit"] {
     width: 100%;
     padding: 0.5em;
-    font-weight: bold;
     color: white;
     border: none;
     border-radius: 8px;
     background-color: var(--primary-color);
     cursor: pointer;
     transition: background-color 0.28s ease;
-}
-
-.search-form input[type="submit"]:hover {
-    background-color: var(--secondary-color);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== NAVEGACIÓN PRINCIPAL ===== */
