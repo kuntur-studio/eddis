@@ -96,7 +96,7 @@ $section-margin-bottom: 120px;
             background-color: $active-button-color;
         }
 
-        &:hover {
+        &:not(.active):hover {
             background: none;
         }
     }
