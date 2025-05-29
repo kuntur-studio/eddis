@@ -56,6 +56,7 @@ class BranchesWidget extends Component {
           { className: "col-xl-2 col-lg-2 col-sm-4 col-md-4 col-xs-12 col-12" },
           createElement(SidebarProvinces, {
             data,
+            activeProvince: activeProvince,
             onSelectBranch: this.setActiveBranch,
           })
         ),

@@ -1,11 +1,14 @@
 const { createElement, useState, useEffect, useRef } = wp.element;
 
-const SidebarProvinces = ({ data, onSelectBranch }) => {
-  const [activeProvince, setActiveProvince] = useState(null);
+const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBranch }) => {
+  const [localActiveProvince, setLocalActiveProvince] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
   const popupRef = useRef(null);
   const buttonRefs = useRef({});
   const timeoutRef = useRef(null);
+
+  // Determina la provincia activa combinando la prop y el estado local
+  const activeProvince = localActiveProvince || propActiveProvince;
 
   // Manejar clic fuera y tecla ESC
   useEffect(() => {
@@ -45,7 +48,7 @@ const SidebarProvinces = ({ data, onSelectBranch }) => {
     if (activeProvince === province) {
       closePopup();
     } else {
-      setActiveProvince(province);
+      setLocalActiveProvince(province);
       setIsClosing(false);
     }
   };
@@ -66,7 +69,7 @@ const SidebarProvinces = ({ data, onSelectBranch }) => {
         createElement(
           "button",
           {
-            className: `nav-link ${isActive ? 'active' : ''}`,
+            className: `nav-link ${(activeProvince === provinceData.province) ? 'active' : ''}`,
             onClick: () => togglePopup(provinceData.province),
             "aria-expanded": isActive ? "true" : "false",
             ref: (el) => (buttonRefs.current[provinceData.province] = el),
