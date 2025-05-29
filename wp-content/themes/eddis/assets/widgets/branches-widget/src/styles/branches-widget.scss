@@ -95,6 +95,10 @@ $section-margin-bottom: 120px;
             color: $white;
             background-color: $active-button-color;
         }
+
+        &:hover {
+            background: none;
+        }
     }
 
     .branch-info {
