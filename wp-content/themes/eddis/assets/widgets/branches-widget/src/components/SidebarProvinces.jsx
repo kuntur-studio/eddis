@@ -2,6 +2,7 @@ const { createElement, useState, useEffect, useRef } = wp.element;
 
 const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBranch }) => {
   const [localActiveProvince, setLocalActiveProvince] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const popupRef = useRef(null);
   const buttonRefs = useRef({});
@@ -39,17 +40,18 @@ const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBr
   const closePopup = () => {
     setIsClosing(true);
     timeoutRef.current = setTimeout(() => {
-      setActiveProvince(null);
+      setIsPopupOpen(false);
       setIsClosing(false);
-    }, 300); // Coincide con la duración CSS
+    }, 300); // Coincide con la duración de la animación CSS
   };
 
   const togglePopup = (province) => {
-    if (activeProvince === province) {
+    if (activeProvince === province && isPopupOpen) {
       closePopup();
     } else {
       setLocalActiveProvince(province);
       setIsClosing(false);
+      setIsPopupOpen(true);
     }
   };
 
@@ -58,7 +60,7 @@ const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBr
     { className: "nav flex-column nav-pills" },
     data.map((provinceData) => {
       const isActive = activeProvince === provinceData.province;
-      const showPopup = isActive || isClosing;
+      const showPopup = (isActive && isPopupOpen) || isClosing;
 
       return createElement(
         "li",
