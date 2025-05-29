@@ -1,5 +1,13 @@
 <?php
 
+function edd_woocommerce_setup() {
+    add_theme_support( 'woocommerce' );
+    // add_theme_support( 'wc-product-gallery-zoom' );
+    // add_theme_support( 'wc-product-gallery-lightbox' );
+    // add_theme_support( 'wc-product-gallery-slider' );
+}
+add_action( 'after_setup_theme', 'edd_woocommerce_setup' );
+
 function edd_remove_metabox_short_description() {
     // Verifica si estamos en la pantalla de edición de productos
     if ( 'product' === get_post_type() ) {
