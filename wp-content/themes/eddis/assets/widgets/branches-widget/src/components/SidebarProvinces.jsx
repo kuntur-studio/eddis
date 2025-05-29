@@ -1,28 +1,27 @@
+
 const { createElement, useState, useEffect, useRef } = wp.element;
 
-const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBranch }) => {
+const SidebarProvinces = ({ data, activeProvince: initialActiveProvince, onSelectBranch }) => {
   const [localActiveProvince, setLocalActiveProvince] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
+  const [popupProvince, setPopupProvince] = useState(null);
   const popupRef = useRef(null);
   const buttonRefs = useRef({});
-  const timeoutRef = useRef(null);
 
-  // Determina la provincia activa combinando la prop y el estado local
-  const activeProvince = localActiveProvince || propActiveProvince;
+  const activeProvince = localActiveProvince || initialActiveProvince;
 
-  // Manejar clic fuera y tecla ESC
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (activeProvince && 
-          !popupRef.current?.contains(event.target) &&
-          !buttonRefs.current[activeProvince]?.contains(event.target)) {
+      if (
+        popupProvince &&
+        !popupRef.current?.contains(event.target) &&
+        !buttonRefs.current[popupProvince]?.contains(event.target)
+      ) {
         closePopup();
       }
     };
 
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape' && activeProvince) {
+      if (event.key === 'Escape' && popupProvince) {
         closePopup();
       }
     };
@@ -33,25 +32,19 @@ const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBr
     return () => {
       document.removeEventListener('mousedown', handleClickOutside, true);
       document.removeEventListener('keydown', handleKeyDown);
-      clearTimeout(timeoutRef.current);
     };
-  }, [activeProvince]);
+  }, [popupProvince]);
 
   const closePopup = () => {
-    setIsClosing(true);
-    timeoutRef.current = setTimeout(() => {
-      setIsPopupOpen(false);
-      setIsClosing(false);
-    }, 300); // Coincide con la duración de la animación CSS
+    setPopupProvince(null);
   };
 
   const togglePopup = (province) => {
-    if (activeProvince === province && isPopupOpen) {
+    if (popupProvince === province) {
       closePopup();
     } else {
       setLocalActiveProvince(province);
-      setIsClosing(false);
-      setIsPopupOpen(true);
+      setPopupProvince(province);
     }
   };
 
@@ -60,7 +53,7 @@ const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBr
     { className: "nav flex-column nav-pills" },
     data.map((provinceData) => {
       const isActive = activeProvince === provinceData.province;
-      const showPopup = (isActive && isPopupOpen) || isClosing;
+      const isPopupVisible = popupProvince === provinceData.province;
 
       return createElement(
         "li",
@@ -71,23 +64,23 @@ const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBr
         createElement(
           "button",
           {
-            className: `nav-link ${(activeProvince === provinceData.province) ? 'active' : ''}`,
+            className: `nav-link ${isActive ? 'active' : ''}`,
             onClick: () => togglePopup(provinceData.province),
-            "aria-expanded": isActive ? "true" : "false",
+            "aria-expanded": isPopupVisible ? "true" : "false",
             ref: (el) => (buttonRefs.current[provinceData.province] = el),
             "aria-controls": `popup-${provinceData.province}`
           },
           provinceData.province
         ),
-        showPopup &&
+        isPopupVisible &&
           createElement(
             "div",
             { 
-              className: `popup ${isActive ? 'popup-enter' : 'popup-exit'}`,
-              ref: isActive ? popupRef : null,
+              className: "popup popup-enter",
+              ref: popupRef,
               id: `popup-${provinceData.province}`,
               role: "region",
-              "aria-hidden": !isActive
+              "aria-hidden": false
             },
             createElement(
               "div",
@@ -111,7 +104,7 @@ const SidebarProvinces = ({ data, activeProvince: propActiveProvince, onSelectBr
                             closePopup();
                           },
                           href: `#${branchData.id}`,
-                          tabIndex: isActive ? 0 : -1
+                          tabIndex: isPopupVisible ? 0 : -1
                         },
                         branchData.title
                       )
