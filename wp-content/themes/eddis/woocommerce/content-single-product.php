@@ -13,7 +13,9 @@ do_action( 'woocommerce_before_single_product' ); ?>
     <div class="row my-4 justify-content-center">
         <div class="col-12 col-lg-8">
         <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper', $product ); ?>>
-
+            <?php
+            // Título del curso
+            echo '<h1 class="course-title">' . get_the_title() . '</h1>';?>
             <div class="course-image">
                 <?php
                 /**
@@ -40,9 +42,6 @@ do_action( 'woocommerce_before_single_product' ); ?>
                  */
                 add_action( 'woocommerce_single_product_summary', function () use ( $product ) {
                     echo '<div class="course-content">';
-
-                    // Título del curso
-                    echo '<h1 class="course-title">' . get_the_title() . '</h1>';
 
                     // Descripción corta
                     $short_description = apply_filters( 'woocommerce_short_description', $product->get_short_description() );

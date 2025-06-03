@@ -26,4 +26,8 @@ add_action( 'init', function () {
     // La función woocommerce_get_sidebar está hookeada a 'woocommerce_sidebar' con prioridad 10.
     // Para desengancharla, debemos usar remove_action con los mismos argumentos.
     remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+    // Deshabilita el campo de cantidad para productos simples
+    // y hace que se añadan individualmente.
+    add_filter( 'woocommerce_is_sold_individually', '__return_true' );
 });
