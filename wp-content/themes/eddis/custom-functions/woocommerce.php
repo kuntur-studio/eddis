@@ -16,3 +16,8 @@ function edd_remove_metabox_short_description() {
     }
 }
 add_action('add_meta_boxes', 'edd_remove_metabox_short_description', 99);
+
+// Elimina el breadcrumb de WooCommerce
+add_action( 'init', function () {
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+});
