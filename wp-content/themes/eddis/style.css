@@ -643,3 +643,28 @@ p {
         text-align: center !important;
     }
 }
+
+/* ===== SINGLE PRODUCT ===== */
+.course-single-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.course-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.course-description {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.course-price {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
