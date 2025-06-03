@@ -17,7 +17,13 @@ function edd_remove_metabox_short_description() {
 }
 add_action('add_meta_boxes', 'edd_remove_metabox_short_description', 99);
 
-// Elimina el breadcrumb de WooCommerce
+// Acciones para ejecutar al iniciar WooCommerce
 add_action( 'init', function () {
+    // Elimina el breadcrumb de WooCommerce
     remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    
+    // Desactiva la barra lateral de WooCommerce
+    // La función woocommerce_get_sidebar está hookeada a 'woocommerce_sidebar' con prioridad 10.
+    // Para desengancharla, debemos usar remove_action con los mismos argumentos.
+    remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 });
