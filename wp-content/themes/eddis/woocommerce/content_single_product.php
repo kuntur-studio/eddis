@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 global $product;
 
 do_action( 'woocommerce_before_single_product' ); ?>
-
+<PEPE></PEPE>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper', $product ); ?>>
 
     <div class="course-image">
