@@ -52,16 +52,17 @@ do_action( 'woocommerce_before_single_product' ); ?>
                         // Botón de inscripción (add to cart)
                         woocommerce_template_single_add_to_cart();
 
-                        // Especificaciones del curso
-                        echo '<div class="course-specifications">'; ?>
-                        <ul>
-                            <li><i class="fas fa-clock"></i> Duración: <?php echo carbon_get_post_meta($product_id, 'duration'); ?></li>
-                            <li><i class="fas fa-graduation-cap"></i> Certificación: <?php echo carbon_get_post_meta($product_id, 'certification'); ?></li>
-                            <li><i class="fas fa-circle-play"></i> Modalidad: <?php echo carbon_get_post_meta($product_id, 'mode'); ?></li>
-                        </ul>
+                        // Especificaciones del curso ?>
+                        <div class="course-specifications">
+                            <ul>
+                                <li><i class="fas fa-clock"></i> Duración: <?php echo carbon_get_post_meta($product_id, 'duration'); ?></li>
+                                <li><i class="fas fa-graduation-cap"></i> Certificación: <?php echo carbon_get_post_meta($product_id, 'certification'); ?></li>
+                                <li><i class="fas fa-circle-play"></i> Modalidad: <?php echo carbon_get_post_meta($product_id, 'mode'); ?></li>
+                            </ul>
+                        </div>
                         <?php
 
-                        echo '</div>';
+                        echo '</div>'; // .course-card
                     }, 5 );
 
                     /**
