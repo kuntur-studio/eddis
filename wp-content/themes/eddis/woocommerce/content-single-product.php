@@ -43,7 +43,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
                     /**
                      * Agrego contenido personalizado.
                      */
-                    add_action( 'woocommerce_single_product_summary', function () use ( $product_id ) {
+                    add_action( 'woocommerce_single_product_summary', function () use ( $product ) {
                         echo '<div class="course-card">';
 
                         // Precio
@@ -55,7 +55,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
                         // Especificaciones del curso ?>
                         <div class="course-specifications">
                             <ul>
-                                <li><i class="fas fa-clock"></i> Duración: <?php echo 'ID Producto', $product_id, ' ', carbon_get_post_meta(763, 'duration'); ?></li>
+                                <li><i class="fas fa-clock"></i> Duración: <?php echo carbon_get_post_meta($product_id, 'duration'); ?></li>
                                 <li><i class="fas fa-graduation-cap"></i> Certificación: <?php echo carbon_get_post_meta($product_id, 'certification'); ?></li>
                                 <li><i class="fas fa-circle-play"></i> Modalidad: <?php echo carbon_get_post_meta($product_id, 'mode'); ?></li>
                             </ul>
@@ -84,7 +84,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
                 ?>
             </div>
 
-            <?php echo 'ID Producto', $product_id;
+            <?php
             // Obtener y mostrar content_blocks de Carbon Fields
             $content_blocks = carbon_get_post_meta($product_id, 'content_blocks');
 
