@@ -27,7 +27,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
                     ?>
                 </div>
 
-                <div class="course-details">
+                <div class="course-details shadowed-box">
                     <?php
                     /**
                      * Elimino los hooks por defecto para personalizar el contenido más adelante.
@@ -47,7 +47,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
                         global $product;
                         if (!$product) return;
                         $product_id = $product->get_id();
-                        
+
                         echo '<div class="course-card">';
 
                         // Precio
@@ -59,9 +59,9 @@ do_action( 'woocommerce_before_single_product' ); ?>
                         // Especificaciones del curso ?>
                         <div class="course-specifications">
                             <ul>
-                                <li><i class="fas fa-clock"></i> Duración: <?php echo carbon_get_post_meta($product_id, 'duration'); ?></li>
-                                <li><i class="fas fa-graduation-cap"></i> Certificación: <?php echo carbon_get_post_meta($product_id, 'certification'); ?></li>
-                                <li><i class="fas fa-circle-play"></i> Modalidad: <?php echo carbon_get_post_meta($product_id, 'mode'); ?></li>
+                                <li><i class="fas fa-clock"></i> <b>Duración:</b> <?php echo carbon_get_post_meta($product_id, 'duration'); ?></li>
+                                <li><i class="fas fa-graduation-cap"></i> <b>Certificación:</b> <?php echo carbon_get_post_meta($product_id, 'certification'); ?></li>
+                                <li><i class="fas fa-circle-play"></i> <b>Modalidad:</b> <?php echo carbon_get_post_meta($product_id, 'mode'); ?></li>
                             </ul>
                         </div>
                         <?php
