@@ -632,12 +632,22 @@ p {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    color: var(--gray-color);
+}
+
+.wp-theme-eddis .course-single-wrapper .course-image .images {
+    width: 56%;
 }
 
 .course-details {
     float: right;
-    width: 48%;
+    width: 38%;
     clear: none;
+}
+
+.shadowed-box {
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
 }
 
 .course-description {
@@ -648,17 +658,28 @@ p {
 
 .course-price {
     color: var(--blue-color);
-    font-size: 1.3rem;
+    font-size: 2.2em;
     font-weight: 500;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
-.single_add_to_cart_button.button.alt {
+.wp-theme-eddis .single_add_to_cart_button.button.alt {
     background-color: var(--orange-color);
+    border-radius: 11px;
+    padding: 11px 40px;
 }
 
-.single_add_to_cart_button.button.alt:hover {
+.wp-theme-eddis .single_add_to_cart_button.button.alt:hover {
     background-color: var(--orange-hover-color);
+}
+
+.course-specifications {
+    font-size: .9rem;
+}
+
+.course-specifications i {
+    font-size: 1.2rem;
 }
 
 @media (max-width: 768px) {
