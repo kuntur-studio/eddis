@@ -17,7 +17,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
             <?php
             // Título del curso
             echo '<h1 class="course-title">' . get_the_title() . '</h1>';?>
-            <div id="product-<?php the_ID(); ?>" <?php /*wc_product_class( 'course-single-wrapper', $product );*/ ?>>
+            <div id="product-<?php the_ID(); ?>" <?php wc_product_class('' /*'course-single-wrapper' acá va una clase o array de clases */, $product ); ?>>
                 <div class="course-image">
                     <?php
                     /**
