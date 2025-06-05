@@ -13,11 +13,11 @@ do_action( 'woocommerce_before_single_product' ); ?>
 
 <section class="container">
     <div class="row my-4 justify-content-center">
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-lg-12">
             <?php
             // Título del curso
             echo '<h1 class="course-title">' . get_the_title() . '</h1>';?>
-            <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper', $product ); ?>>
+            <div id="product-<?php the_ID(); ?>" <?php /*wc_product_class( 'course-single-wrapper', $product );*/ ?>>
                 <div class="course-image">
                     <?php
                     /**
