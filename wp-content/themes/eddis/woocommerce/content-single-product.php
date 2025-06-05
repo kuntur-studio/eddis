@@ -6,6 +6,8 @@
 defined( 'ABSPATH' ) || exit;
 
 global $product;
+global $post;
+$product_id = $product->get_id();
 
 do_action( 'woocommerce_before_single_product' ); ?>
 
@@ -15,60 +17,101 @@ do_action( 'woocommerce_before_single_product' ); ?>
             <?php
             // Título del curso
             echo '<h1 class="course-title">' . get_the_title() . '</h1>';?>
-        <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper', $product ); ?>>
-            <div class="course-image">
-                <?php
-                /**
-                 * Muestra la galería o imagen destacada del producto.
-                 */
-                do_action( 'woocommerce_before_single_product_summary' );
-                ?>
+            <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper', $product ); ?>>
+                <div class="course-image">
+                    <?php
+                    /**
+                     * Muestra la galería o imagen destacada del producto.
+                     */
+                    do_action( 'woocommerce_before_single_product_summary' );
+                    ?>
+                </div>
+
+                <div class="course-details">
+                    <?php
+                    /**
+                     * Elimino los hooks por defecto para personalizar el contenido más adelante.
+                     */
+                    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+                    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+                    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+                    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+                    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+                    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+                    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 60 );
+
+                    /**
+                     * Agrego contenido personalizado.
+                     */
+                    add_action( 'woocommerce_single_product_summary', function () use ( $product ) {
+                        echo '<div class="course-card">';
+
+                        // Precio
+                        echo '<div class="course-price">' . $product->get_price_html() . '</div>';
+
+                        // Botón de inscripción (add to cart)
+                        woocommerce_template_single_add_to_cart();
+
+                        // Especificaciones del curso
+                        echo '<div class="course-specifications">'; ?>
+                        <ul>
+                            <li><i class="fas fa-clock"></i> Duración: <?php echo carbon_get_post_meta($product_id, 'duration'); ?></li>
+                            <li><i class="fas fa-graduation-cap"></i> Certificación: <?php echo carbon_get_post_meta($product_id, 'certification'); ?></li>
+                            <li><i class="fas fa-circle-play"></i> Modalidad: <?php echo carbon_get_post_meta($product_id, 'mode'); ?></li>
+                        </ul>
+                        <?php
+
+                        echo '</div>';
+                    }, 5 );
+
+                    /**
+                     * Ejecuto la acción con el contenido del producto.
+                     */
+                    do_action( 'woocommerce_single_product_summary' );
+                    ?>
+                </div>
             </div>
-
-            <div class="course-detalle">
+            <div class="course-description-section">
+                <h2>Descripción del Curso</h2>
                 <?php
-                /**
-                 * Elimino los hooks por defecto para personalizar el contenido más adelante.
-                 */
-                remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
-                remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-                remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
-                remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
-                remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
-                remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
-
-                /**
-                 * Agrego contenido personalizado.
-                 */
-                add_action( 'woocommerce_single_product_summary', function () use ( $product ) {
-                    echo '<div class="course-content">';
-
-                    // Descripción corta
-                    $short_description = apply_filters( 'woocommerce_short_description', $product->get_short_description() );
-                    if ( $short_description ) {
-                        echo '<div class="course-description">' . $short_description . '</div>';
-                    }
-
-                    // Precio
-                    echo '<div class="course-price">' . $product->get_price_html() . '</div>';
-
-                    // Botón de inscripción (add to cart)
-                    woocommerce_template_single_add_to_cart();
-
+                // Imprimir la descripción completa del producto
+                if ( $post->post_content ) {
+                    echo '<div class="woocommerce-product-details__full-description">';
+                    the_content(); // the_content() ya aplica filtros y es seguro para HTML
                     echo '</div>';
-                }, 5 );
-
-                /**
-                 * Ejecuto la acción con el contenido del producto.
-                 */
-                do_action( 'woocommerce_single_product_summary' );
+                }
                 ?>
             </div>
+
+            <?php
+            // Obtener y mostrar content_blocks de Carbon Fields
+            $content_blocks = carbon_get_post_meta($product_id, 'content_blocks');
+
+            if (!empty($content_blocks)) {
+                echo '<div class="course-custom-content-blocks">'; // A container for your custom content blocks
+                foreach ($content_blocks as $block) {
+                    $title = isset($block['title']) ? $block['title'] : '';
+                    $content = isset($block['content']) ? $block['content'] : '';
+
+                    if (!empty($title) || !empty($content)) {
+                        echo '<div class="custom-content-block">';
+                        if (!empty($title)) {
+                            echo '<h3>' . esc_html($title) . '</h3>'; // Title of the Carbon Fields block
+                        }
+                        if (!empty($content)) {
+                            // For rich_text, Carbon Fields already returns safe HTML,
+                            // but it's good practice to use wp_kses_post for added security.
+                            echo '<div class="block-rich-text">' . wp_kses_post($content) . '</div>'; // Content of the Carbon Fields block
+                        }
+                        echo '</div>'; // .custom-content-block
+                    }
+                }
+                echo '</div>'; // .course-custom-content-blocks
+            }
+            ?>
+            <?php // do_action( 'woocommerce_after_single_product_summary' ); ?>
+
+            <?php do_action( 'woocommerce_after_single_product' ); ?>
         </div>
-
-<?php do_action( 'woocommerce_after_single_product_summary' ); ?>
-
-<?php do_action( 'woocommerce_after_single_product' ); ?>
-
     </div>
 </section>

@@ -54,6 +54,11 @@ Version: 2.0
 :root {
     --primary-color: #007dfb;
     --secondary-color: #2a4095;
+    --orange-color: #f58634;
+    --orange-hover-color: #ff6600;
+    --gray-color: #888482;
+    --dark-gray-color: #4c4c4c;
+    --blue-color: #324192;
 }
 
 html {
@@ -295,16 +300,6 @@ p {
     line-height: normal;
     transform: translateX(-50%);
 }
-/*.navbarprincipal .dropdown-menu {
-	position: relative;
-	left: 50%;
-	float: none;
-	width: 98%;
-	max-width: 98%;
-	min-width: 98%;
-	line-height: normal;
-	transform: translateX(-50%);
-}*/
 
 .navbar .nav-item {
     padding: 0 10px;
@@ -514,22 +509,6 @@ p {
   transition: none !important;
 }
 
-/* .navbarprincipal .nav-link.active {
-  color: var(--primary-color) !important;
-  transition: color 0.1s ease !important;
-} */
-
-/* Elimina la transición general del nav-link */
-/* .navbarprincipal .nav-link {
-  transition: none !important;
-} */
-
-/* Mantiene el estilo de hover dentro del dropdown */
-/* .tab-menu-cursos li a:hover {
-  color: var(--primary-color) !important;
-  transition: color 0.1s ease !important;
-} */
-
 /******** Footer *******/
 /* ===== ESTILOS GENERALES DEL FOOTER ===== */
 .page-footer {
@@ -664,7 +643,16 @@ p {
 }
 
 .course-price {
+    color: var(--blue-color);
     font-size: 1.3rem;
     font-weight: 500;
     margin-bottom: 2rem;
+}
+
+.single_add_to_cart_button.button.alt {
+    background-color: var(--orange-color);
+}
+
+.single_add_to_cart_button.button.alt:hover {
+    background-color: var(--orange-hover-color);
 }

@@ -434,9 +434,17 @@ function edd_register_product_custom_fields() {
 			Field::make('image', 'featured_image', 'Imagen destacada'),
 			Field::make('image', 'cover_image', 'Imagen de portada'),
 			Field::make('text', 'duration', 'Duración'),
+			Field::make('text', 'certification', 'Certificación'),
+			Field::make('text', 'mode', 'Modalidad'),
 			Field::make('textarea', 'short_description', 'Descripción corta'),
 
-			Field::make('complex', 'highlight_bullets', 'Bullets Destacados')
+			Field::make('complex', 'content_blocks', 'Contenido')
+				->add_fields([
+					Field::make('text', 'title', 'Título'),
+					Field::make('rich_text', 'content', 'Contenido'),
+				]),
+
+			/*Field::make('complex', 'highlight_bullets', 'Bullets Destacados')
 				->add_fields([
 					Field::make('icon_select', 'highlight_icon', 'Ícono Destacado')
 						->set_options(edd_get_product_bullet_icons()) // Ver admin.php
@@ -445,12 +453,6 @@ function edd_register_product_custom_fields() {
 				Field::make('text', 'title', 'Título'),
 				Field::make('text', 'description', 'Descripción'),
 			]),
-
-			Field::make('complex', 'content_blocks', 'Contenido')
-				->add_fields([
-					Field::make('text', 'title', 'Título'),
-					Field::make('rich_text', 'content', 'Contenido'),
-				]),
 
 			Field::make('file', 'study_plan_file', 'Plan de estudios Descargable'),
 
@@ -473,6 +475,6 @@ function edd_register_product_custom_fields() {
 					['type' => 'post', 'post_type' => 'product']
 				]),
 
-			Field::make('checkbox', 'reserve_spot', 'Reserva tu lugar')
+			Field::make('checkbox', 'reserve_spot', 'Reserva tu lugar')*/
 		]);
 }
