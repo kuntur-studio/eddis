@@ -43,7 +43,11 @@ do_action( 'woocommerce_before_single_product' ); ?>
                     /**
                      * Agrego contenido personalizado.
                      */
-                    add_action( 'woocommerce_single_product_summary', function () use ( $product_id ) {
+                    add_action( 'woocommerce_single_product_summary', function () {
+                        global $product;
+                        if (!$product) return;
+                        $product_id = $product->get_id();
+                        
                         echo '<div class="course-card">';
 
                         // Precio
