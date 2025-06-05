@@ -625,9 +625,6 @@ p {
 
 /* ===== SINGLE PRODUCT ===== */
 .course-single-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
     margin: 2rem 0;
 }
 
@@ -637,7 +634,14 @@ p {
     margin-bottom: 1rem;
 }
 
+.course-details {
+    float: right;
+    width: 48%;
+    clear: none;
+}
+
 .course-description {
+    clear: both;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
 }
@@ -655,4 +659,11 @@ p {
 
 .single_add_to_cart_button.button.alt:hover {
     background-color: var(--orange-hover-color);
+}
+
+@media (max-width: 768px) {
+    .course-details{ 
+        float: none;
+        width: 100%;
+    }
 }

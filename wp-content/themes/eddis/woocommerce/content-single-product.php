@@ -17,15 +17,15 @@ do_action( 'woocommerce_before_single_product' ); ?>
             <?php
             // Título del curso
             echo '<h1 class="course-title">' . get_the_title() . '</h1>';?>
-            <div id="product-<?php the_ID(); ?>" <?php wc_product_class('' /*'course-single-wrapper' acá va una clase o array de clases */, $product ); ?>>
-                
-                <?php
-                /**
-                 * Muestra la galería o imagen destacada del producto.
-                 */
-                do_action( 'woocommerce_before_single_product_summary' );
-                ?>
-            
+            <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper', $product ); ?>>
+                <div class="course-image">
+                    <?php
+                    /**
+                     * Muestra la galería o imagen destacada del producto.
+                     */
+                    do_action( 'woocommerce_before_single_product_summary' );
+                    ?>
+                </div>
 
                 <div class="course-details">
                     <?php
@@ -72,7 +72,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
                     ?>
                 </div>
             </div>
-            <div class="course-description-section">
+            <div class="course-description">
                 <h2>Descripción del Curso</h2>
                 <?php
                 // Imprimir la descripción completa del producto
