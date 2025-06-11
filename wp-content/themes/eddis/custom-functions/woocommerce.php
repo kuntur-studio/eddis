@@ -31,3 +31,23 @@ add_action( 'init', function () {
     // y hace que se añadan individualmente.
     add_filter( 'woocommerce_is_sold_individually', '__return_true' );
 });
+
+// Optimización
+// Evita la carga de datos del carrito en páginas que no son necesarias
+add_filter( 'woocommerce_get_script_data', function( $script_data, $handle ) {
+
+     if ( 'wc-cart-fragments' === $handle ) {
+
+         if ( is_woocommerce() || is_cart() || is_checkout() ) {
+
+             return $script_data;
+
+         }
+
+        return null;
+
+      } 
+
+      return $script_data;
+
+ }, 10, 2 );

@@ -650,6 +650,12 @@ p {
     border-radius: 20px;
 }
 
+.course-specifications ul {
+    padding: 1.5rem;
+    list-style: none;
+    line-height: 2.5rem;
+}
+
 .course-description {
     clear: both;
     font-size: 1.1rem;
@@ -659,8 +665,12 @@ p {
 .course-price {
     color: var(--blue-color);
     font-size: 2.2em;
-    font-weight: 500;
+    font-weight: 800;
     margin-bottom: 2rem;
+    text-align: center;
+}
+
+.wp-theme-eddis form.cart {
     text-align: center;
 }
 
@@ -668,6 +678,7 @@ p {
     background-color: var(--orange-color);
     border-radius: 11px;
     padding: 11px 40px;
+    float: none;
 }
 
 .wp-theme-eddis .single_add_to_cart_button.button.alt:hover {
@@ -680,6 +691,7 @@ p {
 
 .course-specifications i {
     font-size: 1.2rem;
+    margin-right: .3rem;
 }
 
 @media (max-width: 768px) {
