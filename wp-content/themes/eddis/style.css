@@ -674,7 +674,7 @@ p {
     text-align: center;
 }
 
-.wp-theme-eddis .single_add_to_cart_button.button.alt {
+.wp-theme-eddis form.cart .single_add_to_cart_button.button.alt {
     background-color: var(--orange-color);
     border-radius: 11px;
     padding: 11px 40px;
