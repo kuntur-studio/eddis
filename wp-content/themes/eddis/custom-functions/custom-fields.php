@@ -419,6 +419,33 @@ function edd_register_sedes_custom_fields() {
 
 
 
+// Campos personalizados para el custom type formularios
+add_action( 'carbon_fields_register_fields', 'edd_register_eddis_form_fields' );
+function edd_register_eddis_form_fields() {
+    Container::make( 'post_meta', 'Configuración del Formulario' )
+        ->where( 'post_type', '=', 'eddis_form' )
+        ->add_fields( array(
+            Field::make( 'checkbox', 'eddis_form_active', 'Activo' )
+                ->set_option_value( 'yes' )
+                ->set_default_value( 'yes' )
+                ->set_help_text( 'Marca esta casilla para activar o desactivar el formulario en el sitio.' ),
+
+            Field::make( 'text', 'eddis_form_name', 'Nombre de Identificación (Slug)' )
+                ->set_attribute( 'placeholder', 'ej: contacto-principal' )
+                ->set_help_text( 'Un nombre único y legible por máquinas para identificar este formulario (ej: contacto-principal). Se usará para generar el ID HTML: eddis-form-{name}.' )
+                ->set_required( true )
+                ->set_width( 50 ),
+
+            Field::make( 'textarea', 'eddis_form_code', 'Pegar Código del Formulario' )
+                ->set_rows( 15 )
+                ->set_help_text( 'Pega aquí el código HTML/JavaScript que el CRM (Ventux) genera para el formulario. Puedes incluir estilos CSS o scripts de redirección si son parte del código del CRM.' )
+                ->set_attribute( 'placeholder', '<form>...</form><script>...</script>' ),
+        ) );
+}
+
+
+
+
 // Campos personalizados para productos de la tienda
 add_action('carbon_fields_register_fields', 'edd_register_product_custom_fields');
 function edd_register_product_custom_fields() {

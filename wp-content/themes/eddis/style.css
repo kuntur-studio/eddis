@@ -662,6 +662,26 @@ p {
     margin-bottom: 1.5rem;
 }
 
+.course-description h2 {
+    color: var(--blue-color);
+    font-weight: 900;
+    font-size: 1.4rem;
+}
+
+.course-description .woocommerce-product-details__full-description {
+    font-size: .7rem;
+}
+
+.course-custom-content-blocks h3 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--blue-color);
+}
+
+.course-custom-content-blocks .block-rich-text {
+    font-size: .8rem;
+}
+
 .course-price {
     color: var(--blue-color);
     font-size: 2.2em;
