@@ -438,8 +438,8 @@ function edd_register_eddis_form_fields() {
 
             Field::make( 'textarea', 'eddis_form_code', 'Pegar Código del Formulario' )
                 ->set_rows( 15 )
-                ->set_help_text( 'Pega aquí el código HTML/JavaScript que el CRM (Ventux) genera para el formulario. Puedes incluir estilos CSS o scripts de redirección si son parte del código del CRM.' )
-                ->set_attribute( 'placeholder', '<form>...</form><script>...</script>' ),
+                ->set_help_text( 'Pega acá el código HTML/JavaScript/CSS que el CRM genera para el formulario. Podes incluir estilos o scripts para personalizar la apariencia y el comportamiento del formulario.' )
+                ->set_attribute( 'placeholder', '<form>...</form><script>...</script><style>...</style>' ),
         ) );
 }
 
