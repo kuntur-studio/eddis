@@ -639,11 +639,11 @@ p {
     width: 56%;
 }
 
-/*.course-details {
+.course-details {
     float: right;
     width: 38%;
     clear: none;
-}*/
+}
 
 .shadowed-box {
     box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
