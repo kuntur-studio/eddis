@@ -9,16 +9,41 @@ global $product;
 global $post;
 $product_id = $product->get_id();
 
-do_action( 'woocommerce_before_single_product' ); ?>
+// --- Lógica para obtener el formulario de CPT 'eddis_form' ---
+$form_post_name = 'form-producto'; // El slug que se definio en el gestor de formularios
+$form_query_args = array(
+    'post_type'      => 'eddis_form',
+    'name'           => $form_post_name,
+    'posts_per_page' => 1,
+    'post_status'    => 'publish',
+    'fields'         => 'ids', // Solo necesitamos el ID para Carbon Fields
+);
+$form_posts = get_posts( $form_query_args );
+$form_id = ! empty( $form_posts ) ? $form_posts[0] : 0;
 
-<section class="container">
-    <div class="row my-4 justify-content-center">
-        <div class="col-12 col-lg-12">
-            <?php
-            // Título del curso
-            echo '<h1 class="course-title">' . get_the_title() . '</h1>';?>
-            <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper', $product ); ?>>
-                <div class="course-image">
+$is_form_active = false;
+$form_code = '';
+
+if ( $form_id ) {
+    $is_form_active_field = carbon_get_post_meta( $form_id, 'eddis_form_active' );
+    $is_form_active = ( $is_form_active_field === 'yes' );
+    $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
+}
+// -------------------------------------------------------------
+
+do_action( 'woocommerce_before_single_product' ); ?>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper my-4', $product ); ?>>
+    <section class="container">
+        <div class="row">
+            <div class="col-12">
+                <?php 
+                // Título del curso
+                echo '<h1 class="course-title text-start">' . get_the_title() . '</h1>';?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="course-image text-start">
                     <?php
                     /**
                      * Muestra la galería o imagen destacada del producto.
@@ -26,7 +51,8 @@ do_action( 'woocommerce_before_single_product' ); ?>
                     do_action( 'woocommerce_before_single_product_summary' );
                     ?>
                 </div>
-
+            </div>
+            <div class="col-12 col-lg-4 d-flex justify-content-end">
                 <div class="course-details shadowed-box">
                     <?php
                     /**
@@ -76,47 +102,66 @@ do_action( 'woocommerce_before_single_product' ); ?>
                     ?>
                 </div>
             </div>
-            <div class="course-description">
-                <h2>Descripción del Curso</h2>
+        </div>
+        <div class="row">
+            <div class="<?php echo $is_form_active ? 'col-lg-8' : 'col-lg-12'; ?> col-md-12 text-start">
+                <div class="course-description">
+                    <h2>Descripción del Curso</h2>
+                    <?php
+                    // Imprimir la descripción completa del producto
+                    if ( $post->post_content ) {
+                        echo '<div class="woocommerce-product-details__full-description">';
+                        the_content(); // the_content() ya aplica filtros y es seguro para HTML
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
+
                 <?php
-                // Imprimir la descripción completa del producto
-                if ( $post->post_content ) {
-                    echo '<div class="woocommerce-product-details__full-description">';
-                    the_content(); // the_content() ya aplica filtros y es seguro para HTML
-                    echo '</div>';
+                // Obtener y mostrar content_blocks de Carbon Fields
+                $content_blocks = carbon_get_post_meta($product_id, 'content_blocks');
+
+                if (!empty($content_blocks)) {
+                    echo '<div class="course-custom-content-blocks">'; // Contenedor para los bloques de contenido personalizados
+                    foreach ($content_blocks as $block) {
+                        $title = isset($block['title']) ? $block['title'] : '';
+                        $content = isset($block['content']) ? $block['content'] : '';
+
+                        if (!empty($title) || !empty($content)) {
+                            echo '<div class="custom-content-block">';
+                            if (!empty($title)) {
+                                echo '<h3>' . esc_html($title) . '</h3>'; // Título
+                            }
+                            if (!empty($content)) {
+                                // Para rich_text, Carbon Fields ya devuelve HTML seguro,
+                                // pero es una buena práctica utilizar wp_kses_post para mayor seguridad.
+                                echo '<div class="block-rich-text">' . wp_kses_post($content) . '</div>'; // Contenido del bloque
+                            }
+                            echo '</div>'; // .custom-content-block
+                        }
+                    }
+                    echo '</div>'; // .course-custom-content-blocks
                 }
                 ?>
             </div>
 
-            <?php
-            // Obtener y mostrar content_blocks de Carbon Fields
-            $content_blocks = carbon_get_post_meta($product_id, 'content_blocks');
-
-            if (!empty($content_blocks)) {
-                echo '<div class="course-custom-content-blocks">'; // A container for your custom content blocks
-                foreach ($content_blocks as $block) {
-                    $title = isset($block['title']) ? $block['title'] : '';
-                    $content = isset($block['content']) ? $block['content'] : '';
-
-                    if (!empty($title) || !empty($content)) {
-                        echo '<div class="custom-content-block">';
-                        if (!empty($title)) {
-                            echo '<h3>' . esc_html($title) . '</h3>'; // Title of the Carbon Fields block
-                        }
-                        if (!empty($content)) {
-                            // For rich_text, Carbon Fields already returns safe HTML,
-                            // but it's good practice to use wp_kses_post for added security.
-                            echo '<div class="block-rich-text">' . wp_kses_post($content) . '</div>'; // Content of the Carbon Fields block
-                        }
-                        echo '</div>'; // .custom-content-block
-                    }
-                }
-                echo '</div>'; // .course-custom-content-blocks
-            }
-            ?>
-            <?php // do_action( 'woocommerce_after_single_product_summary' ); ?>
-
-            <?php do_action( 'woocommerce_after_single_product' ); ?>
+            <?php if ($is_form_active && !empty($form_code)): ?>
+            <div class="col-lg-4 col-md-12 mt-4 mt-lg-0 d-flex justify-content-end">
+                <div class="form-container">
+                    <h4 class="text-center mb-4">Consulta por este curso</h4>
+                    <div class="external-form-content">
+                        <?php echo $form_code; // Renderiza el código del formulario externo ?>
+                    </div>
+                </div>
+            </div>
+            <?php endif; // Fin del bloque condicional para el formulario ?>
+                <?php // do_action( 'woocommerce_after_single_product_summary' ); ?>
         </div>
-    </div>
-</section>
+    </section>
+</div>
+<picture id="widget-product-bottom banner">
+  <source srcset="modalidad-lg.jpg" media="(min-width: 1200px)">
+  <source srcset="modalidad-md.jpg" media="(min-width: 768px)">
+  <img src="modalidad-sm.jpg" alt="Modalidad" class="img-fluid w-100">
+</picture>
+<?php do_action( 'woocommerce_after_single_product' ); ?>
