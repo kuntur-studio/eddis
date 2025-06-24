@@ -635,14 +635,24 @@ p {
     color: var(--gray-color);
 }
 
+.wp-theme-eddis .course-single-wrapper > .container > .row:first-child {
+    margin-bottom: 1rem;
+}
+
+.wp-theme-eddis .course-single-wrapper > .container > .row:not(:first-child) {
+    margin-bottom: 2rem;
+}
+
+.wp-theme-eddis .course-single-wrapper .course-image .woocommerce-product-gallery {
+    margin-bottom: 0;
+}
+
 .wp-theme-eddis .course-single-wrapper .course-image .images {
-    width: 56%;
+    width: 100%;
 }
 
 .course-details {
-    float: right;
     width: 38%;
-    clear: none;
 }
 
 .shadowed-box {
@@ -715,8 +725,7 @@ p {
 }
 
 @media (max-width: 768px) {
-    .course-details{ 
-        float: none;
+    .course-details{
         width: 100%;
     }
 }

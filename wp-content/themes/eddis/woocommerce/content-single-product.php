@@ -42,7 +42,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-7">
                 <div class="course-image text-start">
                     <?php
                     /**
@@ -52,7 +52,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
                     ?>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 d-flex justify-content-end">
+            <div class="col-12 col-lg-5 d-flex justify-content-end">
                 <div class="course-details shadowed-box">
                     <?php
                     /**
