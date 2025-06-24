@@ -638,21 +638,23 @@ p {
 .wp-theme-eddis .course-single-wrapper > .container > .row:first-child {
     margin-bottom: 1rem;
 }
-
+y
 .wp-theme-eddis .course-single-wrapper > .container > .row:not(:first-child) {
     margin-bottom: 2rem;
 }
 
 .wp-theme-eddis .course-single-wrapper .course-image .woocommerce-product-gallery {
     margin-bottom: 0;
-}
-
-.wp-theme-eddis .course-single-wrapper .course-image .images {
     width: 100%;
 }
 
+.wp-theme-eddis .course-single-wrapper .course-image img.wp-post-image {
+    height: 380px;
+    width: auto;
+}
+
 .course-details {
-    width: 38%;
+    width: 100%;
 }
 
 .shadowed-box {
