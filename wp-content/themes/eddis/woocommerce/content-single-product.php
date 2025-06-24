@@ -11,15 +11,19 @@ $product_id = $product->get_id();
 
 // --- Lógica para obtener el formulario de CPT 'eddis_form' ---
 $form_post_name = 'form-producto'; // El slug que se definio en el gestor de formularios
-$form_query_args = array(
+
+$form_query = new WP_Query([
     'post_type'      => 'eddis_form',
     'name'           => $form_post_name,
     'posts_per_page' => 1,
     'post_status'    => 'publish',
-    'fields'         => 'ids', // Solo necesitamos el ID para Carbon Fields
-);
-$form_posts = get_posts( $form_query_args );
-$form_id = ! empty( $form_posts ) ? $form_posts[0] : 0;
+    'fields'         => 'ids',
+    'no_found_rows'  => true,
+    'update_post_meta_cache' => false,
+    'update_post_term_cache' => false,
+]);
+
+$form_id = $form_query->have_posts() ? $form_query->posts[0] : 0;
 
 $is_form_active = false;
 $form_code = '';
@@ -29,6 +33,8 @@ if ( $form_id ) {
     $is_form_active = ( $is_form_active_field === 'yes' );
     $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
 }
+
+wp_reset_postdata();
 // -------------------------------------------------------------
 
 do_action( 'woocommerce_before_single_product' ); ?>
@@ -133,8 +139,6 @@ do_action( 'woocommerce_before_single_product' ); ?>
                                 echo '<h3>' . esc_html($title) . '</h3>'; // Título
                             }
                             if (!empty($content)) {
-                                // Para rich_text, Carbon Fields ya devuelve HTML seguro,
-                                // pero es una buena práctica utilizar wp_kses_post para mayor seguridad.
                                 echo '<div class="block-rich-text">' . wp_kses_post($content) . '</div>'; // Contenido del bloque
                             }
                             echo '</div>'; // .custom-content-block
