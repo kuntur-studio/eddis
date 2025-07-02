@@ -29,19 +29,13 @@ $form_query_args = array(
 $form_posts = get_posts( $form_query_args );
 $form_id = ! empty( $form_posts ) ? $form_posts[0] : 0;
 
-if ($form_id) echo 'Se encontró el registro de formulario con el ID: ', $form_id;
 $is_form_active = false;
 $form_code = '';
 
 if ( $form_id ) {
-    $is_form_active_field = carbon_get_post_meta( $form_id, 'eddis_form_active' );
-    $is_form_active = ( $is_form_active_field === 'yes' );
+    $is_form_active = carbon_get_post_meta( $form_id, 'eddis_form_active' ) === 1;
     $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
 }
-
-echo '$is_form_active es: ', $is_form_active;
-echo '$is_form_active_field es: ', $is_form_active_field;
-echo '$form_code es: ', $form_code;
 
 wp_reset_postdata();
 // -------------------------------------------------------------
