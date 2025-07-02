@@ -24,7 +24,7 @@ $form_query = new WP_Query([
 ]);
 
 $form_id = $form_query->have_posts() ? $form_query->posts[0] : 0;
-
+if ($form_id) echo 'Se encontró el registro de formulario con el ID: ', $form_id;
 $is_form_active = false;
 $form_code = '';
 
@@ -33,6 +33,10 @@ if ( $form_id ) {
     $is_form_active = ( $is_form_active_field === 'yes' );
     $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
 }
+
+echo '$is_form_active es: ', $is_form_active;
+echo '$is_form_active_field es: ', $is_form_active_field;
+echo '$form_code es: ', $form_code;
 
 wp_reset_postdata();
 // -------------------------------------------------------------
