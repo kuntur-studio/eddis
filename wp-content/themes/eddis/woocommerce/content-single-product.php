@@ -117,7 +117,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
             </div>
         </div>
         <div class="row">
-            <div class="<?php echo $is_form_active ? 'col-lg-8' : 'col-lg-12'; ?> col-md-12 text-start">
+            <div class="<?php echo $is_form_active ? 'col-lg-7' : 'col-lg-12'; ?> col-md-12 text-start">
                 <div class="course-description">
                     <h2>Descripción del Curso</h2>
                     <?php
@@ -157,7 +157,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
             </div>
 
             <?php if ($is_form_active && !empty($form_code)): ?>
-            <div class="col-lg-4 col-md-12 mt-4 mt-lg-0 d-flex justify-content-end">
+            <div class="col-lg-5 col-md-12 mt-4 mt-lg-0 d-flex justify-content-end">
                 <div class="form-container">
                     <h4 class="text-center mb-4">Consulta por este curso</h4>
                     <div class="external-form-content">
@@ -170,9 +170,21 @@ do_action( 'woocommerce_before_single_product' ); ?>
         </div>
     </section>
 </div>
-<picture id="widget-product-bottom banner">
-  <source srcset="modalidad-lg.jpg" media="(min-width: 1200px)">
-  <source srcset="modalidad-md.jpg" media="(min-width: 768px)">
-  <img src="modalidad-sm.jpg" alt="Modalidad" class="img-fluid w-100">
-</picture>
+<?php if (get_option('enable_product_banner_widget')) : ?>
+    <picture id="widget-product-bottom-banner">
+        <?php if ($banner_lg = get_option('product_banner_lg')) : ?>
+            <source srcset="<?php echo esc_url($banner_lg); ?>" media="(min-width: 1200px)">
+        <?php endif; ?>
+        <?php if ($banner_md = get_option('product_banner_md')) : ?>
+            <source srcset="<?php echo esc_url($banner_md); ?>" media="(min-width: 768px)">
+        <?php endif; ?>
+        <?php if ($banner_sm = get_option('product_banner_sm')) : ?>
+            <img src="<?php echo esc_url($banner_sm); ?>" alt="Banner inferior producto" class="img-fluid w-100">
+        <?php endif; ?>
+    </picture>
+    
+    <?php if (get_option('product_banner_enable_link') && $banner_link = get_option('product_banner_link')) : ?>
+        </a>
+    <?php endif; ?>
+<?php endif; ?>
 <?php do_action( 'woocommerce_after_single_product' ); ?>
