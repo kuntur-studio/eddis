@@ -36,7 +36,8 @@ if ( $form_id ) {
     $is_form_active = carbon_get_post_meta( $form_id, 'eddis_form_active' ) === 1;
     $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
 }
-
+echo 'Form active: ', $is_form_active;
+echo gettpe(carbon_get_post_meta( $form_id, 'eddis_form_active' ));
 wp_reset_postdata();
 // -------------------------------------------------------------
 
