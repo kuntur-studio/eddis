@@ -34,13 +34,13 @@ $form_code = '';
 
 if ( $form_id ) {
     $is_form_active_value = carbon_get_post_meta( $form_id, 'eddis_form_active' );
-    $is_form_active = carbon_get_post_meta( $form_id, 'eddis_form_active' ) === 1;
+    $is_form_active = carbon_get_post_meta( $form_id, 'eddis_form_active' );
     $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
 }
 
 echo 'Form ID: ', $form_id;
 echo 'Is active: ', $is_form_active;
-//echo 'Form active value: ', gettpe($is_form_active_value);
+echo 'Form active value: ', gettype($is_form_active_value);
 wp_reset_postdata();
 // -------------------------------------------------------------
 
