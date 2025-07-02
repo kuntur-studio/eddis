@@ -10,20 +10,25 @@ global $post;
 $product_id = $product->get_id();
 
 // --- Lógica para obtener el formulario de CPT 'eddis_form' ---
-$form_post_name = 'form-producto'; // El slug que se definio en el gestor de formularios
+$form_name = 'form-producto'; // El Nombre de Identificación que se definio en el gestor de formularios
 
-$form_query = new WP_Query([
+$form_query_args = array(
     'post_type'      => 'eddis_form',
-    'name'           => $form_post_name,
     'posts_per_page' => 1,
     'post_status'    => 'publish',
     'fields'         => 'ids',
-    'no_found_rows'  => true,
-    'update_post_meta_cache' => false,
-    'update_post_term_cache' => false,
-]);
+    'meta_query'     => array(
+        array(
+            'key'     => 'eddis_form_name', // Busca por la meta key 'eddis_form_name'
+            'value'   => $form_name, // Con este valor
+            'compare' => '=',
+        ),
+    ),
+);
 
-$form_id = $form_query->have_posts() ? $form_query->posts[0] : 0;
+$form_posts = get_posts( $form_query_args );
+$form_id = ! empty( $form_posts ) ? $form_posts[0] : 0;
+
 if ($form_id) echo 'Se encontró el registro de formulario con el ID: ', $form_id;
 $is_form_active = false;
 $form_code = '';
