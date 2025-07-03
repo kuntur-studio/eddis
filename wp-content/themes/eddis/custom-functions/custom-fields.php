@@ -371,7 +371,7 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('complex', 'crb_widgets_tabs', 'Configuración de Widgets')
+			Field::make('complex', 'widgets_tabs', 'Configuración de Widgets')
 				->setup_labels(['singular_name' => 'Pestaña'])
 				->set_layout('tabbed-vertical') // Tabs verticales
 				->add_fields('branches_widget', 'Sedes', [
@@ -412,9 +412,9 @@ function edd_register_theme_options() {
 						])
 				])
 				->add_fields('front_page', 'Front Page', [
-					Field::make('html', 'crb_home_notice')
+					Field::make('html', 'home_notice')
 						->set_html('<p>Configuración para widgets en la página de inicio</p>')
-					// Aquí puedes añadir más campos para el home
+					
 				])
 		]);
 }
