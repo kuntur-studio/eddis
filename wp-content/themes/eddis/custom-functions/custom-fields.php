@@ -371,19 +371,17 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('complex', 'widgets_tabs', 'Configuración de Widgets')
-				->set_layout('tabbed-horizontal')
+				Field::make('accordion', 'branches_widget', 'Sedes')
+					->set_help_text('Configuración del widget de sedes'),
+				Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
+					->set_option_value('yes')
+					->set_default_value(true),
+				Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
+					->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
+					->set_default_value(['home', '764', '770'])
+			
 
-				->add_fields('branches_widget', 'Sedes', [
-					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
-						->set_option_value('yes')
-						->set_default_value(true),
-					Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
-						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
-						->set_default_value(['home', '764', '770'])
-				])
-
-				->add_fields('product_banner', 'Página de Producto', [
+				/*->add_fields('product_banner', 'Página de Producto', [
 					Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
 						->set_option_value('yes')
 						->set_default_value(false),
@@ -418,7 +416,7 @@ function edd_register_theme_options() {
 						->set_html('<p>Configuración para widgets en la página de inicio</p>')
 					
 				])
-				->set_duplicate_groups_allowed(false)
+				->set_duplicate_groups_allowed(false)*/
 		]);
 }
 
