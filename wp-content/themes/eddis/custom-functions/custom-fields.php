@@ -371,10 +371,10 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('complex', 'widgets_tabs', 'Configuración de Widgets')
+			Field::make('container', 'widgets_tabs', 'Configuración de Widgets')
 				->set_layout('tabbed-horizontal')
 
-				->add_tab('Sedes', [
+				->add_fields('branches_widget', 'Sedes', [
 					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
 						->set_option_value('yes')
 						->set_default_value(true),
@@ -383,7 +383,7 @@ function edd_register_theme_options() {
 						->set_default_value(['home', '764', '770'])
 				])
 
-				->add_tab('Página de Producto', [
+				->add_fields('product_banner', 'Página de Producto', [
 					Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
 						->set_option_value('yes')
 						->set_default_value(false),
@@ -413,11 +413,12 @@ function edd_register_theme_options() {
 						])
 				])
 
-				->add_tab('Front Page', [
+				->add_fields('front_page', 'Front Page', [
 					Field::make('html', 'home_notice')
 						->set_html('<p>Configuración para widgets en la página de inicio</p>')
 					
 				])
+				->set_duplicate_groups_allowed(false)
 		]);
 }
 
