@@ -372,9 +372,9 @@ function edd_register_theme_options() {
 		
 		->add_tab('Widgets', [
 			Field::make('container', 'widgets_tabs', 'Configuración de Widgets')
-				->set_layout('tabbed-horizontal') // Tabs verticales
+				->set_layout('tabbed-horizontal')
 
-				->add_fields('branches_widget', 'Sedes', [
+				->add_tab('Sedes', [
 					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
 						->set_option_value('yes')
 						->set_default_value(true),
@@ -383,7 +383,7 @@ function edd_register_theme_options() {
 						->set_default_value(['home', '764', '770'])
 				])
 
-				->add_fields('product_banner', 'Página de Producto', [
+				->add_tab('Página de Producto', [
 					Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
 						->set_option_value('yes')
 						->set_default_value(false),
@@ -412,8 +412,8 @@ function edd_register_theme_options() {
 							]
 						])
 				])
-				
-				->add_fields('front_page', 'Front Page', [
+
+				->add_tab('Front Page', [
 					Field::make('html', 'home_notice')
 						->set_html('<p>Configuración para widgets en la página de inicio</p>')
 					
