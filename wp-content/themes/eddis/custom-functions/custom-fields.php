@@ -371,49 +371,51 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('vertical_tabs', 'widgets_tabs', 'Configuración de Widgets')
-			->add_tab('Sedes', [
-				Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
-					->set_option_value('yes')
-					->set_default_value(true),
-				Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
-					->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
-					->set_default_value(['home', '764', '770'])
-			])
-			->add_tab('Página de Producto', [
-				Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
-					->set_option_value('yes')
-					->set_default_value(false),
-				
-				// Imágenes para diferentes breakpoints (lg, md, sm)
-				Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
-					->set_value_type('url')
-					->help_text('Tamaño recomendado: 1200px de ancho'),
-				Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
-					->set_value_type('url')
-					->help_text('Tamaño recomendado: 768px de ancho'),
-				Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
-					->set_value_type('url')
-					->help_text('Tamaño recomendado: 576px de ancho'),
-				
-				// Configuración de enlace
-				Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
-					->set_option_value('yes')
-					->set_default_value(false),
-				Field::make('text', 'product_banner_link', 'Enlace del Banner')
-					->set_attribute('type', 'url')
-					->set_conditional_logic([
-						[
-							'field' => 'product_banner_enable_link',
-							'value' => true,
-						]
-					])
-			])
-			->add_tab('Front Page', [
-				// Aquí puedes añadir los campos para la configuración del home
-				Field::make('html', 'home_notice')
-					->set_html('<p>Configuración para widgets en la página de inicio</p>')
-			])
+			Field::make('complex', 'crb_widgets_tabs', 'Configuración de Widgets')
+				->setup_labels(['singular_name' => 'Pestaña'])
+				->set_layout('tabbed-vertical') // Tabs verticales
+				->add_fields('branches_widget', 'Sedes', [
+					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
+						->set_option_value('yes')
+						->set_default_value(true),
+					Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
+						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
+						->set_default_value(['home', '764', '770'])
+				])
+				->add_fields('product_banner', 'Página de Producto', [
+					Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
+						->set_option_value('yes')
+						->set_default_value(false),
+					
+					// Imágenes para diferentes breakpoints
+					Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
+						->set_value_type('url')
+						->help_text('Tamaño recomendado: 1200px de ancho'),
+					Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
+						->set_value_type('url')
+						->help_text('Tamaño recomendado: 768px de ancho'),
+					Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
+						->set_value_type('url')
+						->help_text('Tamaño recomendado: 576px de ancho'),
+					
+					// Configuración de enlace
+					Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
+						->set_option_value('yes')
+						->set_default_value(false),
+					Field::make('text', 'product_banner_link', 'Enlace del Banner')
+						->set_attribute('type', 'url')
+						->set_conditional_logic([
+							[
+								'field' => 'product_banner_enable_link',
+								'value' => true,
+							]
+						])
+				])
+				->add_fields('front_page', 'Front Page', [
+					Field::make('html', 'crb_home_notice')
+						->set_html('<p>Configuración para widgets en la página de inicio</p>')
+					// Aquí puedes añadir más campos para el home
+				])
 		]);
 }
 
