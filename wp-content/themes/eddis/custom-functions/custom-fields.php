@@ -371,24 +371,9 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('complex', 'widgets_tabs', 'Configuración de Widgets')
-				->set_layout('tabbed-horizontal')  // Ó 'tabbed-vertical'
-				->add_fields([
-					// Título del ítem
-					Field::make('text', 'title', 'Título')
-						->set_required(true),
+			Field::make('container', 'widgets_tabs', 'Configuración de Widgets')
+				->set_layout('tabbed-horizontal') // Tabs verticales
 
-					// Tipo de ítem: simple, dropdown o carrito
-					Field::make('select', 'item_type', 'Tipo')
-						->add_options([
-							'simple' => 'Simple',
-							'dropdown' => 'Desplegable',
-							'cart' => 'Carrito',
-						])
-				])
-				->set_header_template('Columna <%- $_index + 1 %>')
-				//->setup_labels(['singular_name' => 'Pestaña'])
-				/*->set_layout('tabbed-horizontal') // Tabs verticales
 				->add_fields('branches_widget', 'Sedes', [
 					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
 						->set_option_value('yes')
@@ -397,6 +382,7 @@ function edd_register_theme_options() {
 						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
 						->set_default_value(['home', '764', '770'])
 				])
+
 				->add_fields('product_banner', 'Página de Producto', [
 					Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
 						->set_option_value('yes')
@@ -426,11 +412,12 @@ function edd_register_theme_options() {
 							]
 						])
 				])
+				
 				->add_fields('front_page', 'Front Page', [
 					Field::make('html', 'home_notice')
 						->set_html('<p>Configuración para widgets en la página de inicio</p>')
 					
-				])*/
+				])
 		]);
 }
 
