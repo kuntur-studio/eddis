@@ -382,7 +382,7 @@ function edd_register_theme_options() {
 						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
 						->set_default_value(['home', '764', '770'])
 				])
-				->add_fields('product_banner', 'Página de Producto', [
+				/*->add_fields('product_banner', 'Página de Producto', [
 					Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
 						->set_option_value('yes')
 						->set_default_value(false),
@@ -415,7 +415,7 @@ function edd_register_theme_options() {
 					Field::make('html', 'home_notice')
 						->set_html('<p>Configuración para widgets en la página de inicio</p>')
 					
-				])
+				])*/
 		]);
 }
 
