@@ -371,7 +371,7 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('container', 'widgets_tabs', 'Configuración de Widgets')
+			Field::make('complex', 'widgets_tabs', 'Configuración de Widgets')
 				->set_layout('tabbed-horizontal')
 
 				->add_fields('branches_widget', 'Sedes', [
