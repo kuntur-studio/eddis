@@ -371,8 +371,8 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('group', 'branches_group', 'Sedes')
-				->add_fields('branches_widget', 'Sedes', [
+			Field::make('group', 'branches_widget', 'Sedes')
+				->add_fields([
 					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
 						->set_option_value('yes')
 						->set_default_value(true),
