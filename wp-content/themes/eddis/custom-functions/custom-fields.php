@@ -371,53 +371,55 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-			Field::make('group', 'branches_widget', 'Sedes')
-				->add_fields([
-					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
-						->set_option_value('yes')
-						->set_default_value(true),
-					Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
-						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
-						->set_default_value(['home', '764', '770'])
-				])
-				->set_collapsed(true)/*,
-				->add_fields('product_banner', 'Página de Producto', [
-					Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
-						->set_option_value('yes')
-						->set_default_value(false),
-					
-					// Imágenes para diferentes breakpoints
-					Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
-						->set_value_type('url')
-						->help_text('Tamaño recomendado: 1200px de ancho'),
-					Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
-						->set_value_type('url')
-						->help_text('Tamaño recomendado: 768px de ancho'),
-					Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
-						->set_value_type('url')
-						->help_text('Tamaño recomendado: 576px de ancho'),
-					
-					// Configuración de enlace
-					Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
-						->set_option_value('yes')
-						->set_default_value(false),
-					Field::make('text', 'product_banner_link', 'Enlace del Banner')
-						->set_attribute('type', 'url')
-						->set_conditional_logic([
-							[
-								'field' => 'product_banner_enable_link',
-								'value' => true,
-							]
-						])
-				])
+    Field::make('complex', 'widgets', 'Widgets')
+        ->set_layout('tabbed-vertical')
+        ->set_duplicate_groups_allowed(false)
+        ->add_fields('branches_widget', [
+            Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
+                ->set_option_value('yes')
+                ->set_default_value(true),
+            Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
+                ->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
+                ->set_default_value(['home', '764', '770']),
+        ])
+        ->add_fields('product_banner', [
+            Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
+                ->set_option_value('yes')
+                ->set_default_value(false),
 
-				->add_fields('front_page', 'Front Page', [
-					Field::make('html', 'home_notice')
-						->set_html('<p>Configuración para widgets en la página de inicio</p>')
-					
-				])
-				->set_duplicate_groups_allowed(false)*/
-		]);
+            Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
+                ->set_value_type('url')
+                ->help_text('Tamaño recomendado: 1200px de ancho'),
+            Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
+                ->set_value_type('url')
+                ->help_text('Tamaño recomendado: 768px de ancho'),
+            Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
+                ->set_value_type('url')
+                ->help_text('Tamaño recomendado: 576px de ancho'),
+
+            Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
+                ->set_option_value('yes')
+                ->set_default_value(false),
+            Field::make('text', 'product_banner_link', 'Enlace del Banner')
+                ->set_attribute('type', 'url')
+                ->set_conditional_logic([
+                    [
+                        'field' => 'product_banner_enable_link',
+                        'value' => true,
+                    ]
+                ])
+        ])
+        ->add_fields('front_page', [
+            Field::make('html', 'home_notice')
+                ->set_html('<p>Configuración para widgets en la página de inicio</p>')
+        ])
+        ->set_default_value([
+            ['_type' => 'branches_widget'],
+            ['_type' => 'product_banner'],
+            ['_type' => 'front_page'],
+        ]),
+]);
+
 }
 
 // Este hook intercepta el guardado de los datos
