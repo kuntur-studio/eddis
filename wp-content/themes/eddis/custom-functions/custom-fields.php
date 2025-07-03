@@ -373,7 +373,7 @@ function edd_register_theme_options() {
 		->add_tab('Widgets', [
 			Field::make('complex', 'widgets_tabs', 'Configuración de Widgets')
 				//->setup_labels(['singular_name' => 'Pestaña'])
-				->set_layout('tabbed-vertical') // Tabs verticales
+				->set_layout('tabbed-horizontal') // Tabs verticales
 				->add_fields('branches_widget', 'Sedes', [
 					Field::make('checkbox', 'enable_branches_widget', 'Activar Widget de Sedes')
 						->set_option_value('yes')
