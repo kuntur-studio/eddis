@@ -9,7 +9,7 @@
 function edd_widget_options(string $widget_type): ?array {
     // Asume que el campo 'widgets' está en las opciones de tema.
     $all_widgets = carbon_get_theme_option('widgets', 'complex');
-
+print_r($all_widgets);
     if (empty($all_widgets) || !is_array($all_widgets)) {
         return null;
     }
