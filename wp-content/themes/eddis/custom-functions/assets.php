@@ -43,11 +43,13 @@ function edd_should_load_in_admin($asset, $hook_suffix = '') {
  * Determina si el widget de sedes debe cargarse
  */
 function edd_should_load_branches_widget() {
-    if (!carbon_get_theme_option('enable_branches_widget')) {
+    $widgets = carbon_get_theme_option('widgets');
+
+    if (!$widgets['enable_branches_widget']) {
         return false;
     }
 
-    $target_pages = carbon_get_theme_option('branches_widget_pages');
+    $target_pages = $widgets['branches_widget_pages'];
     
     // Si está marcado "all" o estamos en una página seleccionada
     return in_array('all', (array)$target_pages) || 
