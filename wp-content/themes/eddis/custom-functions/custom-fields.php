@@ -408,7 +408,7 @@ function edd_register_theme_options() {
                         'value' => true,
                     ]
                 ])
-        ]/*, 'Página de Producto'*/)
+        ], 'Página de Producto')
         ->add_fields('front_page', [
             Field::make('html', 'home_notice')
                 ->set_html('<p>Configuración para widgets en la página de inicio</p>')
