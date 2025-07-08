@@ -43,7 +43,7 @@ function edd_should_load_in_admin($asset, $hook_suffix = '') {
  * Determina si el widget de sedes debe cargarse
  */
 function edd_should_load_branches_widget() {
-    require_once(__DIR__ . '/common.php');
+    //require_once(__DIR__ . '/common.php');
 
     $options = edd_widget_options('branches_widget');
 echo 'Widgets config';print_r($options);
