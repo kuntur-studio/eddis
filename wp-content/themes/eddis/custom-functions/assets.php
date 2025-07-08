@@ -44,7 +44,7 @@ function edd_should_load_in_admin($asset, $hook_suffix = '') {
  */
 function edd_should_load_branches_widget() {
     $options = edd_widget_options('branches_widget');
-
+echo 'Widgets config';print_r($options);
     if (!$options['enable_branches_widget']) {
         return false;
     }
