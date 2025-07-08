@@ -7,7 +7,7 @@ use Carbon_Fields\Field;
 // Menues, redes sociales, elementos del footer, etc
 add_action('carbon_fields_register_fields', 'edd_register_theme_options');
 function edd_register_theme_options() {
-	require_once('./admin.php');
+	require_once(__DIR__ . '/admin.php');
 
 	$social_labels = array(
 		'plural_name' => 'Redes Sociales',
