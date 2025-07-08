@@ -44,7 +44,7 @@ function edd_should_load_in_admin($asset, $hook_suffix = '') {
  */
 function edd_should_load_branches_widget() {
     $widgets = carbon_get_theme_option('widgets');
-
+echo 'Widgets config';print_r($widgets);
     if (!$widgets['enable_branches_widget']) {
         return false;
     }
