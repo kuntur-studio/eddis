@@ -7,7 +7,7 @@ use Carbon_Fields\Field;
 // Menues, redes sociales, elementos del footer, etc
 add_action('carbon_fields_register_fields', 'edd_register_theme_options');
 function edd_register_theme_options() {
-	require_once(__DIR__ . '/admin.php');
+	//require_once(__DIR__ . '/admin.php');
 
 	$social_labels = array(
 		'plural_name' => 'Redes Sociales',
@@ -488,7 +488,7 @@ function edd_register_eddis_form_fields() {
 // Campos personalizados para productos de la tienda
 add_action('carbon_fields_register_fields', 'edd_register_product_custom_fields');
 function edd_register_product_custom_fields() {
-	require_once(__DIR__ . '/admin.php');
+	//require_once(__DIR__ . '/admin.php');
 	
 	Container::make('post_meta', 'Detalles del Curso')
 		->where('post_type', '=', 'product') // Solo en productos (cursos)
