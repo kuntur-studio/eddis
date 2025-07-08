@@ -381,7 +381,7 @@ function edd_register_theme_options() {
             Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
                 ->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
                 ->set_default_value(['home', '764', '770']),
-        ], 'Widget de Sedes')
+        ]/*, 'Widget de Sedes'*/)
         ->add_fields('product_banner', [
             Field::make('checkbox', 'enable_product_banner_widget', 'Activar Banner Inferior')
                 ->set_option_value('yes')
@@ -408,11 +408,11 @@ function edd_register_theme_options() {
                         'value' => true,
                     ]
                 ])
-        ], 'Página de Producto')
+        ]/*, 'Página de Producto'*/)
         ->add_fields('front_page', [
             Field::make('html', 'home_notice')
                 ->set_html('<p>Configuración para widgets en la página de inicio</p>')
-		], 'Página de Inicio')
+		]/*, 'Página de Inicio'*/)
         ->set_default_value([
             ['_type' => 'branches_widget'],
             ['_type' => 'product_banner'],
