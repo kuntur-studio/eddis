@@ -43,8 +43,10 @@ function edd_should_load_in_admin($asset, $hook_suffix = '') {
  * Determina si el widget de sedes debe cargarse
  */
 function edd_should_load_branches_widget() {
+    require_once(__DIR__ . '/common.php');
+
     $options = edd_widget_options('branches_widget');
-echo 'Widgets config';print_r($options);
+
     if (!$options['enable_branches_widget']) {
         return false;
     }
@@ -178,7 +180,7 @@ function edd_get_normalized_asset_url($url) {
 /**
  * Obtiene la versión del asset (filemtime para locales, null para externos)
  */
-function edd_get_asset_version($url) {    
+function edd_get_asset_version($url) {
     // Si es una URL externa, no usar filemtime
     if (filter_var($url, FILTER_VALIDATE_URL)) {
         return null;
