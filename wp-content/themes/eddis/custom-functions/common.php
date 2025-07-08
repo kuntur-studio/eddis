@@ -8,7 +8,7 @@
  */
 function edd_widget_options(string $widget_type): ?array {echo 'Widget type ', $widget_type;
     // Asume que el campo 'widgets' está en las opciones de tema.
-    $all_widgets = carbon_get_theme_option('widgets', 'complex');echo 'post get theme options';
+    $all_widgets = carbon_get_theme_option('widgets');echo 'post get theme options';
 print_r($all_widgets);
     if (empty($all_widgets) || !is_array($all_widgets)) {
         return null;
