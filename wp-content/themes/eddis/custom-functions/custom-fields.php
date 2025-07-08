@@ -408,11 +408,11 @@ function edd_register_theme_options() {
                         'value' => true,
                     ]
                 ])
-        ], 'Página de Producto')
-        ->add_fields('front_page', [
+        ]/*, 'Página de Producto'*/)
+        ->add_fields('front_page', 'Página de Inicio', [
             Field::make('html', 'home_notice')
                 ->set_html('<p>Configuración para widgets en la página de inicio</p>')
-		]/*, 'Página de Inicio'*/)
+		])
         ->set_default_value([
             ['_type' => 'branches_widget'],
             ['_type' => 'product_banner'],
