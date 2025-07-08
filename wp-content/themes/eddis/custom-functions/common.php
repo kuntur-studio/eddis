@@ -6,7 +6,7 @@
  * @param string $widget_type El tipo de widget que se desea obtener (e.g., 'branches_widget', 'product_banner').
  * @return array|null Un array con las opciones del widget si se encuentra, o null si no.
  */
-function edd_widget_options(string $widget_type): ?array {
+function edd_widget_options(string $widget_type): ?array {echo 'Widget type ', $widget_type;
     // Asume que el campo 'widgets' está en las opciones de tema.
     $all_widgets = carbon_get_theme_option('widgets', 'complex');
 print_r($all_widgets);
