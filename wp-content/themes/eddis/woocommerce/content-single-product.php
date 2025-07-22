@@ -176,6 +176,12 @@ if ($options['enable_product_banner_widget']) :
     // Verificar si debemos envolver en un enlace
     $should_wrap_link = $options['product_banner_enable_link'] && !empty($options['product_banner_link']);
     
+    // --- ALTERNATIVA AVANZADA PARA FALLBACK ---
+    $fallback_image = !empty($options['product_banner_lg']) ? $options['product_banner_lg'] : 
+                     (!empty($options['product_banner_md']) ? $options['product_banner_md'] : 
+                     (!empty($options['product_banner_sm']) ? $options['product_banner_sm'] : ''));
+    // -----------------------------------------
+    
     if ($should_wrap_link) : ?>
         <a href="<?php echo esc_url($options['product_banner_link']); ?>" id="product-banner-link">
     <?php endif; ?>
@@ -188,8 +194,12 @@ if ($options['enable_product_banner_widget']) :
             <source srcset="<?php echo esc_url($options['product_banner_md']); ?>" media="(min-width: 768px)">
         <?php endif; ?>
         <?php if (!empty($options['product_banner_sm'])) : ?>
-            <img src="<?php echo esc_url($options['product_banner_sm']); ?>" alt="Banner inferior producto" class="img-fluid w-100">
+            <source srcset="<?php echo esc_url($options['product_banner_sm']); ?>" media="(max-width: 767px)">
         <?php endif; ?>
+        <!-- Fallback mejorado (usa lg > md > sm en ese orden) -->
+        <img src="<?php echo esc_url($fallback_image); ?>" 
+             alt="Banner inferior producto" 
+             class="img-fluid w-100">
     </picture>
     
     <?php if ($should_wrap_link) : ?>
