@@ -41,6 +41,9 @@ if ( $form_id ) {
 wp_reset_postdata();
 // -------------------------------------------------------------
 
+//  --- Obtengo los datos del banner inferior (Modalidad)
+$options = edd_widget_options('product_banner');
+
 do_action( 'woocommerce_before_single_product' ); ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper my-4', $product ); ?>>
     <section class="container">
@@ -167,21 +170,31 @@ do_action( 'woocommerce_before_single_product' ); ?>
         </div>
     </section>
 </div>
-<?php if (get_option('enable_product_banner_widget')) : ?>
+<?php 
+// Asumiendo que $options contiene todos los valores de configuración
+if ($options['enable_product_banner_widget']) : 
+    // Verificar si debemos envolver en un enlace
+    $should_wrap_link = $options['product_banner_enable_link'] && !empty($options['product_banner_link']);
+    
+    if ($should_wrap_link) : ?>
+        <a href="<?php echo esc_url($options['product_banner_link']); ?>" id="product-banner-link">
+    <?php endif; ?>
+    
     <picture id="widget-product-bottom-banner">
-        <?php if ($banner_lg = get_option('product_banner_lg')) : ?>
-            <source srcset="<?php echo esc_url($banner_lg); ?>" media="(min-width: 1200px)">
+        <?php if (!empty($options['product_banner_lg'])) : ?>
+            <source srcset="<?php echo esc_url($options['product_banner_lg']); ?>" media="(min-width: 1200px)">
         <?php endif; ?>
-        <?php if ($banner_md = get_option('product_banner_md')) : ?>
-            <source srcset="<?php echo esc_url($banner_md); ?>" media="(min-width: 768px)">
+        <?php if (!empty($options['product_banner_md'])) : ?>
+            <source srcset="<?php echo esc_url($options['product_banner_md']); ?>" media="(min-width: 768px)">
         <?php endif; ?>
-        <?php if ($banner_sm = get_option('product_banner_sm')) : ?>
-            <img src="<?php echo esc_url($banner_sm); ?>" alt="Banner inferior producto" class="img-fluid w-100">
+        <?php if (!empty($options['product_banner_sm'])) : ?>
+            <img src="<?php echo esc_url($options['product_banner_sm']); ?>" alt="Banner inferior producto" class="img-fluid w-100">
         <?php endif; ?>
     </picture>
     
-    <?php if (get_option('product_banner_enable_link') && $banner_link = get_option('product_banner_link')) : ?>
+    <?php if ($should_wrap_link) : ?>
         </a>
     <?php endif; ?>
+    
 <?php endif; ?>
 <?php do_action( 'woocommerce_after_single_product' ); ?>
