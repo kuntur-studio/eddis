@@ -733,50 +733,18 @@ p {
 
 /* Contenedor principal para el recorte */
 .banner-crop-container {
-    --core-width: 1200px; /* Ancho del contenido importante */
-    width: 100%;
-    overflow: hidden;
-    position: relative;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: auto;
 }
 
-/* Mantenemos tus clases originales */
-#widget-product-bottom-banner {
-    display: block;
-    width: 100%;
+.banner-main-image {
+  width: 1920px;
+  max-width: none;
+  height: auto;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
-
-.img-fluid.w-100.banner-main-image {
-    width: 1920px;
-    max-width: none;
-    height: auto;
-    display: block;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Responsive: ≥1920px (imagen completa) */
-@media (min-width: 1920px) {
-    .img-fluid.w-100.banner-main-image {
-        width: 100%;
-        left: 0;
-        transform: none;
-    }
-}
-
-/* Responsive: 1200px-1919px (recorte progresivo) */
-@media (min-width: 1200px) and (max-width: 1919px) {
-    .banner-crop-container {
-        margin-left: calc((100% - var(--core-width)) / 2);
-        margin-right: calc((100% - var(--core-width)) / 2);
-        width: var(--core-width);
-    }
-    
-    .img-fluid.w-100.banner-main-image {
-        width: 1920px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-/* Responsive: <1200px (usará los breakpoints del picture) */

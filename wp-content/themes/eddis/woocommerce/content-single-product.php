@@ -200,7 +200,7 @@ if ($options['enable_product_banner_widget']) : ?>
         <!-- Fallback mejorado (usa lg > md > sm en ese orden) -->
         <img src="<?php echo esc_url($fallback_image); ?>" 
              alt="Banner inferior producto" 
-             class="img-fluid w-100 banner-main-image">
+             class="banner-main-image">
     </picture>
     
     <?php if ($should_wrap_link) : ?>
