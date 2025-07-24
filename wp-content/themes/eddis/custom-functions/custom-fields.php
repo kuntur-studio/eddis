@@ -389,13 +389,13 @@ function edd_register_theme_options() {
 
             Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
                 ->set_value_type('url')
-                ->help_text('Tamaño recomendado: 1200px de ancho'),
+                ->help_text('Tamaño recomendado: 1920px de ancho'),
             Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
                 ->set_value_type('url')
-                ->help_text('Tamaño recomendado: 768px de ancho'),
+                ->help_text('Tamaño recomendado: 1200px de ancho'),
             Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
                 ->set_value_type('url')
-                ->help_text('Tamaño recomendado: 576px de ancho'),
+                ->help_text('Tamaño recomendado: 768px de ancho'),
 
             Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
                 ->set_option_value('yes')
