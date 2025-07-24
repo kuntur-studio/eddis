@@ -773,3 +773,10 @@ p {
   }
 }
 /******** Fin página de producto ********/
+
+/* ======== 404 ======== */
+.search-page h2.error-code {
+    font-size: 5em;
+    color: #E34100;
+    font-weight: 700;
+}
