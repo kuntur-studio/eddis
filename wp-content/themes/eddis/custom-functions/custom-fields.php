@@ -65,6 +65,10 @@ function edd_register_theme_options() {
 					Field::make('text', 'wrapper1_title', 'Título grupo 3 columnas')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
 							]
@@ -72,6 +76,10 @@ function edd_register_theme_options() {
 
 					Field::make('text', 'wrapper2_title', 'Título grupo 2 columnas')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
@@ -81,6 +89,10 @@ function edd_register_theme_options() {
 					// Columna 1
 					Field::make('text', 'column1_title', 'Título de la Columna 1')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field' => 'dropdown_type',
 								'value' => [
@@ -101,6 +113,10 @@ function edd_register_theme_options() {
 						->set_layout('tabbed-horizontal')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field' => 'dropdown_type',
 								'value' => [
 									'one_column',
@@ -116,6 +132,10 @@ function edd_register_theme_options() {
 					Field::make('text', 'column2_title', 'Título de la Columna 2')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field'   => 'dropdown_type',
 								'value'   => ['two_columns_banner', 'five_columns_3_2'],
 								'compare' => 'IN'
@@ -130,6 +150,10 @@ function edd_register_theme_options() {
 						->set_layout('tabbed-horizontal')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field'   => 'dropdown_type',
 								'value'   => ['two_columns_banner', 'five_columns_3_2'],
 								'compare' => 'IN'
@@ -139,6 +163,10 @@ function edd_register_theme_options() {
 					// Columna 3
 					Field::make('text', 'column3_title', 'Título de la Columna 3')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
@@ -153,6 +181,10 @@ function edd_register_theme_options() {
 						->set_layout('tabbed-horizontal')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
 							]
@@ -161,6 +193,10 @@ function edd_register_theme_options() {
 					// Columna 4
 					Field::make('text', 'column4_title', 'Título de la Columna 4')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
@@ -175,6 +211,10 @@ function edd_register_theme_options() {
 						->set_layout('tabbed-horizontal')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
 							]
@@ -183,6 +223,10 @@ function edd_register_theme_options() {
 					// Columna 5
 					Field::make('text', 'column5_title', 'Título de la Columna 5')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
@@ -197,6 +241,10 @@ function edd_register_theme_options() {
 						->set_layout('tabbed-horizontal')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field' => 'dropdown_type',
 								'value' => 'five_columns_3_2',
 							]
@@ -205,6 +253,10 @@ function edd_register_theme_options() {
 					// Banner para los dropdowns con banner (one_column_banner, two_columns_banner)
 					Field::make('text', 'banner_title', 'Título del banner')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field'   => 'dropdown_type',
 								'value'   => ['one_column_banner', 'two_columns_banner'],
@@ -215,6 +267,10 @@ function edd_register_theme_options() {
 					Field::make('textarea', 'banner_description', 'Descripción del banner')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field'   => 'dropdown_type',
 								'value'   => ['one_column_banner', 'two_columns_banner'],
 								'compare' => 'IN'
@@ -223,6 +279,10 @@ function edd_register_theme_options() {
 
 					Field::make('color', 'banner_bg_color', 'Color de fondo del banner')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field'   => 'dropdown_type',
 								'value'   => ['one_column_banner', 'two_columns_banner'],
@@ -234,6 +294,10 @@ function edd_register_theme_options() {
 						->set_value_type('url')
 						->set_conditional_logic([
 							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
+							[
 								'field'   => 'dropdown_type',
 								'value'   => ['one_column_banner', 'two_columns_banner'],
 								'compare' => 'IN'
@@ -242,6 +306,10 @@ function edd_register_theme_options() {
 
 					Field::make('text', 'banner_link', 'Enlace del banner')
 						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown',
+							],
 							[
 								'field'   => 'dropdown_type',
 								'value'   => ['one_column_banner', 'two_columns_banner'],
