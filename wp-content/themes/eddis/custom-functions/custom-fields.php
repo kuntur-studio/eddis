@@ -52,9 +52,10 @@ function edd_register_theme_options() {
 					Field::make('text', 'link', 'Enlace')
 						->set_conditional_logic([
 							[
-									'field' => 'item_type',
-									'value' => ['simple', 'cart'],
-								]
+								'field' => 'item_type',
+								'value' => ['simple', 'cart'],
+								'compare' => 'IN'
+							]
 						]),
 
 					// Activo
