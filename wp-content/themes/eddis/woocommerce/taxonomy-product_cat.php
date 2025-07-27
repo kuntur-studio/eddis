@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 get_header( 'shop' );
 
 // Slider del encabezado, se edita desde el editor de SS3 (ver el ID del slider en el código de abajo)
-echo do_shortcode('[smartslider3 slider="1"]');
+echo do_shortcode('[smartslider3 slider="4"]');
 
 /**
  * Hook: woocommerce_before_main_content.
