@@ -54,7 +54,7 @@ do_action( 'woocommerce_shop_loop_header' );
         do_action( 'woocommerce_before_shop_loop' );
         ?>
 
-        <div class="row"> <?php woocommerce_product_loop_start(); ?>
+        <div class="row"> <?php /*woocommerce_product_loop_start();*/ ?>
 
             <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
                 <?php while ( have_posts() ) : ?>
@@ -74,7 +74,7 @@ do_action( 'woocommerce_shop_loop_header' );
                 <?php endwhile; ?>
             <?php endif; ?>
 
-            <?php woocommerce_product_loop_end(); ?>
+            <?php /*woocommerce_product_loop_end();*/ ?>
 
         </div> <?php
         /**
