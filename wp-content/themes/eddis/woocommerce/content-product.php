@@ -48,6 +48,16 @@ if ( !is_a($product, WC_Product::class) || !$product->is_visible()) {
 	 */
 	do_action('woocommerce_shop_loop_item_title');
 
+    /**
+     * Contenido personalizado: Duración del curso
+     */
+    $product_id = $product->get_id();
+    $duration = carbon_get_post_meta($product_id, 'duration');
+    if ($duration) {
+        echo '<div class="course-duration">';
+        echo '<i class="fas fa-clock"></i> <b>Duración:</b> ' . esc_html($duration);
+        echo '</div>';
+    }
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
 	 *

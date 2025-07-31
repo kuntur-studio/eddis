@@ -108,8 +108,16 @@ do_action( 'woocommerce_before_main_content' );
  *
  * @hooked woocommerce_product_taxonomy_archive_header - 10
  */
-do_action( 'woocommerce_shop_loop_header' );
+/*
+    La línea siguiente inserta el nombre de la categoría actual en un wrapper header y una etiqueta h1
+    con todas las clases de WC
+*/
+// do_action( 'woocommerce_shop_loop_header' );
 ?>
+
+<header class="eddis-custom woocommerce-products-header">
+    <h1 class="woocommerce-products-header__title page-title">Nuestros cursos</h1>
+</header
 
 <div class="container my-5"> <?php if ( woocommerce_product_loop() ) : ?>
 
