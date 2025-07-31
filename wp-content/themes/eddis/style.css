@@ -622,6 +622,11 @@ p {
     }
 }
 
+/* ===== TÍTULO DE LA PÁGINA ===== */
+.eddis-page-title {
+    color: var(--gray-color);
+}
+
 /* ===== SINGLE PRODUCT ===== */
 .course-single-wrapper {
     margin: 2rem 0;
@@ -730,9 +735,10 @@ p {
         width: 100%;
     }
 }
+/******** Fin página de producto ********/
 
 
-/* ===== BANNER INFERIOR ===== */
+/* ===== BANNERS ===== */
 /* Contenedor principal para el recorte */
 .banner-crop-container {
   position: relative;
@@ -772,7 +778,31 @@ p {
     transform: none;
   }
 }
-/******** Fin página de producto ********/
+/* ===== PRODUCT CATEGORY ===== */
+.eddis-custom.woocommerce-products-header {
+    margin-left: 9%;
+}
+/* Estilos para el botón de "Ordenar por" */
+.woocommerce-ordering .select2-container--default .select2-selection--single {
+    background-color: #4a5482;
+    border-color: #4a5482;
+    color: #fff;
+    padding: 10px 15px;
+    height: auto;
+    border-radius: 5px;
+}
+.woocommerce-ordering .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #fff transparent transparent transparent !important;
+    margin-top: -3px;
+}
+
+/* Estilos para el nuevo contenedor del encabezado y el ordenamiento */
+.shop-header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
 
 /* ======== 404 ======== */
 .search-page h2.error-code {

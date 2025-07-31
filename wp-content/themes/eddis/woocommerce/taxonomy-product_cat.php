@@ -86,7 +86,7 @@ if ( ! empty( $category_banner_lg ) || ! empty( $category_banner_md ) || ! empty
             <?php endif; ?>
         </picture>
     </div>
-<?php 
+<?php
 endif;
 
 // Slider del encabezado, se edita desde el editor de SS3 (ver el ID del slider en el código de abajo)
@@ -101,34 +101,25 @@ endif;
  */
 do_action( 'woocommerce_before_main_content' );
 
-/**
- * Hook: woocommerce_shop_loop_header.
- *
- * @since 8.6.0
- *
- * @hooked woocommerce_product_taxonomy_archive_header - 10
- */
-/*
-    La línea siguiente inserta el nombre de la categoría actual en un wrapper header y una etiqueta h1
-    con todas las clases de WC
-*/
-// do_action( 'woocommerce_shop_loop_header' );
+// Elimina el conteo de resultados
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+// Elimina el ordenamiento del hook predeterminado para moverlo
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
 ?>
-
-<header class="eddis-custom woocommerce-products-header">
-    <h1 class="woocommerce-products-header__title page-title">Nuestros cursos</h1>
-</header
-
-<div class="container my-5"> <?php if ( woocommerce_product_loop() ) : ?>
+<div class="container my-5"> 
+    <?php if ( woocommerce_product_loop() ) : ?>
+        <div class="shop-header-flex">
+            <?php
+            // Llama directamente a la función de ordenamiento
+            woocommerce_catalog_ordering();
+            ?>
+            <header class="eddis-custom woocommerce-products-header">
+                <h1 class="woocommerce-products-header__title page-title eddis-page-title">Nuestros cursos</h1>
+            </header>
+        </div>
 
         <?php
-        /**
-         * Hook: woocommerce_before_shop_loop.
-         *
-         * @hooked woocommerce_output_all_notices - 10
-         * @hooked woocommerce_result_count - 20
-         * @hooked woocommerce_catalog_ordering - 30
-         */
         do_action( 'woocommerce_before_shop_loop' );
         ?>
 
@@ -190,3 +181,4 @@ do_action( 'woocommerce_after_main_content' );
 do_action( 'woocommerce_sidebar' );
 
 get_footer( 'shop' );
+?>
