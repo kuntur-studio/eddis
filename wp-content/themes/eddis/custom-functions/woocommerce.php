@@ -51,3 +51,17 @@ add_filter( 'woocommerce_get_script_data', function( $script_data, $handle ) {
       return $script_data;
 
  }, 10, 2 );
+
+ // Customización del botón Agregar al carrito en la página de categoría
+ add_filter('woocommerce_loop_add_to_cart_link', 'edd_custom_loop_add_to_cart_button', 10, 2);
+
+function edd_custom_loop_add_to_cart_button($button, $product) {
+    if ($product->is_type('simple') || $product->is_type('variable')) {
+        $url = get_permalink($product->get_id());
+        $label = __('Más información', 'woocommerce');
+
+        return '<a href="' . esc_url($url) . '" class="button">' . esc_html($label) . '</a>';
+    }
+
+    return $button;
+}
