@@ -591,11 +591,17 @@ function edd_register_product_custom_fields() {
     Container::make('term_meta', 'Opciones de Categoría de Producto')
         ->where( 'term_taxonomy', '=', 'product_cat' )
         ->add_fields([
-            Field::make('color', 'category_color', 'Color de Categoría', 'your-text-domain')
+            Field::make('color', 'category_color', 'Color de Categoría')
                 ->set_help_text('Selecciona un color representativo para la categoría.'),
-            Field::make('image', 'category_banner', 'Imagen de Banner de Categoría')
-                ->set_help_text('Subí una imagen para usar como banner de la categoría.')
-                ->set_value_type('url'), // Guardar la URL directamente para un uso más fácil
+			Field::make('image', 'category_banner_lg', 'Banner LG (≥1200px)')
+                ->set_value_type('url')
+                ->help_text('Tamaño recomendado: 1920px de ancho'),
+            Field::make('image', 'category_banner_md', 'Banner MD (≥768px)')
+                ->set_value_type('url')
+                ->help_text('Tamaño recomendado: 1200px de ancho'),
+            Field::make('image', 'category_banner_sm', 'Banner SM (<768px)')
+                ->set_value_type('url')
+                ->help_text('Tamaño recomendado: 768px de ancho'),
 		],
 	);
 
