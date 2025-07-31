@@ -19,8 +19,78 @@ defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
 
+// Obtengo el término actual (categoría de producto)
+$term = get_queried_object();
+$term_id = $term->term_id;
+
+// Color representativo de la categoría
+$category_color = carbon_get_term_meta( $term_id, 'category_color' );
+
+if ( $category_color ) : ?>
+    <style>
+        /* Estilos personalizados para el botón "Más información" según el color de la categoría */
+        .woocommerce .product-card .button {
+            background-color: <?php echo esc_attr( $category_color ); ?>;
+            border-color: <?php echo esc_attr( $category_color ); ?>;
+            color: #fff;
+            transition: filter 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            background-image: none;
+        }
+
+        .woocommerce .product-card .button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            background-color: <?php echo esc_attr( $category_color ); ?>; /* anula override de WC */
+            border-color: <?php echo esc_attr( $category_color ); ?>;
+            color: #fff;
+            text-decoration: none;
+            background-image: none;
+        }
+    </style>
+<?php endif;
+
+
+// Imágenes para el banner responsivo de categoría
+$category_banner_lg = carbon_get_term_meta( $term_id, 'category_banner_lg' );
+$category_banner_md = carbon_get_term_meta( $term_id, 'category_banner_md' );
+$category_banner_sm = carbon_get_term_meta( $term_id, 'category_banner_sm' );
+
+// Determinar una imagen de fallback si ninguna está configurada (preferencia: LG > MD > SM)
+$fallback_image = '';
+if ( ! empty( $category_banner_lg ) ) {
+    $fallback_image = $category_banner_lg;
+} elseif ( ! empty( $category_banner_md ) ) {
+    $fallback_image = $category_banner_md;
+} elseif ( ! empty( $category_banner_sm ) ) {
+    $fallback_image = $category_banner_sm;
+}
+
+// Mostrar el banner responsivo si al menos una imagen está configurada
+if ( ! empty( $category_banner_lg ) || ! empty( $category_banner_md ) || ! empty( $category_banner_sm ) ) : ?>
+    <div class="banner-crop-container category-banner-wrapper">
+        <picture id="widget-category-banner">
+            <?php if (!empty($category_banner_lg)) : ?>
+                <source srcset="<?php echo esc_url($category_banner_lg); ?>" media="(min-width: 1200px)">
+            <?php endif; ?>
+            <?php if (!empty($category_banner_md)) : ?>
+                <source srcset="<?php echo esc_url($category_banner_md); ?>" media="(min-width: 768px)">
+            <?php endif; ?>
+            <?php if (!empty($category_banner_sm)) : ?>
+                <source srcset="<?php echo esc_url($category_banner_sm); ?>" media="(max-width: 767px)">
+            <?php endif; ?>
+            <?php if ( ! empty( $fallback_image ) ) : ?>
+                <img src="<?php echo esc_url($fallback_image); ?>"
+                        alt="<?php echo esc_attr( $term->name ); ?> Banner"
+                        class="banner-main-image">
+            <?php endif; ?>
+        </picture>
+    </div>
+<?php 
+endif;
+
 // Slider del encabezado, se edita desde el editor de SS3 (ver el ID del slider en el código de abajo)
-echo do_shortcode('[smartslider3 slider="4"]');
+//echo do_shortcode('[smartslider3 slider="4"]');
 
 /**
  * Hook: woocommerce_before_main_content.
