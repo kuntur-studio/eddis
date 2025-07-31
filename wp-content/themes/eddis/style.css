@@ -796,13 +796,7 @@ p {
     margin-top: -3px;
 }
 
-/* Estilos para el nuevo contenedor del encabezado y el ordenamiento */
-.shop-header-flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
+
 
 /* ======== 404 ======== */
 .search-page h2.error-code {
