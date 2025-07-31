@@ -554,30 +554,50 @@ function edd_register_eddis_form_fields() {
 
 
 
-// Campos personalizados para productos de la tienda
+// Campos personalizados
 add_action('carbon_fields_register_fields', 'edd_register_product_custom_fields');
 function edd_register_product_custom_fields() {
 	//require_once(__DIR__ . '/admin.php');
 	
-	Container::make('post_meta', 'Detalles del Curso')
-		->where('post_type', '=', 'product') // Solo en productos (cursos)
-		->add_fields([
-			Field::make('text', 'plan_id', 'Plan ID')->set_attribute('type', 'number'),
-			Field::make('checkbox', 'enable_payment', 'Habilitar Pago de Matrícula con Mercado Pago?'),
-			Field::make('checkbox', 'show_inscription_fields', 'Mostrar campos de inscripción'),
-			Field::make('text', 'list_price', 'Precio de lista')->set_attribute('type', 'number'),
-			Field::make('image', 'featured_image', 'Imagen destacada'),
-			Field::make('image', 'cover_image', 'Imagen de portada'),
-			Field::make('text', 'duration', 'Duración'),
-			Field::make('text', 'certification', 'Certificación'),
-			Field::make('text', 'mode', 'Modalidad'),
-			Field::make('textarea', 'short_description', 'Descripción corta'),
+	// Si WooCommerce no está activo, no registramos nada para evitar errores.
+    // Esto es importante si el código podría ejecutarse en un entorno sin WooCommerce.
+    if ( ! class_exists( 'WooCommerce' ) ) {
+        return;
+    }
 
-			Field::make('complex', 'content_blocks', 'Contenido')
-				->add_fields([
-					Field::make('text', 'title', 'Título'),
-					Field::make('rich_text', 'content', 'Contenido'),
-				]),
+    // --- CAMPOS PARA PRODUCTOS (POST TYPE 'PRODUCT') ---
+    Container::make('post_meta', 'Detalles del Curso')
+        ->where('post_type', '=', 'product') // Solo en productos (cursos)
+        ->add_fields([
+            Field::make('text', 'plan_id', 'Plan ID')->set_attribute('type', 'number'),
+            Field::make('checkbox', 'enable_payment', 'Habilitar Pago de Matrícula con Mercado Pago?'),
+            Field::make('checkbox', 'show_inscription_fields', 'Mostrar campos de inscripción'),
+            Field::make('text', 'list_price', 'Precio de lista')->set_attribute('type', 'number'),
+            Field::make('image', 'featured_image', 'Imagen destacada'),
+            Field::make('image', 'cover_image', 'Imagen de portada'),
+            Field::make('text', 'duration', 'Duración'),
+            Field::make('text', 'certification', 'Certificación'),
+            Field::make('text', 'mode', 'Modalidad'),
+            Field::make('textarea', 'short_description', 'Descripción corta'),
+
+            Field::make('complex', 'content_blocks', 'Contenido')
+                ->add_fields([
+                    Field::make('text', 'title', 'Título'),
+                    Field::make('rich_text', 'content', 'Contenido'),
+                ]),
+        ]);
+
+    // --- CAMPOS PARA CATEGORÍAS DE PRODUCTO (TAXONOMÍA 'PRODUCT_CAT') ---
+    Container::make('term_meta', 'Opciones de Categoría de Producto')
+        ->where( 'term_taxonomy', '=', 'product_cat' )
+        ->add_fields([
+            Field::make('color', 'category_color', 'Color de Categoría', 'your-text-domain')
+                ->set_help_text('Selecciona un color representativo para la categoría.'),
+            Field::make('image', 'category_banner', 'Imagen de Banner de Categoría')
+                ->set_help_text('Subí una imagen para usar como banner de la categoría.')
+                ->set_value_type('url'), // Guardar la URL directamente para un uso más fácil
+		],
+	);
 
 			/*Field::make('complex', 'highlight_bullets', 'Bullets Destacados')
 				->add_fields([
@@ -610,6 +630,6 @@ function edd_register_product_custom_fields() {
 					['type' => 'post', 'post_type' => 'product']
 				]),
 
-			Field::make('checkbox', 'reserve_spot', 'Reserva tu lugar')*/
-		]);
+			Field::make('checkbox', 'reserve_spot', 'Reserva tu lugar')
+		]);*/
 }
