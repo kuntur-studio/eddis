@@ -38,7 +38,7 @@ if ( $form_id ) {
     $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
 }
 
-wp_reset_postdata();
+// wp_reset_postdata();
 // -------------------------------------------------------------
 
 $options = edd_widget_options('product_banner'); // < --- Obtengo los datos del banner inferior (Modalidad)
