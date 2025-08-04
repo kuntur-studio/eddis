@@ -22,17 +22,17 @@ jQuery(document).ready(function($) {
     // no es funcionalidad estandar de bootstrap.
     // Aplica solo en pantallas grandes.
     if (window.matchMedia('(max-width: 992px)').matches) {} else {
-        let coursesMenuFirstInteraction = true;
+        // let coursesMenuFirstInteraction = true;
         const $dropdownParent = $('nav li.dropdown'); // Contenedor principal
         
         $dropdownParent.hover(
             function() {
             $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(280);
             
-            if (coursesMenuFirstInteraction && $('#tabCursos .tab-pane.active').length === 0) {
-                $('#tabCursos a:first').tab('show');
-            }
-            coursesMenuFirstInteraction = false;
+            // if (coursesMenuFirstInteraction && $('#tabCursos .tab-pane.active').length === 0) {
+            //     $('#tabCursos a:first').tab('show');
+            // }
+            // coursesMenuFirstInteraction = false;
             },
             function() {
             $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(280, function() {

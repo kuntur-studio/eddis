@@ -248,8 +248,8 @@ if (!empty($menu_items)): ?>
                         <?php echo esc_html($item['title']); ?>
                     </a>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
-                        <div class="container">
-                            <div class="row">
+                        <!--div class="container">
+                            <div class="row"-->
                                 <div class="text-lg-start text-md-center text-sm-center text-center">
                                     <?php
                                     // Obtener las categorías de productos de WooCommerce.
@@ -287,11 +287,11 @@ if (!empty($menu_items)): ?>
                                         <?php endif; ?>
                                     </nav>
                                 </div>
-                            </div>
-                        </div>
+                            <!--/div>
+                        </div-->
                     </div>
                 </li>
-                <li class="nav-item dropdown old-style" style="position: static!important;">
+                <!--li class="nav-item dropdown old-style" style="position: static!important;">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
                     </a>
@@ -362,7 +362,7 @@ if (!empty($menu_items)): ?>
                             </div>
                         </div>
                     </div>
-                </li>
+                </li-->
                 <?php endif; // Verificación del tipo de despegable?>
             <?php endif; // Si el item es desplegable o no?>
         <?php endif;  // Si el item está activo ?>
