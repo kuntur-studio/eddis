@@ -248,47 +248,43 @@ if (!empty($menu_items)): ?>
                         <?php echo esc_html($item['title']); ?>
                     </a>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
-                        <!--div class="container">
-                            <div class="row"-->
-                                <div class="text-lg-center text-md-center text-sm-center text-center">
-                                    <?php
-                                    // Obtener las categorías de productos de WooCommerce.
-                                    // 'parent' => 0 para obtener solo las categorías de nivel superior.
-                                    $product_categories = get_terms([
-                                        'taxonomy'   => 'product_cat',
-                                        'hide_empty' => true,
-                                        'parent'     => 0,
-                                    ]);
+                        <div class="text-lg-center text-md-center text-sm-center text-center">
+                            <?php
+                            // Obtener las categorías de productos de WooCommerce.
+                            // 'parent' => 0 para obtener solo las categorías de nivel superior.
+                            $product_categories = get_terms([
+                                'taxonomy'   => 'product_cat',
+                                'hide_empty' => true,
+                                'parent'     => 0,
+                            ]);
 
-                                    if (!empty($product_categories) && !is_wp_error($product_categories)): ?>
-                                        <nav class="links-card-menu-utc courses">
-                                            <?php foreach ($product_categories as $category):
-                                                // Obtener la URL de la categoría de forma segura.
-                                                $category_link = get_term_link($category);
-                                                
-                                                // Verificar si la URL es válida antes de generar el enlace.
-                                                if (!is_wp_error($category_link)): ?>
-                                                    <a href="<?php echo esc_url($category_link); ?>" class="transition-280 text-dark single-column-menu-item">
-                                                        <?php echo esc_html($category->name); ?>
-                                                    </a>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </nav>
-                                    <?php endif; ?>
-                                    <nav class="links-card-menu-utc">
-                                        <?php 
-                                        $column1_items = $item['column1_items'] ?? [];
-                                        if (!empty($column1_items)): ?>
-                                            <?php foreach ($column1_items as $col1_item): ?>
-                                                <a href="<?php echo esc_url($col1_item['link']); ?>" class="transition-280 text-dark single-column-menu-item">
-                                                    <?php echo esc_html($col1_item['title']); ?>
-                                                </a>
-                                            <?php endforeach; ?>
+                            if (!empty($product_categories) && !is_wp_error($product_categories)): ?>
+                                <nav class="links-card-menu-utc courses">
+                                    <?php foreach ($product_categories as $category):
+                                        // Obtener la URL de la categoría de forma segura.
+                                        $category_link = get_term_link($category);
+                                        
+                                        // Verificar si la URL es válida antes de generar el enlace.
+                                        if (!is_wp_error($category_link)): ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="transition-280 text-dark single-column-menu-item">
+                                                <?php echo esc_html($category->name); ?>
+                                            </a>
                                         <?php endif; ?>
-                                    </nav>
-                                </div>
-                            <!--/div>
-                        </div-->
+                                    <?php endforeach; ?>
+                                </nav>
+                            <?php endif; ?>
+                            <nav class="links-card-menu-utc">
+                                <?php 
+                                $column1_items = $item['column1_items'] ?? [];
+                                if (!empty($column1_items)): ?>
+                                    <?php foreach ($column1_items as $col1_item): ?>
+                                        <a href="<?php echo esc_url($col1_item['link']); ?>" class="transition-280 text-dark single-column-menu-item">
+                                            <?php echo esc_html($col1_item['title']); ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </nav>
+                        </div>
                     </div>
                 </li>
                 <!--li class="nav-item dropdown old-style" style="position: static!important;">
