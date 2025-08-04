@@ -347,6 +347,10 @@ p {
     gap: 1em;
 }
 
+.links-card-menu-utc.courses {
+    padding: 0 32px;
+}
+
 .line-gradient-utc {
     position: relative;
 }

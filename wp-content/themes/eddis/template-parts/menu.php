@@ -250,7 +250,7 @@ if (!empty($menu_items)): ?>
                     <div class="dropdown-menu menu-collapse-utc line-gradient-utc">
                         <!--div class="container">
                             <div class="row"-->
-                                <div class="text-lg-start text-md-center text-sm-center text-center">
+                                <div class="text-lg-center text-md-center text-sm-center text-center">
                                     <?php
                                     // Obtener las categorías de productos de WooCommerce.
                                     // 'parent' => 0 para obtener solo las categorías de nivel superior.
@@ -261,7 +261,7 @@ if (!empty($menu_items)): ?>
                                     ]);
 
                                     if (!empty($product_categories) && !is_wp_error($product_categories)): ?>
-                                        <nav class="links-card-menu-utc">
+                                        <nav class="links-card-menu-utc courses">
                                             <?php foreach ($product_categories as $category):
                                                 // Obtener la URL de la categoría de forma segura.
                                                 $category_link = get_term_link($category);
