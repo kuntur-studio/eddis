@@ -788,8 +788,8 @@ p {
 }
 /* Estilos para el botón de "Ordenar por" */
 .woocommerce-ordering .orderby {
-    background-color: #4a5482;
-    border: 1px solid #4a5482;
+    background-color: #324192;
+    border: 1px solid #324192;
     color: #fff;
     padding: 10px 15px;
     height: auto;
@@ -797,15 +797,21 @@ p {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6" /><line x1="6" y1="12" x2="18" y2="12" /><line x1="8" y1="18" x2="16" y2="18" /></svg>');
     background-repeat: no-repeat;
     background-position: right 10px center;
     padding-right: 30px;
+    cursor: pointer;
 }
 
 .woocommerce-ordering .orderby:focus {
     outline: none;
     border-color: #3f476e; /* Un color ligeramente más oscuro para el foco */
+}
+
+.woocommerce-ordering .orderby option {
+    background-color: #fff;
+    color: #000;
 }
 
 .woocommerce .product-card .button {
