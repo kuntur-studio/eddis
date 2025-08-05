@@ -30,22 +30,15 @@ if ( $category_color ) : ?>
     <style>
         /* Estilos personalizados para el botón "Más información" según el color de la categoría */
         .woocommerce .product-card .button {
-            background-color: <?php echo esc_attr( $category_color ); ?>;
-            border-color: <?php echo esc_attr( $category_color ); ?>;
-            color: #fff;
-            transition: filter 0.3s ease, transform 0.3s ease;
-            text-decoration: none;
-            background-image: none;
+            background-color: <?php echo esc_attr($category_color); ?>;
+            border-color: <?php echo esc_attr($category_color); ?>;
+            color: <?php echo esc_attr(edd_define_text_color($category_color)); ?>;
         }
 
         .woocommerce .product-card .button:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-            background-color: <?php echo esc_attr( $category_color ); ?>; /* anula override de WC */
-            border-color: <?php echo esc_attr( $category_color ); ?>;
-            color: #fff;
-            text-decoration: none;
-            background-image: none;
+            background-color: <?php echo esc_attr($category_color); ?>; /* anula override de WC */
+            border-color: <?php echo esc_attr($category_color); ?>;
+            color: <?php echo esc_attr(edd_define_text_color($category_color)); ?>;
         }
     </style>
 <?php endif;
