@@ -629,6 +629,8 @@ p {
 /* ===== TÍTULO DE LA PÁGINA ===== */
 .eddis-page-title {
     color: var(--gray-color);
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 /* ===== SINGLE PRODUCT ===== */
@@ -803,11 +805,11 @@ p {
 }
 
 /* ===== PRODUCT CATEGORY ===== */
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
     .eddis-category-ordering-title-wrapper {
         margin-left: -9%;
     }
-}
+}*/
 
 /* Estilos para el botón de "Ordenar por" */
 .woocommerce form.woocommerce-ordering {
@@ -820,7 +822,7 @@ p {
     color: #fff;
     padding: 10px 15px;
     height: auto;
-    border-radius: 5px;
+    border-radius: 8px;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -841,11 +843,42 @@ p {
     color: #000;
 }
 
+.woocommerce .product-card {
+    max-width: 285px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    border-radius: 9px;
+    overflow: clip;
+}
+
+
+.woocommerce .product-card .woocommerce-loop-product__title {
+    font-size: .95rem;
+    font-weight: bold;
+    color: black;
+    margin: 15px 30px;
+}
+
+.woocommerce div.product-card span.price {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
 .woocommerce .product-card .button {
+    font-size: 0.75rem;
+    padding: 12px 30px;
     transition: filter 0.3s ease, transform 0.3s ease;
     text-decoration: none;
     background-image: none;
-    border-radius: 8px;
+    border-radius: 9px;
+    align-self: center;
 }
 
 .woocommerce .product-card .button:hover {
