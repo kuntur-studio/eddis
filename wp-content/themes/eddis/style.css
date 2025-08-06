@@ -812,6 +812,10 @@ p {
 }*/
 
 /* Estilos para el botón de "Ordenar por" */
+.woocommerce .container.product-loop {
+    margin-bottom: 10.375rem;
+}
+
 .woocommerce form.woocommerce-ordering {
     float: none; /* Anulo el flotado por defecto de WC */
 }
@@ -897,8 +901,6 @@ p {
     text-decoration: none;
     background-image: none;
 }
-
-
 
 /* ======== 404 ======== */
 .search-page h2.error-code {
