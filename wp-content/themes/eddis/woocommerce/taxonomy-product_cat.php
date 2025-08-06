@@ -102,14 +102,16 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 3
 ?>
 <div class="container my-5"> 
     <?php if ( woocommerce_product_loop() ) : ?>
-        <?php
-        // Llama directamente a la función de ordenamiento para colocarlo primero
-        woocommerce_catalog_ordering();
-        ?>
-        
-        <header class="eddis-custom woocommerce-products-header">
-            <h1 class="woocommerce-products-header__title page-title eddis-page-title">Nuestros cursos</h1>
-        </header>
+        <div class="eddis-category-ordering-title-wrapper">
+            <?php
+            // Llama directamente a la función de ordenamiento para colocarlo primero
+            woocommerce_catalog_ordering();
+            ?>
+            
+            <header class="woocommerce-products-header">
+                <h1 class="woocommerce-products-header__title page-title eddis-page-title">Nuestros cursos</h1>
+            </header>
+        </div>
 
         <?php
         do_action( 'woocommerce_before_shop_loop' );

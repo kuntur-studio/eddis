@@ -783,10 +783,17 @@ p {
   }
 }
 /* ===== PRODUCT CATEGORY ===== */
-.eddis-custom.woocommerce-products-header {
-    margin-left: 9%;
+@media (min-width: 992px) {
+    .eddis-category-ordering-title-wrapper {
+        margin-left: -9%;
+    }
 }
+
 /* Estilos para el botón de "Ordenar por" */
+.woocommerce form.woocommerce-ordering {
+    float: none; /* Anulo el flotado por defecto de WC */
+}
+
 .woocommerce-ordering .orderby {
     background-color: #324192;
     border: 1px solid #324192;
