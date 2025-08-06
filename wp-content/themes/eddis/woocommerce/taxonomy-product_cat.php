@@ -61,7 +61,7 @@ if ( ! empty( $category_banner_lg ) ) {
 
 // Mostrar el banner responsivo si al menos una imagen está configurada
 if ( ! empty( $category_banner_lg ) || ! empty( $category_banner_md ) || ! empty( $category_banner_sm ) ) : ?>
-    <div class="banner-crop-container category-banner-wrapper">
+    <div class="banner-full-width-container category-banner-wrapper">
         <picture id="widget-category-banner">
             <?php if (!empty($category_banner_lg)) : ?>
                 <source srcset="<?php echo esc_url($category_banner_lg); ?>" media="(min-width: 1200px)">
@@ -75,7 +75,7 @@ if ( ! empty( $category_banner_lg ) || ! empty( $category_banner_md ) || ! empty
             <?php if ( ! empty( $fallback_image ) ) : ?>
                 <img src="<?php echo esc_url($fallback_image); ?>"
                         alt="<?php echo esc_attr( $term->name ); ?> Banner"
-                        class="banner-main-image">
+                        class="banner-full-width-image">
             <?php endif; ?>
         </picture>
     </div>

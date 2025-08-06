@@ -782,6 +782,26 @@ p {
     transform: none;
   }
 }
+
+/* Banner de ancho completo - encabezados con imagenes que no se recortan a los bordes */
+/* Contenedor */
+.banner-full-width-container {
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+}
+
+/* Imagen que se adapta al 100% del ancho del contenedor */
+.banner-full-width-image {
+    width: 100% !important; /* Asegura que ocupe todo el ancho */
+    height: auto !important; /* Permite que la altura varíe proporcionalmente */
+    max-width: 100% !important; /* Evita que la imagen se estire más de su tamaño natural si es más pequeña */
+    display: block;
+    position: static; /* Anula el posicionamiento relativo */
+    left: auto;
+    transform: none; /* Anula la transformación de centrado */
+}
+
 /* ===== PRODUCT CATEGORY ===== */
 @media (min-width: 992px) {
     .eddis-category-ordering-title-wrapper {
