@@ -47,7 +47,7 @@ function edd_define_text_color($backgroundColorHex) {
     $luminosity = ($red * 0.299 + $green * 0.587 + $blue * 0.114) / 255;
 
     // Determinar si el color de fondo es claro u oscuro
-    if ($luminosity > 0.5) {
+    if ($luminosity > 0.6) {
         // Es un color claro, usa texto negro
         return '#000000';
     } else {
