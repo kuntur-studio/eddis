@@ -440,72 +440,80 @@ function edd_register_theme_options() {
     	])
 		
 		->add_tab('Widgets', [
-    Field::make('complex', 'widgets', 'Widgets')
-        ->set_layout('tabbed-vertical')
-        ->set_duplicate_groups_allowed(false)
-        ->add_fields('branches_widget', 'Sedes', [
-            Field::make('checkbox', 'enable_branches_widget', 'Activo')
-                ->set_option_value('yes')
-                ->set_default_value(true),
-            Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
-                ->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
-                ->set_default_value(['home', '764', '770']),
-        ])
-        ->add_fields('product_banner', 'Banner modalidad', [
-            Field::make('checkbox', 'enable_product_banner_widget', 'Activo')
-                ->set_option_value('yes')
-                ->set_default_value(false),
+			Field::make('complex', 'widgets', 'Widgets')
+				->set_layout('tabbed-vertical')
+				->set_duplicate_groups_allowed(false)
+				->add_fields('branches_widget', 'Sedes', [
+					Field::make('checkbox', 'enable_branches_widget', 'Activo')
+						->set_option_value('yes')
+						->set_default_value(true),
+					Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
+						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
+						->set_default_value(['home', '764', '770']),
+				])
+				->add_fields('product_banner', 'Banner modalidad', [
+					Field::make('checkbox', 'enable_product_banner_widget', 'Activo')
+						->set_option_value('yes')
+						->set_default_value(false),
 
-            Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
-                ->set_value_type('url')
-                ->help_text('Tamaño recomendado: 1920px de ancho'),
-            Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
-                ->set_value_type('url')
-                ->help_text('Tamaño recomendado: 1200px de ancho'),
-            Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
-                ->set_value_type('url')
-                ->help_text('Tamaño recomendado: 768px de ancho'),
+					Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
+						->set_value_type('url')
+						->help_text('Tamaño recomendado: 1920px de ancho'),
+					Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
+						->set_value_type('url')
+						->help_text('Tamaño recomendado: 1200px de ancho'),
+					Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
+						->set_value_type('url')
+						->help_text('Tamaño recomendado: 768px de ancho'),
 
-            Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
-                ->set_option_value('yes')
-                ->set_default_value(false),
-            Field::make('text', 'product_banner_link', 'Enlace del Banner')
-                ->set_attribute('type', 'url')
-                ->set_conditional_logic([
-                    [
-                        'field' => 'product_banner_enable_link',
-                        'value' => true,
-                    ]
-                ])
-        ])
-        ->add_fields('front_page', 'Página de Inicio', [
-            Field::make('html', 'home_notice')
-                ->set_html('<p>Configuración para widgets en la página de inicio</p>')
-		])
-        ->set_default_value([
-            ['_type' => 'branches_widget'],
-            ['_type' => 'product_banner'],
-            ['_type' => 'front_page'],
-        ]),
+					Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
+						->set_option_value('yes')
+						->set_default_value(false),
+					Field::make('text', 'product_banner_link', 'Enlace del Banner')
+						->set_attribute('type', 'url')
+						->set_conditional_logic([
+							[
+								'field' => 'product_banner_enable_link',
+								'value' => true,
+							]
+						])
+				])
+				->add_fields('front_page', 'Página de Inicio', [
+					Field::make('complex', 'home_widgets_config', 'Widgets de la Página de Inicio')
+						->set_layout('tabbed_horizontal')
+						->add_fields(array(
+							// Pestaña 1: Slider
+							Field::make('tab', 'slider_widget', 'Slider')
+								->add_fields(array(
+									Field::make('checkbox', 'enable_slider', 'Activar Slider')
+										->set_option_value('yes')
+										->set_default_value(true),
+									Field::make('complex', 'slides', 'Slides')
+										->add_fields(array(
+											Field::make('image', 'slide_image', 'Imagen'),
+											Field::make('text', 'slide_link', 'Enlace'),
+										)),
+								)),
+							// Pestaña 2: Carrusel de Productos
+							Field::make('tab', 'products_carousel', 'Productos')
+								->add_fields(array(
+									Field::make('checkbox', 'enable_products_carousel', 'Activar Carrusel')
+										->set_option_value('yes')
+										->set_default_value(true),
+									Field::make('text', 'carousel_title', 'Título del Carrusel'),
+									Field::make('associative_array', 'product_ids', 'IDs de Productos')
+										->help_text('Escribe el ID del producto y un nombre para identificarlo'),
+								)),
+						)),
+				])
+				->set_default_value([
+					['_type' => 'branches_widget'],
+					['_type' => 'product_banner'],
+					['_type' => 'front_page'],
+				]),
 ]);
 
 }
-
-// Este hook intercepta el guardado de los datos
-add_filter('carbon_fields_save_value', function($value, $field, $container) {
-	// Borra el valor si dropdown_menu es falso
-    if ($field->get_name() === 'dropdown_type') {
-        $dropdown_menu = carbon_get_theme_option('dropdown_menu');
-        if (!$dropdown_menu) {
-            return null;
-        }
-    }
-    return $value;
-}, 10, 3);
-
-
-
-
 
 // Campos personalizados para el custom type sedes
 add_action('carbon_fields_register_fields', 'edd_register_sedes_custom_fields');
@@ -639,3 +647,18 @@ function edd_register_product_custom_fields() {
 			Field::make('checkbox', 'reserve_spot', 'Reserva tu lugar')
 		]);*/
 }
+
+
+
+
+// Este hook intercepta el guardado de los datos
+add_filter('carbon_fields_save_value', function($value, $field, $container) {
+	// Borra el valor si dropdown_menu es falso
+    if ($field->get_name() === 'dropdown_type') {
+        $dropdown_menu = carbon_get_theme_option('dropdown_menu');
+        if (!$dropdown_menu) {
+            return null;
+        }
+    }
+    return $value;
+}, 10, 3);
