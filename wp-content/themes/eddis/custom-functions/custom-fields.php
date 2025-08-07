@@ -479,7 +479,7 @@ function edd_register_theme_options() {
 						])
 				]) // Banner modalidad
 				->add_fields('front_page', 'Página de Inicio', [
-					Field::make('complex', 'home_widgets_config', 'Widgets de la Página de Inicio')
+					Field::make('complex', 'home_widgets_config')
 						->set_layout('tabbed-horizontal')
 						->set_duplicate_groups_allowed(false)
 						->add_fields('slider_widget', 'Slider', [
