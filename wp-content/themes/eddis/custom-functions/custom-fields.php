@@ -440,7 +440,7 @@ function edd_register_theme_options() {
     	]) // Gestión de assets
 		
 		->add_tab('Widgets', [
-			Field::make('complex', 'widgets', 'Widgets')
+			Field::make('complex', 'widgets', '')
 				->set_layout('tabbed-vertical')
 				->set_duplicate_groups_allowed(false)
 				->add_fields('branches_widget', 'Sedes', [
