@@ -7,7 +7,7 @@
  * @package EddisTheme
  */
 
-// Incluye el encabezado de tu tema.
+// Incluye el encabezado
 get_header();
 ?>
 
@@ -41,9 +41,8 @@ get_header();
             </section>
 
         <?php
-            endwhile; // Fin del bucle.
-        else :
-            // Si no se encuentra contenido (ej. página 404).
+            endwhile;
+            // Si no se encuentra contenido
             get_template_part( '404' );
         endif;
         ?>
@@ -52,6 +51,6 @@ get_header();
 </div>
 
 <?php
-// Incluye el pie de página de tu tema.
+// Incluye el pie de página
 get_footer();
 ?>

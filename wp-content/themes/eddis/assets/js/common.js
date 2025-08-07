@@ -3,9 +3,9 @@ jQuery(document).ready(function($) {
     // Funcionalidad del botón de scroll arriba
     // Al hacer clic en el botón, se desplaza suavemente hacia arriba
     $('.ir-arriba').click(function(){
-        $('body, html').animate({
-            scrollTop: '0px'
-        }, 1000);
+        window.scrollTo(0, 0);
+        // La versión anterior usaba jQuery y aplicaba animación, pero bootstrap y elementor 
+        // ya establecen scroll behaviour a smooth
     });
 
     // Mostrar u ocultar el botón de scroll arriba
