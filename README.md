@@ -23,3 +23,24 @@ sudo -u eddisar wp plugin update --all
 ```
 
 Este método asegura que las actualizaciones se apliquen de forma segura y controlada, evitando posibles problemas de permisos o corrupción de archivos.
+
+
+## Desarrollo y Gestión del Widget de Sedes
+
+Para el desarrollo del widget de sedes se utilizó la librería `@wordpress/components`, que proporciona una personalización de React optimizada para el ecosistema de WordPress.
+
+El proceso de build del widget se automatizó a través de un shell script llamado `build.sh`, ubicado en la ruta:
+
+```bash
+wp-content/themes/eddis/assets/widgets/branches-widget/
+```
+
+Este script es el encargado de instanciar un contenedor Docker para realizar el proceso de compilación, lo que elimina la necesidad de instalar dependencias de desarrollo en el sistema operativo del servidor.
+
+Esta estrategia fue crucial, ya que el servidor cloud de desarrollo y producción utilizaba una versión antigua de CentOS que no era compatible con las librerías de build necesarias.
+
+La inclusión del widget en el sitio se gestiona desde el panel admin de WordPress en la sección de **Configuración General** del sitio, y las páginas donde debe mostrarse el componente contienen un contenedor con el ID `branches-widget-root`, el cual se inserta en las plantillas del tema mediante el fragmento de código:
+
+```php
+<?php get_template_part('template-parts/sedes'); ?>
+```
