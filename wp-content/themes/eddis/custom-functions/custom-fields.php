@@ -319,7 +319,7 @@ function edd_register_theme_options() {
 				])
 				->set_header_template('Columna <%- $_index + 1 %>') // Esto va al final porque sino no funciona
 				// Aparentemente add_fields elimina la configuración establecida por set_header_template
-		])
+		]) // Gestión de menú
 
 		->add_tab('Footer', [
             Field::make('complex', 'footer_menu_items', 'Ítems del Menú')
@@ -353,7 +353,7 @@ function edd_register_theme_options() {
 					<% } %>
 				')
 				->set_collapsed(true),
-		])
+		]) // Footer
 
 		->add_tab('Redes Sociales', [
         Field::make('complex', 'social_networks', 'Redes Sociales')
@@ -363,7 +363,7 @@ function edd_register_theme_options() {
 					->set_options(edd_get_social_icons()), // Ver admin.php
                 Field::make('text', 'link', 'Enlace')->set_attribute('type', 'url'),
             ]),
-    	])
+    	]) // Redes sociales
 
 		->add_tab('Datos de Contacto', [
 			// Teléfono
@@ -387,7 +387,7 @@ function edd_register_theme_options() {
 				->set_attribute('placeholder', 'Ingresa la dirección de correo electrónico'),
 
 			Field::make('checkbox', 'contact_email_active', 'Activo'),
-		])
+		]) // Datos de contacto
 
 		->add_tab('Marketing', [
 			Field::make('html', 'gtm_label')
@@ -397,7 +397,7 @@ function edd_register_theme_options() {
 				->set_attribute('placeholder', 'Ingresa el ID del Service Tag'),
 
 			Field::make('checkbox', 'gtm_active', 'Activo')
-		])
+		]) // Marketing
 
 		->add_tab('Gestión de Assets', [
         	Field::make('complex', 'assets', 'Assets JS/CSS')
@@ -437,7 +437,7 @@ function edd_register_theme_options() {
 				')
 				->set_collapsed(true),
 				//->set_layout('tabbed-horizontal'),
-    	])
+    	]) // Gestión de assets
 		
 		->add_tab('Widgets', [
 			Field::make('complex', 'widgets', 'Widgets')
@@ -450,7 +450,7 @@ function edd_register_theme_options() {
 					Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
 						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
 						->set_default_value(['home', '764', '770']),
-				])
+				]) // Sedes
 				->add_fields('product_banner', 'Banner modalidad', [
 					Field::make('checkbox', 'enable_product_banner_widget', 'Activo')
 						->set_option_value('yes')
@@ -477,15 +477,13 @@ function edd_register_theme_options() {
 								'value' => true,
 							]
 						])
-				])
+				]) // Banner modalidad
 				->add_fields('front_page', 'Página de Inicio', [
 					Field::make('complex', 'home_widgets_config', 'Widgets de la Página de Inicio')
 						->set_layout('tabbed-horizontal')
-						->add_fields(array(
-							// Pestaña 1: Slider
-							Field::make('tab', 'slider_widget', 'Slider')
-								->add_fields(array(
-									Field::make('checkbox', 'enable_slider', 'Activar Slider')
+						->set_duplicate_groups_allowed(false)
+						->add_fields('slider_widget', 'Slider', [
+							Field::make('checkbox', 'enable_slider', 'Activar Slider')
 										->set_option_value('yes')
 										->set_default_value(true),
 									Field::make('complex', 'slides', 'Slides')
@@ -493,26 +491,23 @@ function edd_register_theme_options() {
 											Field::make('image', 'slide_image', 'Imagen'),
 											Field::make('text', 'slide_link', 'Enlace'),
 										)),
-								)),
-							// Pestaña 2: Carrusel de Productos
-							Field::make('tab', 'products_carousel', 'Productos')
-								->add_fields(array(
-									Field::make('checkbox', 'enable_products_carousel', 'Activar Carrusel')
+						])
+						->add_fields('products_carousel', 'Productos', [
+							Field::make('checkbox', 'enable_products_carousel', 'Activar Carrusel')
 										->set_option_value('yes')
 										->set_default_value(true),
 									Field::make('text', 'carousel_title', 'Título del Carrusel'),
 									Field::make('associative_array', 'product_ids', 'IDs de Productos')
 										->help_text('Escribe el ID del producto y un nombre para identificarlo'),
-								)),
-						)),
-				])
+						])
+						
+				]) // Página de inicio
 				->set_default_value([
 					['_type' => 'branches_widget'],
 					['_type' => 'product_banner'],
 					['_type' => 'front_page'],
 				]),
-]);
-
+		]); // Widgets (último tab cierra con ; la sentencia Container::make)
 }
 
 // Campos personalizados para el custom type sedes
