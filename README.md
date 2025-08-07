@@ -44,3 +44,11 @@ La inclusión del widget en el sitio se gestiona desde el panel admin de WordPre
 ```php
 <?php get_template_part('template-parts/sedes'); ?>
 ```
+
+El código responsable de encolar los assets en las páginas seleccionadas desde el panel de Configuración General se encuentra en el archivo archivo:
+
+```bash
+wp-content/themes/eddis/custom-functions/assets.php
+```
+
+Este archivo también se encarga de incrustar un script adicional en la página que contiene un objeto JSON con los datos de sedes requeridos por el widget, utilizando `wp_localize_script`.
