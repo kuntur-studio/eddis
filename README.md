@@ -10,6 +10,7 @@ Para actualizar el core de WordPress, es imperativo utilizar la terminal vía SS
 
 ```bash
 sudo -u eddisar wp core update
+```
 
 ---
 
