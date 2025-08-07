@@ -494,11 +494,14 @@ function edd_register_theme_options() {
 						])
 						->add_fields('products_carousel', 'Productos', [
 							Field::make('checkbox', 'enable_products_carousel', 'Activar Carrusel')
-										->set_option_value('yes')
-										->set_default_value(true),
-									Field::make('text', 'carousel_title', 'Título del Carrusel'),
-									Field::make('associative_array', 'product_ids', 'IDs de Productos')
-										->help_text('Escribe el ID del producto y un nombre para identificarlo'),
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('text', 'carousel_title', 'Título del Carrusel'),
+							Field::make('complex', 'product_ids', 'IDs de Productos') // Campo complex como alternativa a associative_array
+								->add_fields(array(
+									Field::make('text', 'product_id', 'ID del Producto'),
+									Field::make('text', 'product_name', 'Nombre del Producto'),
+								)),
 						])
 						
 				]) // Página de inicio
