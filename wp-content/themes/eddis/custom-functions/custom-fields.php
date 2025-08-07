@@ -503,7 +503,10 @@ function edd_register_theme_options() {
 									Field::make('text', 'product_name', 'Nombre del Producto'),
 								)),
 						])
-						
+						->set_default_value([
+							['_type' => 'slider_widget'],
+							['_type' => 'products_carousel'],
+						]),
 				]) // Página de inicio
 				->set_default_value([
 					['_type' => 'branches_widget'],
