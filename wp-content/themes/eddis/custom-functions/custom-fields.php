@@ -480,7 +480,7 @@ function edd_register_theme_options() {
 				])
 				->add_fields('front_page', 'Página de Inicio', [
 					Field::make('complex', 'home_widgets_config', 'Widgets de la Página de Inicio')
-						->set_layout('tabbed_horizontal')
+						->set_layout('tabbed-horizontal')
 						->add_fields(array(
 							// Pestaña 1: Slider
 							Field::make('tab', 'slider_widget', 'Slider')
