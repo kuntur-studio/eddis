@@ -523,7 +523,7 @@ function edd_register_theme_options() {
 								)),
 						])
 						->set_default_value([
-							['_type' => 'slider_widget'],
+							['_type' => 'slider_hero'],
 							['_type' => 'products_carousel'],
 						]),
 				]) // Página de inicio
