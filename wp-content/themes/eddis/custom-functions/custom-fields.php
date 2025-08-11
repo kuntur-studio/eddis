@@ -479,18 +479,37 @@ function edd_register_theme_options() {
 						])
 				]) // Banner modalidad
 				->add_fields('front_page', 'Página de Inicio', [
-					Field::make('complex', 'home_widgets_config', '')
+					Field::make('complex', 'home_widgets', '')
 						->set_layout('tabbed-horizontal')
 						->set_duplicate_groups_allowed(false)
-						->add_fields('slider_widget', 'Slider', [
-							Field::make('checkbox', 'enable_slider', 'Activar Slider')
+						->add_fields('slider_hero', 'Slider Hero', [
+							Field::make('checkbox', 'enable', 'Activar')
 										->set_option_value('yes')
 										->set_default_value(true),
-									Field::make('complex', 'slides', 'Slides')
-										->add_fields(array(
-											Field::make('image', 'slide_image', 'Imagen'),
-											Field::make('text', 'slide_link', 'Enlace'),
-										)),
+							Field::make('complex', 'slides', 'Slides')
+								->add_fields([
+									Field::make('image', 'slide_lg', 'Slide LG (≥1200px)')
+										->set_value_type('url')
+										->help_text('Tamaño recomendado: 1920px de ancho'),
+									Field::make('image', 'slide_md', 'Slide MD (≥768px)')
+										->set_value_type('url')
+										->help_text('Tamaño recomendado: 1200px de ancho'),
+									Field::make('image', 'slide_sm', 'Slide SM (<768px)')
+										->set_value_type('url')
+										->help_text('Tamaño recomendado: 768px de ancho'),
+
+									Field::make('checkbox', 'slide_enable_link', 'Habilitar enlace')
+										->set_option_value('yes')
+										->set_default_value(false),
+									Field::make('text', 'slide_link', 'Enlace del Banner')
+										->set_attribute('type', 'url')
+										->set_conditional_logic([
+											[
+												'field' => 'slide_enable_link',
+												'value' => true,
+											]
+										])
+								])
 						])
 						->add_fields('products_carousel', 'Productos', [
 							Field::make('checkbox', 'enable_products_carousel', 'Activar Carrusel')
