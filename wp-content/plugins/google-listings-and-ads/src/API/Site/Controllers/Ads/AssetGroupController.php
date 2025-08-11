@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class for handling API requests related to the asset groups.
- * See https://developers.google.com/google-ads/api/reference/rpc/v18/AssetGroup
+ * See https://developers.google.com/google-ads/api/reference/rpc/v20/AssetGroup
  *
  * @package Automattic\WooCommerce\GoogleListingsAndAds\API\Site\Controllers\Ads
  */
@@ -238,14 +238,14 @@ class AssetGroupController extends BaseController {
 				'items'       => [
 					'type'       => 'object',
 					'properties' => [
-						AssetFieldType::SQUARE_MARKETING_IMAGE => $this->get_schema_field_type_asset(),
-						AssetFieldType::MARKETING_IMAGE => $this->get_schema_field_type_asset(),
+						AssetFieldType::SQUARE_MARKETING_IMAGE   => $this->get_schema_field_type_asset(),
+						AssetFieldType::MARKETING_IMAGE          => $this->get_schema_field_type_asset(),
 						AssetFieldType::PORTRAIT_MARKETING_IMAGE => $this->get_schema_field_type_asset(),
-						AssetFieldType::LOGO            => $this->get_schema_field_type_asset(),
-						AssetFieldType::BUSINESS_NAME   => $this->get_schema_field_type_asset(),
-						AssetFieldType::HEADLINE        => $this->get_schema_field_type_asset(),
-						AssetFieldType::DESCRIPTION     => $this->get_schema_field_type_asset(),
-						AssetFieldType::LONG_HEADLINE   => $this->get_schema_field_type_asset(),
+						AssetFieldType::LOGO                     => $this->get_schema_field_type_asset(),
+						AssetFieldType::BUSINESS_NAME            => $this->get_schema_field_type_asset(),
+						AssetFieldType::HEADLINE                 => $this->get_schema_field_type_asset(),
+						AssetFieldType::DESCRIPTION              => $this->get_schema_field_type_asset(),
+						AssetFieldType::LONG_HEADLINE            => $this->get_schema_field_type_asset(),
 						AssetFieldType::CALL_TO_ACTION_SELECTION => $this->get_schema_field_type_asset(),
 					],
 				],

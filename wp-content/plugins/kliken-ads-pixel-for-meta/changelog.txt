@@ -1,5 +1,11 @@
 *** Kliken: Ads + Pixel for Meta changelog ***
 
+2025-08-06 - version 1.2.2
+* Minor bug fixes.
+
+2025-06-10 - version 1.2.1
+* Minor text improvements.
+
 2025-04-15 - version 1.2.0
 * Adds Facebook Social Boost shopping campaigns.
 

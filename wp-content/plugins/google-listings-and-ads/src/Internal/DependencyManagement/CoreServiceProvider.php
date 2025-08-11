@@ -54,6 +54,7 @@ use Automattic\WooCommerce\GoogleListingsAndAds\MerchantCenter\ContactInformatio
 use Automattic\WooCommerce\GoogleListingsAndAds\MerchantCenter\MerchantCenterAwareInterface;
 use Automattic\WooCommerce\GoogleListingsAndAds\MerchantCenter\MerchantCenterService;
 use Automattic\WooCommerce\GoogleListingsAndAds\MerchantCenter\MerchantStatuses;
+use Automattic\WooCommerce\GoogleListingsAndAds\MerchantCenter\PriceBenchmarks;
 use Automattic\WooCommerce\GoogleListingsAndAds\MerchantCenter\PhoneVerification;
 use Automattic\WooCommerce\GoogleListingsAndAds\MultichannelMarketing\GLAChannel;
 use Automattic\WooCommerce\GoogleListingsAndAds\MultichannelMarketing\MarketingChannelRegistrar;
@@ -76,6 +77,7 @@ use Automattic\WooCommerce\GoogleListingsAndAds\Options\Options;
 use Automattic\WooCommerce\GoogleListingsAndAds\Options\OptionsAwareInterface;
 use Automattic\WooCommerce\GoogleListingsAndAds\Options\OptionsInterface;
 use Automattic\WooCommerce\GoogleListingsAndAds\Options\Transients;
+use Automattic\WooCommerce\GoogleListingsAndAds\Options\TransientsAwareInterface;
 use Automattic\WooCommerce\GoogleListingsAndAds\Options\TransientsInterface;
 use Automattic\WooCommerce\GoogleListingsAndAds\Product\AttributeMapping\AttributeMappingHelper;
 use Automattic\WooCommerce\GoogleListingsAndAds\Product\Attributes\AttributeManager;
@@ -162,6 +164,7 @@ class CoreServiceProvider extends AbstractServiceProvider {
 		ViewFactory::class               => true,
 		DebugLogger::class               => true,
 		MerchantStatuses::class          => true,
+		PriceBenchmarks::class           => true,
 		PhoneVerification::class         => true,
 		PolicyComplianceCheck::class     => true,
 		ContactInformation::class        => true,
@@ -199,7 +202,6 @@ class CoreServiceProvider extends AbstractServiceProvider {
 
 		// Share our interfaces, possibly with concrete objects.
 		$this->share_concrete( AssetsHandlerInterface::class, AssetsHandler::class );
-		$this->share_concrete( TransientsInterface::class, Transients::class );
 		$this->share_concrete(
 			TracksInterface::class,
 			$this->share_with_tags( Tracks::class, TracksProxy::class )
@@ -210,6 +212,12 @@ class CoreServiceProvider extends AbstractServiceProvider {
 		$this->getContainer()
 			->inflector( OptionsAwareInterface::class )
 			->invokeMethod( 'set_options_object', [ OptionsInterface::class ] );
+
+		// Set up Transients, and inflect classes that need transients.
+		$this->share_concrete( TransientsInterface::class, Transients::class );
+		$this->getContainer()
+			->inflector( TransientsAwareInterface::class )
+			->invokeMethod( 'set_transients_object', [ TransientsInterface::class ] );
 
 		// Share helper classes, and inflect classes that need it.
 		$this->share_with_tags( GoogleHelper::class, WC::class );
@@ -284,6 +292,7 @@ class CoreServiceProvider extends AbstractServiceProvider {
 
 		$this->share_with_tags( MerchantAccountState::class );
 		$this->share_with_tags( MerchantStatuses::class );
+		$this->share_with_tags( PriceBenchmarks::class );
 		$this->share_with_tags( PhoneVerification::class, Merchant::class, WP::class, ISOUtility::class );
 		$this->share_with_tags( PolicyComplianceCheck::class, WC::class, GoogleHelper::class, TargetAudience::class );
 		$this->share_with_tags( ContactInformation::class, Merchant::class, GoogleSettings::class );

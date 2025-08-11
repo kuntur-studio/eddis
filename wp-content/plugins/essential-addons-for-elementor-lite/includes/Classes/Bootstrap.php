@@ -19,6 +19,8 @@ use Essential_Addons_Elementor\Traits\Controls;
 use Essential_Addons_Elementor\Traits\Facebook_Feed;
 use Essential_Addons_Elementor\Classes\Asset_Builder;
 use Essential_Addons_Elementor\Traits\Ajax_Handler;
+use Essential_Addons_Elementor\Pro\Classes\License\LicenseManager;
+
 class Bootstrap
 {
     use Library;
@@ -73,8 +75,8 @@ class Bootstrap
     protected $installer;
 
 
-    const EAEL_PROMOTION_FLAG = 12;
-    const EAEL_ADMIN_MENU_FLAG = 12;
+    const EAEL_PROMOTION_FLAG = 15;
+    const EAEL_ADMIN_MENU_FLAG = 15;
     /**
      * Singleton instance
      *
@@ -128,8 +130,7 @@ class Bootstrap
 
     }
 
-    protected function register_hooks()
-    {
+    protected function register_hooks() {
         // Core
         add_action('init', [$this, 'i18n']);
         // TODO::RM
@@ -216,27 +217,6 @@ class Bootstrap
             add_action( 'wp_ajax_templately_promo_status', array($this, 'templately_promo_status'));
         }
 
-	    //Essential Blocks Promo
-	    if ( ! class_exists( 'Classic_Editor' ) && ! class_exists( 'EssentialBlocks' ) ) {
-		    // Essential Blocks Popup
-		    add_action( 'wpdeveloper_eb_popup_promo_init', [ $this, 'eael_eb_popup_promo_init' ] );
-		    if ( ( did_action( 'wpdeveloper_eb_popup_promo_init' ) < 1 ) && ! ( get_transient( 'eael_gb_eb_popup_hide' ) || get_transient( 'wpdeveloper_gb_eb_popup_hide' ) ) ) {
-			    do_action( 'wpdeveloper_eb_popup_promo_init' );
-		    }
-
-		    // Essential Blocks Optin
-		    add_action( 'wpdeveloper_eb_optin_promo_init', [ $this, 'eael_eb_optin_promo_init' ] );
-		    if ( ( did_action( 'wpdeveloper_eb_optin_promo_init' ) < 1 ) && ! ( get_option( 'eael_eb_optin_hide' ) || get_transient( 'wpdeveloper_eb_optin_hide' ) ) ) {
-			    do_action( 'wpdeveloper_eb_optin_promo_init' );
-		    }
-
-		    //Essential Blocks Banner Promo
-		    add_action( 'wpdeveloper_eb_banner_promo_init', [ $this, 'eael_eb_banner_promo_init' ] );
-		    if ( ( did_action( 'wpdeveloper_eb_banner_promo_init' ) < 1 ) && ! ( get_transient( 'eael_eb_banner_promo_hide' ) || get_transient( 'wpdeveloper_eb_banner_promo_hide' ) ) ) {
-			    do_action( 'wpdeveloper_eb_banner_promo_init' );
-		    }
-	    }
-
 	    if( class_exists( 'woocommerce' ) ) {
 		    // quick view
 		    add_action( 'eael_woo_single_product_image', 'woocommerce_show_product_images', 20 );
@@ -275,6 +255,7 @@ class Bootstrap
 			    add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close' );
                 //Get current active theme
                 $theme = wp_get_theme();
+                $theme = $theme->parent() ? $theme->parent() : $theme;
                 //Astra Theme
                 if( function_exists( 'astra_woo_woocommerce_shop_product_content' ) ){
                     add_action( 'woocommerce_after_shop_loop_item', 'astra_woo_woocommerce_shop_product_content' );
@@ -286,6 +267,12 @@ class Bootstrap
                 if( in_array( $theme->name, $theme_to_check, true ) ) {
                     remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
                 }
+		    } );
+
+		    add_filter( 'wcml_multi_currency_ajax_actions', function ( $ajax_actions ) {
+			    $ajax_actions[] = 'load_more';
+
+			    return $ajax_actions;
 		    } );
 	    }
 
@@ -371,5 +358,22 @@ class Bootstrap
 	    // beehive theme compatibility
 	    add_filter( 'beehive_scripts', array( $this, 'beehive_theme_swiper_slider_compatibility' ), 999 );
 
+
+	    // init plugin updater with version check
+	    if ( defined( 'EAEL_PRO_PLUGIN_VERSION' ) && version_compare( EAEL_PRO_PLUGIN_VERSION, '6.2.2', '>=' ) && version_compare( EAEL_PRO_PLUGIN_VERSION, '6.2.3', '<=' ) ) {
+		    add_action( 'init', [ $this, 'eael_init_plugin_updater' ], 99 );
+	    }
     }
+
+    /**
+     * Initialize plugin updater
+     *
+     * @since 6.1.14
+     */
+	function eael_init_plugin_updater() {
+		if ( is_admin() ) {
+			$license_manager = LicenseManager::get_instance( [] );
+			$license_manager->plugin_updater();
+		}
+	}
 }

@@ -5,7 +5,7 @@ Requires at least: 6.1
 Tested up to: 6.8
 Requires PHP: 7.4
 Requires PHP Architecture: 64 Bits
-Stable tag: 2.9.13
+Stable tag: 3.3.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -140,21 +140,29 @@ To allow your products to appear in all relevant locations, make sure you’ve c
 
 == Changelog ==
 
-= 2.9.13 - 2025-04-29 =
-* Update - Revert the changes related to the Grant API Pull Access in Onboarding feature made in version 2.9.12.
+= 3.3.0 - 2025-08-05 =
+* Add – Enhanced Conversions support for Google Ads.
+* Add – Survey users when campaign creation is skipped during onboarding.
+* Tweak - Display a more detailed error message when failing to link Google Ads account.
+* Tweak – Replace "free listings" with "product feed".
 
-= 2.9.12 - 2025-04-22 =
-* Add - During onboarding, it requires granting access to Google's WordPress.com application to synchronize product data with Google.
-* Add - Event tracking of how users process the WPCOM app authorization for the API Pull feature.
-* Fix - The interlink between Google Merchant Center and Google Ads accounts may not be completed.
-* Tweak - Enable API Pull authorization to be granted before connecting to Google Merchant Center.
-* Tweak - Move the API Pull statuses from Google Merchant Center account card to Google account card for the Settings page.
-* Update - Remove the button that disables the API Pull from the Settings page.
+= 3.2.0 - 2025-07-22 =
+* Add - Block shipping, products, and coupons synchronization when push synchronization is disabled.
+* Add - Budget Metrics endpoint for fetching metrics with a custom budget.
+* Add - Controller for fetching incentive credits from Middleware.
+* Add - Event tracking for budget recommendations and metrics.
+* Add - Fetch budget recommendations from the Google Ads API.
+* Add - Include blog ID to all notification messages.
+* Add - New endpoint for synchronizing listing settings with Google.
+* Add - Provide the recommendations and metrics when setting a campaign budget.
+* Add - Show a prompt for suggesting a higher budget to get back free ad credits before completing the onboarding and ads onboarding.
+* Tweak - Restrict Budget Metrics to positive numbers.
+* Update - Google Ads API from v18 to v20.
+* Update - Remove WPCOM API authorization check as authorization is granted by default.
+* Update - Remove opt-in/opt-out UI controls for product data sync.
 
-= 2.9.11 - 2025-04-15 =
-* Fix - Ads merchant linking failure display issue & improve retry mechanism.
-* Fix - Compatibility issue with WordPress 6.8 and WooCommerce 9.8, which may cause all pages not to display properly.
-* Tweak - WC 9.8 compatibility.
-* Tweak - WP 6.8 compatibility.
+= 3.1.1 - 2025-07-08 =
+* Fix - Do not render experience rating banner if Ads account is disconnected.
+* Fix - Fixed undefined array key warnings in Price Benchmarks feature.
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/google-listings-and-ads/trunk/changelog.txt).

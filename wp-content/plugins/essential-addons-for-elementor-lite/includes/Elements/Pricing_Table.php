@@ -13,7 +13,6 @@ use \Elementor\Group_Control_Border;
 use \Elementor\Group_Control_Box_Shadow;
 use \Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
-use Elementor\Modules\DynamicTags\Module as TagsModule;
 use Elementor\Repeater;
 use \Elementor\Widget_Base;
 use Essential_Addons_Elementor\Classes\Helper as HelperClass;
@@ -2188,16 +2187,16 @@ class Pricing_Table extends Widget_Base
                     $obj->add_render_attribute('pricing_feature_item' . $counter, 'class', 'disable-item');
                 }
 
-                if ('yes' === $item['eael_pricing_item_tooltip']) {
-                    $obj->add_render_attribute(
-                        'pricing_feature_item_tooltip' . $counter,
-                        [
-                            'class' => 'eael-pricing-tooltip',
-                            'title' => HelperClass::eael_wp_kses($item['eael_pricing_item_tooltip_content']),
-                            'id'    => $obj->get_id() . $counter,
-                        ]
-                    );
-                }
+	            if ( 'yes' === $item['eael_pricing_item_tooltip'] ) {
+		            $obj->add_render_attribute(
+			            'pricing_feature_item_tooltip' . $counter,
+			            [
+				            'data-content' => HelperClass::eael_wp_kses( $item['eael_pricing_item_tooltip_content'] ),
+				            'class'        => 'eael-pricing-tooltip',
+				            'id'           => $obj->get_id() . $counter,
+			            ]
+		            );
+	            }
 
                 if ('yes' == $item['eael_pricing_item_tooltip']) {
 

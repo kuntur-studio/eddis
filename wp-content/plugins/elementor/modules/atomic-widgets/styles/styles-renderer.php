@@ -3,7 +3,7 @@
 namespace Elementor\Modules\AtomicWidgets\Styles;
 
 use Elementor\Core\Utils\Collection;
-use Elementor\Modules\AtomicWidgets\PropsResolver\Props_Resolver;
+use Elementor\Modules\AtomicWidgets\PropsResolver\Render_Props_Resolver;
 
 class Styles_Renderer {
 	const DEFAULT_SELECTOR_PREFIX = '.elementor';
@@ -37,6 +37,7 @@ class Styles_Renderer {
 	 *   array<int, array{
 	 *     id: string,
 	 *     type: string,
+	 *     cssName: string | null,
 	 *     variants: array<int, array{
 	 *         props: array<string, mixed>,
 	 *         meta: array<string, mixed>
@@ -96,11 +97,11 @@ class Styles_Renderer {
 			$style_def['id']
 		) {
 			$type = $map[ $style_def['type'] ];
-			$id = $style_def['id'];
+			$name = $style_def['cssName'] ?? $style_def['id'];
 
 			$selector_parts = array_filter( [
 				$this->selector_prefix,
-				"{$type}{$id}",
+				"{$type}{$name}",
 			] );
 
 			return implode( ' ', $selector_parts );
@@ -131,7 +132,7 @@ class Styles_Renderer {
 	private function props_to_css_string( array $props ): string {
 		$schema = Style_Schema::get();
 
-		return Collection::make( Props_Resolver::for_styles()->resolve( $schema, $props ) )
+		return Collection::make( Render_Props_Resolver::for_styles()->resolve( $schema, $props ) )
 			->filter()
 			->map( function ( $value, $prop ) {
 				if ( $this->on_prop_transform ) {
@@ -153,12 +154,22 @@ class Styles_Renderer {
 			return '';
 		}
 
-		$size = $this->get_breakpoint_size( $this->breakpoints[ $breakpoint_id ] );
+		$query = $this->get_media_query( $this->breakpoints[ $breakpoint_id ] );
 
-		return $size ? '@media(' . $size . '){' . $css . '}' : $css;
+		return $query ? $query . '{' . $css . '}' : $css;
 	}
 
-	private function get_breakpoint_size( array $breakpoint ): ?string {
+	public static function get_media_query( $breakpoint ): ?string {
+		if ( isset( $breakpoint['is_enabled'] ) && ! $breakpoint['is_enabled'] ) {
+			return null;
+		}
+
+		$size = self::get_breakpoint_size( $breakpoint );
+
+		return $size ? '@media(' . $size . ')' : null;
+	}
+
+	private static function get_breakpoint_size( array $breakpoint ): ?string {
 		$bound = 'min' === $breakpoint['direction'] ? 'min-width' : 'max-width';
 		$width = $breakpoint['value'] . 'px';
 

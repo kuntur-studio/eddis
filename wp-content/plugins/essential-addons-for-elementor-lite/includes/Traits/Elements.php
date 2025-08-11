@@ -6,7 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 } // Exit if accessed directly
 
-use Elementor\Icons_Manager;
 use \Elementor\Plugin;
 use Essential_Addons_Elementor\Classes\Helper;
 
@@ -167,6 +166,12 @@ trait Elements {
 			[
 				'name'       => 'eael-flip-carousel',
 				'title'      => __( 'Flip Carousel', 'essential-addons-for-elementor-lite' ),
+				'icon'       => 'eaicon-flip-carousel',
+				'categories' => '["essential-addons-elementor"]',
+			],
+			[
+				'name'       => 'eael-figma-to-elementor',
+				'title'      => __( 'Figma to Elementor Converter', 'essential-addons-for-elementor-lite' ),
 				'icon'       => 'eaicon-flip-carousel',
 				'categories' => '["essential-addons-elementor"]',
 			],
@@ -398,7 +403,7 @@ trait Elements {
 
 				if( is_array( $page_body_classes ) && count( $page_body_classes ) ){
 					foreach( $page_body_classes as $page_body_class){
-						if ( strpos( $page_body_class, 'elementor-page-' ) !== FALSE ) {
+						if ( is_string($page_body_class) && strpos( $page_body_class, 'elementor-page-' ) !== FALSE ) {
 							$template_id = intval( str_replace('elementor-page-', '', $page_body_class) );
 						} 
 					}
@@ -684,6 +689,7 @@ trait Elements {
 				}
 			}
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		printf( '%1$s', $html );
 	}
 

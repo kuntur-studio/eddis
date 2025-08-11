@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-07T21:22:46+00:00\n"
+"POT-Creation-Date: 2025-06-10T15:14:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: kliken-ads-pixel-for-meta\n"
@@ -50,7 +50,7 @@ msgstr ""
 
 #. translators: Facebook, Instagram are brand names. Do not translate.
 #: classes/class-kliken-marketing-channel.php:104
-msgid "Reach millions of shoppers on Facebook and Instagram. Complete setup in just 5 minutes to start driving traffic and sales today!"
+msgid "Automate Facebook & Instagram marketing with Kliken. Launch ads and schedule a month of posts in 5 minutes—first 5 free! Plans start at just $20/mo."
 msgstr ""
 
 #. translators: "Facebook", "Instagram" are brand names. Do not translate.

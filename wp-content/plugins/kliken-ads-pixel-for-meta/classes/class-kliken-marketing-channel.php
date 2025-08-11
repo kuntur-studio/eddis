@@ -91,7 +91,7 @@ class Kliken_Marketing_Channel implements MarketingChannelInterface {
 	 * @return string
 	 */
 	public function get_name(): string {
-		return 'Meta Ads & Pixel for WooCommerce';
+		return 'Meta Ads and Pixel by Kliken';
 	}
 
 	/**
@@ -101,7 +101,7 @@ class Kliken_Marketing_Channel implements MarketingChannelInterface {
 	 */
 	public function get_description(): string {
 		/* translators: Facebook, Instagram are brand names. Do not translate. */
-		return __( 'Reach millions of shoppers on Facebook and Instagram. Complete setup in just 5 minutes to start driving traffic and sales today!', 'kliken-ads-pixel-for-meta' );
+		return __( 'Automate Facebook & Instagram marketing with Kliken. Launch ads and schedule a month of posts in 5 minutes—first 5 free! Plans start at just $20/mo.', 'kliken-ads-pixel-for-meta' );
 	}
 
 	/**
@@ -110,7 +110,7 @@ class Kliken_Marketing_Channel implements MarketingChannelInterface {
 	 * @return string
 	 */
 	public function get_icon_url(): string {
-		return KK_FB_WC_PLUGIN_URL . '/assets/MetaMark160White.png';
+		return KK_FB_WC_PLUGIN_URL . '/assets/kliken.svg';
 	}
 
 	/**
