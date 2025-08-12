@@ -570,7 +570,7 @@ function edd_register_theme_options() {
 								->set_option_value('yes')
 								->set_default_value(true),
 							Field::make('text', 'youtube_video_id', 'ID del video'),
-						])*/
+						])
 						->add_fields('products_carousel', 'Productosa', [
 							Field::make('checkbox', 'enable_products_carousel', 'Activar')
 								->set_option_value('yes')
@@ -581,7 +581,7 @@ function edd_register_theme_options() {
 									Field::make('text', 'product_id', 'ID del Producto'),
 									Field::make('text', 'product_name', 'Nombre del Producto'),
 								)),
-						])
+						])*/
 						->add_fields('pepe', 'Pepe', [
 							Field::make('checkbox', 'enable_pepe_carousel', 'Activar')
 								->set_option_value('yes')
