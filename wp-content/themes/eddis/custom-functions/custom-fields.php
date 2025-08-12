@@ -582,12 +582,24 @@ function edd_register_theme_options() {
 									Field::make('text', 'product_name', 'Nombre del Producto'),
 								)),
 						])
+						->add_fields('pepe', 'Pepe', [
+							Field::make('checkbox', 'enable_pepe_carousel', 'Activar')
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('text', 'pepecarousel_title', 'Título del Carrusel'),
+							Field::make('complex', 'pepeproduct_ids', 'IDs de Productos') // Campo complex como alternativa a associative_array
+								->add_fields(array(
+									Field::make('text', 'product_id', 'ID del Producto'),
+									Field::make('text', 'product_name', 'Nombre del Producto'),
+								)),
+						])
 						->set_default_value([
 							['_type' => 'slider_hero'],							
 							['_type' => 'banner_one'],
 							['_type' => 'banner_two'],
 							['_type' => 'youtube_video'],
 							['_type' => 'products_carousel'],
+							['_type' => 'pepe'],
 						]),
 				]) // Página de inicio
 				->set_default_value([
