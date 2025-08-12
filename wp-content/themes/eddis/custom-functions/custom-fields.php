@@ -566,7 +566,7 @@ function edd_register_theme_options() {
 								])
 						])
 						->add_fields('youtube_video', 'Video YouTube', [
-							Field::make('checkbox', 'youtube_video', 'Activar')
+							Field::make('checkbox', 'enable_youtube_video', 'Activar')
 								->set_option_value('yes')
 								->set_default_value(true),
 							Field::make('text', 'youtube_video_id', 'ID del video'),
