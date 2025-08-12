@@ -585,6 +585,9 @@ function edd_register_theme_options() {
 						->set_default_value([
 							['_type' => 'slider_hero'],
 							['_type' => 'products_carousel'],
+							['_type' => 'banner_one'],
+							['_type' => 'banner_two'],
+							['_type' => 'youtube_video'],
 						]),
 				]) // Página de inicio
 				->set_default_value([
