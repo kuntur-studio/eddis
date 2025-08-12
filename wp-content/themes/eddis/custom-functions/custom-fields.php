@@ -571,7 +571,7 @@ function edd_register_theme_options() {
 								->set_default_value(true),
 							Field::make('text', 'youtube_video_id', 'ID del video'),
 						])
-						->add_fields('products_carousel', 'Productos', [
+						->add_fields('products_carousel', 'Productosa', [
 							Field::make('checkbox', 'enable_products_carousel', 'Activar')
 								->set_option_value('yes')
 								->set_default_value(true),
