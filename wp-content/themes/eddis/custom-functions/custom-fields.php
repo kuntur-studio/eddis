@@ -502,7 +502,7 @@ function edd_register_theme_options() {
 										->set_option_value('yes')
 										->set_default_value(false),
 									Field::make('text', 'slide_link', 'Enlace del Banner')
-										->set_attribute('type', 'url')
+										->set_attribute('placeholder', 'https://... o /ruta/interna')
 										->set_conditional_logic([
 											[
 												'field' => 'slide_enable_link',
@@ -511,8 +511,66 @@ function edd_register_theme_options() {
 										])
 								])
 						])
+						->add_fields('banner_one', 'Banner uno (seminarios)', [
+							Field::make('checkbox', 'enable_banner_one', 'Activar')
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('image', 'banner_one_lg', 'Banner LG (≥1200px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 1920px de ancho'),
+							Field::make('image', 'banner_one_md', 'Banner MD (≥768px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 1200px de ancho'),
+							Field::make('image', 'banner_one_sm', 'Banner SM (<768px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 768px de ancho'),
+
+							Field::make('checkbox', 'banner_one_enable_link', 'Habilitar enlace')
+								->set_option_value('yes')
+								->set_default_value(false),
+							Field::make('text', 'banner_one_link', 'Enlace del Banner')
+								->set_attribute('type', 'url')
+								->set_conditional_logic([
+									[
+										'field' => 'banner_one_enable_link',
+										'value' => true,
+									]
+								])
+						])
+						->add_fields('banner_two', 'Banner dos (nosotros)', [
+							Field::make('checkbox', 'enable_banner_two', 'Activar')
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('image', 'banner_two_lg', 'Banner LG (≥1200px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 1920px de ancho'),
+							Field::make('image', 'banner_two_md', 'Banner MD (≥768px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 1200px de ancho'),
+							Field::make('image', 'banner_two_sm', 'Banner SM (<768px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 768px de ancho'),
+
+							Field::make('checkbox', 'banner_two_enable_link', 'Habilitar enlace')
+								->set_option_value('yes')
+								->set_default_value(false),
+							Field::make('text', 'banner_two_link', 'Enlace del Banner')
+								->set_attribute('type', 'url')
+								->set_conditional_logic([
+									[
+										'field' => 'banner_two_enable_link',
+										'value' => true,
+									]
+								])
+						])
+						->add_fields('youtube_video', 'Video YouTube', [
+							Field::make('checkbox', 'youtube_video', 'Activar')
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('text', 'youtube_video_id', 'ID del video'),
+						])
 						->add_fields('products_carousel', 'Productos', [
-							Field::make('checkbox', 'enable_products_carousel', 'Activar Carrusel')
+							Field::make('checkbox', 'enable_products_carousel', 'Activar')
 								->set_option_value('yes')
 								->set_default_value(true),
 							Field::make('text', 'carousel_title', 'Título del Carrusel'),

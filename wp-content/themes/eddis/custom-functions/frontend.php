@@ -24,6 +24,35 @@ GTM, PHP_EOL;
     }
 }
 
+/**
+ * Normaliza enlaces internos y externos para banners/slides.
+ *
+ * - Si el enlace es una URL completa (http/https), lo devuelve sin cambios.
+ * - Si es una ruta interna absoluta (comienza con "/"), la convierte en URL absoluta usando home_url().
+ * - Si es una ruta interna relativa, le agrega el prefijo del sitio y la convierte en absoluta.
+ *
+ * Siempre retorna una URL absoluta lista para usar en atributos href o src.
+ *
+ * @param string $link Enlace interno o externo.
+ * @return string URL absoluta.
+ */
+
+function edd_normalize_link($link) {
+    // URL externa completa
+    if (filter_var($link, FILTER_VALIDATE_URL)) {
+        return $link;
+    }
+
+    // Ruta interna absoluta
+    if (strpos($link, '/') === 0) {
+        return home_url($link);
+    }
+
+    // Ruta interna relativa
+    return home_url('/' . ltrim($link, '/'));
+}
+
+
 // Este hook se utiliza para imprimir html en el encabezado de las páginas del frontend
 function wp_head_hook() {
     if (is_admin()) {
