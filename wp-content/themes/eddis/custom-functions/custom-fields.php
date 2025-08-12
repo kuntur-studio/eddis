@@ -571,23 +571,11 @@ function edd_register_theme_options() {
 								->set_default_value(true),
 							Field::make('text', 'youtube_video_id', 'ID del video'),
 						])
-						->add_fields('products_carousel', 'Productos', [
-							Field::make('checkbox', 'enable_products_carousel', 'Activar')
-								->set_option_value('yes')
-								->set_default_value(true),
-							Field::make('text', 'carousel_title', 'Título del Carrusel'),
-							Field::make('complex', 'product_ids', 'IDs de Productos') // Campo complex como alternativa a associative_array
-								->add_fields(array(
-									Field::make('text', 'product_id', 'ID del Producto'),
-									Field::make('text', 'product_name', 'Nombre del Producto'),
-								)),
-						])
 						->set_default_value([
 							['_type' => 'slider_hero'],							
 							['_type' => 'banner_one'],
 							['_type' => 'banner_two'],
 							['_type' => 'youtube_video'],
-							['_type' => 'products_carousel'],
 						]),
 				]) // Página de inicio
 				->set_default_value([
