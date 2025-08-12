@@ -510,6 +510,8 @@ function edd_register_theme_options() {
 											]
 										])
 								])
+								->set_collapsed(true)
+								->set_header_template('Slide <%- $_index + 1 %>')
 						])
 						->add_fields('banner_one', 'Banner uno (seminarios)', [
 							Field::make('checkbox', 'enable_banner_one', 'Activar')
