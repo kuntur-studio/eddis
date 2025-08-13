@@ -10,7 +10,6 @@ if ($front_page && !empty($front_page['home_widgets'])) {
         }
 
         if ($widget['_type'] === 'featured_carousel' && !empty($widget['enable_featured_carousel'])) {
-            print_r($widget);
             $featured_carousel_options['title'] = $widget['featured_carousel_title'] ?? '';
             $featured_carousel_options['subtitle'] = $widget['featured_carousel_subtitle'] ?? '';
             $featured_carousel_options['button_text'] = $widget['featured_carousel_button_text'] ?? '';
