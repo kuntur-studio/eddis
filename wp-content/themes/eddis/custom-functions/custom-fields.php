@@ -524,7 +524,7 @@ function edd_register_theme_options() {
 							Field::make('text', 'featured_carousel_button_text', 'Texto del botón')
 								->set_default_value('Conocelos todos'),
 							Field::make('text', 'featured_carousel_button_link', 'Enlace del botón')
-								->set_help_text('URL to view all courses'),
+								->set_help_text('URL de la página de categoría para ver todos los cursos.'),
 							Field::make('text', 'featured_carousel_category_id', 'ID de la categoría')
 								->set_attribute('type', 'number')
 								->set_default_value(217)
