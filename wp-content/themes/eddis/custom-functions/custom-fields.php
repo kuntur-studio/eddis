@@ -483,10 +483,10 @@ function edd_register_theme_options() {
 						->set_layout('tabbed-horizontal')
 						->set_duplicate_groups_allowed(false)
 						->add_fields('slider_hero', 'Slider Hero', [
-							Field::make('checkbox', 'enable', 'Activar')
+							Field::make('checkbox', 'enable_slider_hero', 'Activar')
 										->set_option_value('yes')
 										->set_default_value(true),
-							Field::make('complex', 'slides', 'Slides')
+							Field::make('complex', 'slider_hero_slides', 'Slides')
 								->add_fields([
 									Field::make('image', 'slide_lg', 'Slide LG (≥1200px)')
 										->set_value_type('url')
@@ -512,6 +512,23 @@ function edd_register_theme_options() {
 								])
 								->set_collapsed(true)
 								->set_header_template('Slide <%- $_index + 1 %>')
+						])
+						->add_fields('featured_carousel', 'Carrusel destacados', [						
+							Field::make('checkbox', 'enable_featured_carousel', 'Activar')
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('text', 'featured_carousel_title', 'Título')
+								->set_default_value('Cursos <strong>destacados</strong>')
+								->set_help_text('Se pueden usar etiquetas HTML como <strong>.'),
+							Field::make('text', 'featured_carousel_subtitle', 'Subtítulo'),
+							Field::make('text', 'featured_carousel_button_text', 'Texto del botón')
+								->set_default_value('Conocelos todos'),
+							Field::make('text', 'featured_carousel_button_link', 'Enlace del botón')
+								->set_help_text('URL to view all courses'),
+							Field::make('text', 'featured_carousel_category_id', 'ID de la categoría')
+								->set_attribute('type', 'number')
+								->set_default_value(217)
+								->set_help_text('Ingresa el ID de la categoría de productos de WooCommerce.')
 						])
 						->add_fields('banner_one', 'Banner uno (seminarios)', [
 							Field::make('checkbox', 'enable_banner_one', 'Activar')
@@ -572,7 +589,8 @@ function edd_register_theme_options() {
 							Field::make('text', 'youtube_video_id', 'ID del video'),
 						])
 						->set_default_value([
-							['_type' => 'slider_hero'],							
+							['_type' => 'slider_hero'],
+							['_type' => 'highlighted_carousel'],
 							['_type' => 'banner_one'],
 							['_type' => 'banner_two'],
 							['_type' => 'youtube_video'],
