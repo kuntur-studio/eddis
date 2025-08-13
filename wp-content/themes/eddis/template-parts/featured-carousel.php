@@ -8,7 +8,7 @@ if (empty($args['options']) || !is_array($args['options'])) {
 }
 
 extract($args['options']);
-echo 'Pasó por acá ', print_r($args['options'], true), PHP_EOL, '<BR>El valor de category_id es ', $category_id;
+
 if ($category_id) {
     $query_args = array(
         'post_type'      => 'product',
