@@ -10,11 +10,12 @@ if ($front_page && !empty($front_page['home_widgets'])) {
         }
 
         if ($widget['_type'] === 'featured_carousel' && !empty($widget['enable_featured_carousel'])) {
-            $featured_carousel_options['title'] = $widget['featured_carousel_title'];
-            $featured_carousel_options['subtitle'] = $widget['featured_carousel_subtitle'];
-            $featured_carousel_options['button_text'] = $widget['featured_carousel_button_text'];
-            $featured_carousel_options['button_link'] = $widget['featured_carousel_button_link'];
-            $featured_carousel_options['category_id'] = $widget['featured_carousel_category_id'];
+            print_r($widget);
+            $featured_carousel_options['title'] = $widget['featured_carousel_title'] ?? '';
+            $featured_carousel_options['subtitle'] = $widget['featured_carousel_subtitle'] ?? '';
+            $featured_carousel_options['button_text'] = $widget['featured_carousel_button_text'] ?? '';
+            $featured_carousel_options['button_link'] = $widget['featured_carousel_button_link'] ?? '';
+            $featured_carousel_options['category_id'] = $widget['featured_carousel_category_id'] ?? '';
         }
     }
 }
@@ -22,7 +23,7 @@ if ($front_page && !empty($front_page['home_widgets'])) {
 get_header(); ?>
 <main>
     <?php 
-    if (!empty($slides)) {
+    if (!empty($slider_hero_slides)) {
         get_template_part('template-parts/slider-hero', null, [
             'slides' => $slider_hero_slides
         ]);
