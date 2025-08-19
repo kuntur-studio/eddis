@@ -910,3 +910,37 @@ p {
 }
 
 /* ===== HOME PAGE ===== */
+.featured-carousel h2.global-title {
+    color: var(--orange-color);
+}
+
+.featured-carousel a.btn.btn-primary {
+    color: white;
+    background-color: var(--orange-color);
+    border-color: var(--orange-color);
+    border-radius: 25px;
+}
+
+#featuredCarousel .owl-nav .owl-prev, #featuredCarousel .owl-nav .owl-next {
+    background-color: #f58634!important;
+}
+
+div#featuredCarousel {
+    position: relative;
+}
+
+#featuredCarousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    left: -8%;
+    transform: translateY(-50%);
+    width: 116%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+}
+
+#featuredCarousel .owl-dots {
+    bottom: -50px;
+}
