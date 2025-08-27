@@ -910,6 +910,17 @@ p {
 }
 
 /* ===== HOME PAGE ===== */
+/*
+* Las flechas del carrusel aparecen a los costados (es una customización) y el conjunto
+* debe ocupar el 100% del ancho del contenedor para que se alinee con el resto del contenido.
+* Es responsivo porque las flechas de navegación solo se muestran en la versión desktop.
+*/
+@media (min-width: 1200px) {
+    .featured-carousel .container {
+        padding: 0 calc(var(--bs-gutter-x) * 2.8);
+    }
+}
+
 .featured-carousel h2.global-title {
     color: var(--orange-color);
 }
@@ -942,5 +953,5 @@ div#featuredCarousel {
 }
 
 #featuredCarousel .owl-dots {
-    bottom: -50px;
+    bottom: -60px;
 }
