@@ -49,7 +49,7 @@ function edd_register_theme_options() {
 						]),
 					
 					Field::make('html', 'menu_course_description')
-						->set_html('<p class="fst-italic"><b>Nota:</b> los items del menú de cursos corresponden a categorías de producto que tengan al menos un curso activo y están filtradas por código las categorías de cursos autogestionables, regulares y destacados.</p>')
+						->set_html('<em class="cf-field__help"><b>Nota:</b> los items del menú de cursos corresponden a categorías de producto que tengan al menos un curso activo y están filtradas por código las categorías de cursos autogestionables, regulares y destacados.</em>')
 						->set_conditional_logic([
 							[
 								'field' => 'item_type',
