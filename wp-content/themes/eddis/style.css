@@ -816,6 +816,10 @@ p {
     margin-bottom: 10.375rem;
 }
 
+.woocommerce .woocommerce-loop-product__title {
+    min-height: 55px;
+}
+
 .woocommerce form.woocommerce-ordering {
     float: none; /* Anulo el flotado por defecto de WC */
 }
