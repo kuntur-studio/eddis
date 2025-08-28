@@ -38,7 +38,7 @@ if ($category_id) {
             </div>
             <?php if ($button_text && $button_link): ?>
                 <div class="col-xl-2 col-lg-2 col-sm-12 text-lg-right mt-3 mt-lg-0">
-                    <a class="btn btn-primary" href="<?php echo esc_url($button_link); ?>">
+                    <a class="btn btn-primary text-nowrap" href="<?php echo esc_url($button_link); ?>">
                         <?php echo esc_html($button_text); ?>
                     </a>
                 </div>

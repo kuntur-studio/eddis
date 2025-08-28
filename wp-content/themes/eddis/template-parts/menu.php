@@ -256,6 +256,8 @@ if (!empty($menu_items)): ?>
                                 'taxonomy'   => 'product_cat',
                                 'hide_empty' => true,
                                 'parent'     => 0,
+                                'exclude' => [214, 215, 217], // Se pueden usar IDs o slugs de las categorías a excluir (ej: [23, 'nombre-de-la-categoria'])
+                                // Acá estoy excluyendo cursos autogestionables, regulares y destacados
                             ]);
 
                             if (!empty($product_categories) && !is_wp_error($product_categories)): ?>

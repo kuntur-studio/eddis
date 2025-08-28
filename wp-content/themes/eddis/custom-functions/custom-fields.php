@@ -47,6 +47,19 @@ function edd_register_theme_options() {
 								'value' => 'dropdown', // Solo se muestra si el item es desplegable
 							]
 						]),
+					
+					Field::make('html', 'menu_course_description')
+						->set_html('<p class="fst-italic"><b>Nota:</b> los items del menú de cursos corresponden a categorías de producto que tengan al menos un curso activo y están filtradas por código las categorías de cursos autogestionables, regulares y destacados.</p>')
+						->set_conditional_logic([
+							[
+								'field' => 'item_type',
+								'value' => 'dropdown', // Solo se muestra si el item es desplegable
+							],
+							[
+								'field' => 'dropdown_type',
+								'value' => 'courses',
+							]
+						]),
 
 					// Link (solo si es simple o carrito)
 					Field::make('text', 'link', 'Enlace')
@@ -513,7 +526,9 @@ function edd_register_theme_options() {
 								->set_collapsed(true)
 								->set_header_template('Slide <%- $_index + 1 %>')
 						])
-						->add_fields('featured_carousel', 'Carrusel destacados', [						
+						->add_fields('featured_carousel', 'Carrusel destacados', [
+							Field::make('html', 'widget_description')
+								->set_html('<p class="fst-italic"><b>Nota:</b> los elementos del carrusel se toman de la categoría seleccionada en esta página de opciones.</p>'),
 							Field::make('checkbox', 'enable_featured_carousel', 'Activar')
 								->set_option_value('yes')
 								->set_default_value(true),
