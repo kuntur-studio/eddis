@@ -925,11 +925,11 @@ p {
     }
 }
 
-#featuredcarousel h2.global-title {
+#featuredCarousel h2.global-title {
     color: var(--orange-color);
 }
 
-#featuredcarousel a.btn.btn-primary {
+#featuredCarousel a.btn.btn-primary {
     color: white;
     background-color: var(--orange-color);
     border-color: var(--orange-color);
@@ -959,7 +959,7 @@ p {
     bottom: -60px;
 }
 
-#featuredcarousel .item .image-container {
+#featuredCarousel .item .image-container {
     border-radius: 15px 15px 0 0;
     overflow: clip;
 }
