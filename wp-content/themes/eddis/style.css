@@ -963,3 +963,15 @@ p {
     border-radius: 15px 15px 0 0;
     overflow: clip;
 }
+
+#featuredCarousel .item .image-container img {
+    height: auto;
+}
+
+#featuredCarouselSlider .global-card-body {
+    padding: 20px
+}
+
+#featuredCarouselSlider .global-card-body h3 {
+    color: var(--gray-color);
+}
