@@ -534,7 +534,7 @@ function edd_register_theme_options() {
 								->set_default_value(true),
 							Field::make('text', 'featured_carousel_title', 'Título')
 								->set_default_value('Cursos <strong>destacados</strong>')
-								->set_help_text('Se pueden usar etiquetas HTML como <strong>.'),
+								->set_help_text('Se pueden usar etiquetas HTML como &lt;strong&gt;.'),
 							Field::make('text', 'featured_carousel_subtitle', 'Subtítulo'),
 							Field::make('text', 'featured_carousel_button_text', 'Texto del botón')
 								->set_default_value('Conocelos todos'),
