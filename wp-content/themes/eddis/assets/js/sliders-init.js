@@ -20,7 +20,7 @@ jQuery(function($) {
         }
     });
 
-    initOwl('#featuredCarousel', {
+    initOwl('#featuredCarouselSlider', {
         ...baseOptions,
         margin:20,
         mouseDrag: true,

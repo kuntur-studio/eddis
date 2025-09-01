@@ -45,7 +45,7 @@ if ($category_id) {
             <?php endif; ?>
         </div>
 
-        <div class="owl-carousel owl-theme featured-carousel-slider">
+        <div class="owl-carousel owl-theme featured-carousel-slider" id="featuredCarouselSlider">
             <?php while ($query->have_posts()): $query->the_post(); ?>
                 <?php get_template_part('template-parts/featured-carousel-card'); ?>
             <?php endwhile; wp_reset_postdata(); ?>
