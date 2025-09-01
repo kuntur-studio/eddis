@@ -25,7 +25,7 @@ if ($category_id) {
 
     if ($query->have_posts()):
 ?>
-<section class="featured-carousel py-5">
+<section class="py-5" id="featuredCarousel">
     <div class="container">
         <div class="row mb-4 align-items-center">
             <div class="col-xl-10 col-lg-10 col-sm-12">
@@ -45,7 +45,7 @@ if ($category_id) {
             <?php endif; ?>
         </div>
 
-        <div class="owl-carousel owl-theme featured-carousel-slider" id="featuredCarousel">
+        <div class="owl-carousel owl-theme featured-carousel-slider">
             <?php while ($query->have_posts()): $query->the_post(); ?>
                 <?php get_template_part('template-parts/featured-carousel-card'); ?>
             <?php endwhile; wp_reset_postdata(); ?>

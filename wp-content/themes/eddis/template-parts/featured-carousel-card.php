@@ -19,7 +19,7 @@ if ($product) {
         <a class="global-card-anchor" href="<?php echo esc_url($product_link); ?>"></a>
 
         <?php if ($product && has_post_thumbnail()): ?>
-            <div class="imagen-container">
+            <div class="image-container">
                 <?php
                     // Muestra la imagen destacada del producto con los atributos correctos
                     echo get_the_post_thumbnail(get_the_ID(), 'woocommerce_thumbnail', array(

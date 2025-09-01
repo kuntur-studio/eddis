@@ -920,16 +920,16 @@ p {
 * Es responsivo porque las flechas de navegación solo se muestran en la versión desktop.
 */
 @media (min-width: 1200px) {
-    .featured-carousel .container {
+    #featured-carousel .container {
         padding: 0 calc(var(--bs-gutter-x) * 2.8);
     }
 }
 
-.featured-carousel h2.global-title {
+#featured-carousel h2.global-title {
     color: var(--orange-color);
 }
 
-.featured-carousel a.btn.btn-primary {
+#featured-carousel a.btn.btn-primary {
     color: white;
     background-color: var(--orange-color);
     border-color: var(--orange-color);
@@ -940,7 +940,7 @@ p {
     background-color: #f58634!important;
 }
 
-div#featuredCarousel {
+#featuredCarousel .featured-carousel-slider {
     position: relative;
 }
 
@@ -957,4 +957,9 @@ div#featuredCarousel {
 
 #featuredCarousel .owl-dots {
     bottom: -60px;
+}
+
+#featured-carousel .item .image-container {
+    border-radius: 15px 15px 0 0;
+    overflow: clip;
 }
