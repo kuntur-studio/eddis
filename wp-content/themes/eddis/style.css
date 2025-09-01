@@ -974,4 +974,10 @@ p {
 
 #featuredCarouselSlider .global-card-body h3 {
     color: var(--gray-color);
+    font-size: 1rem;
+    min-height: 55px;
+}
+
+#featuredCarouselSlider .global-card-body h6 {
+    color: var(--gray-color);
 }
