@@ -9,37 +9,9 @@ global $product;
 global $post;
 $product_id = $product->get_id();
 
-// --- Lógica para obtener el formulario de CPT 'eddis_form' ---
-$form_name = 'form-producto'; // El Nombre de Identificación que se definio en el gestor de formularios
-
-$form_query_args = array(
-    'post_type'      => 'eddis_form',
-    'posts_per_page' => 1,
-    'post_status'    => 'publish',
-    'fields'         => 'ids',
-    'meta_query'     => array(
-        array(
-            'key'     => 'eddis_form_name', // Busca por la meta key 'eddis_form_name'
-            'value'   => $form_name, // Con este valor
-            'compare' => '=',
-        ),
-    ),
-);
-
-$form_posts = get_posts( $form_query_args );
-$form_id = ! empty( $form_posts ) ? $form_posts[0] : 0;
-
-$is_form_active = false;
-$form_code = '';
-
-if ( $form_id ) {
-    $is_form_active_value = carbon_get_post_meta( $form_id, 'eddis_form_active' );
-    $is_form_active = carbon_get_post_meta( $form_id, 'eddis_form_active' );
-    $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
-}
-
-// wp_reset_postdata();
-// -------------------------------------------------------------
+// El "Nombre de Identificación" que se definio en el gestor de formularios
+$form_name = 'form-producto';
+$form      = edd_get_eddis_form_data($form_name);
 
 $options = edd_widget_options('product_banner'); // < --- Obtengo los datos del banner inferior (Modalidad)
 
@@ -116,7 +88,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
             </div>
         </div>
         <div class="row">
-            <div class="<?php echo $is_form_active ? 'col-lg-7' : 'col-lg-12'; ?> col-md-12 text-start">
+            <div class="<?php echo $form['active'] ? 'col-lg-7' : 'col-lg-12'; ?> col-md-12 text-start">
                 <div class="course-description">
                     <h2>Descripción del Curso</h2>
                     <?php
@@ -155,12 +127,12 @@ do_action( 'woocommerce_before_single_product' ); ?>
                 ?>
             </div>
 
-            <?php if ($is_form_active && !empty($form_code)): ?>
+            <?php if ($form['active'] && !empty($form['code'])): ?>
             <div class="col-lg-5 col-md-12 mt-4 mt-lg-0 d-flex justify-content-end">
                 <div class="form-container">
                     <h4 class="text-center mb-4">Consulta por este curso</h4>
                     <div class="external-form-content">
-                        <?php echo $form_code; // Renderiza el código del formulario externo ?>
+                        <?php echo $form['code']; // Renderiza el código del formulario externo ?>
                     </div>
                 </div>
             </div>

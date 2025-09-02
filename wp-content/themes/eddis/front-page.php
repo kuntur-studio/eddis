@@ -19,6 +19,10 @@ if ($front_page && !empty($front_page['home_widgets'])) {
     }
 }
 
+// El "Nombre de Identificación" que se definio en el gestor de formularios
+$form_name = 'form-home';
+$form      = edd_get_eddis_form_data($form_name);
+
 get_header(); ?>
 <main>
     <?php 
@@ -33,6 +37,22 @@ get_header(); ?>
             'options' => $featured_carousel_options
         ]);
     }
+
+    if (!empty($form['active'])) { ?>
+    <section class="form-home-container container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-white">Consulta Express de <strong>Cursos</strong></h2>
+                <h4 class="text-white">Completa el siguiente formulario para obtener más información.</h4>
+                <div class="external-form-content">
+                    <?php echo $form['code']; // Renderiza el código del formulario externo ?>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php
+    }
+
     get_template_part('template-parts/sedes'); ?>
 </main>
 <?php get_footer(); ?>
