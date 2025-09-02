@@ -20,7 +20,7 @@ if ($front_page && !empty($front_page['home_widgets'])) {
 }
 
 // El "Nombre de Identificación" que se definio en el gestor de formularios
-$form_name = 'form-home';
+$form_name = 'form-producto';
 $form      = edd_get_eddis_form_data($form_name);
 
 get_header(); ?>

@@ -289,7 +289,8 @@ if (!empty($menu_items)): ?>
                         </div>
                     </div>
                 </li>
-                <!--li class="nav-item dropdown old-style" style="position: static!important;">
+                <?php /* VIEJO ESTILO MENU DE CURSOS ?>
+                <li class="nav-item dropdown old-style" style="position: static!important;">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo esc_html($item['title']); ?>
                     </a>
@@ -360,7 +361,7 @@ if (!empty($menu_items)): ?>
                             </div>
                         </div>
                     </div>
-                </li-->
+                </li><?php FIN VIEJO ESTILO MENU CURSOS*/ ?>
                 <?php endif; // Verificación del tipo de despegable?>
             <?php endif; // Si el item es desplegable o no?>
         <?php endif;  // Si el item está activo ?>
