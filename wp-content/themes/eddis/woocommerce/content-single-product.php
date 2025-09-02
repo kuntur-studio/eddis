@@ -10,7 +10,7 @@ global $post;
 $product_id = $product->get_id();
 
 // El "Nombre de Identificación" que se definio en el gestor de formularios
-$form_name = 'form-producto';
+$form_name = 'form-product';
 $form      = edd_get_eddis_form_data($form_name);
 
 $options = edd_widget_options('product_banner'); // < --- Obtengo los datos del banner inferior (Modalidad)
@@ -129,7 +129,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
 
             <?php if ($form['active'] && !empty($form['code'])): ?>
             <div class="col-lg-5 col-md-12 mt-4 mt-lg-0 d-flex justify-content-end">
-                <div class="form-container">
+                <div class="form-product-container">
                     <div class="external-form-content">
                         <?php echo $form['code']; // Renderiza el código del formulario externo ?>
                     </div>
