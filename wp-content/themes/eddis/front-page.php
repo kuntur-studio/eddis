@@ -42,8 +42,6 @@ get_header(); ?>
     <section class="form-home-container container">
         <div class="row">
             <div class="col-12">
-                <h2 class="text-white">Consulta Express de <strong>Cursos</strong></h2>
-                <h4 class="text-white">Completa el siguiente formulario para obtener más información.</h4>
                 <div class="external-form-content">
                     <?php echo $form['code']; // Renderiza el código del formulario externo ?>
                 </div>
