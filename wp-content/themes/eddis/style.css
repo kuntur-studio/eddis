@@ -981,3 +981,7 @@ p {
 #featuredCarouselSlider .global-card-body h6 {
     color: var(--gray-color);
 }
+
+#formHomeContainer {
+    margin-top: 70px;
+}
