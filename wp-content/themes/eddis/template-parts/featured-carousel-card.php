@@ -14,7 +14,7 @@ if ($product) {
 }
 ?>
 
-<div class="item">
+<div class="item shadowed-box">
     <div class="global-card">
         <a class="global-card-anchor" href="<?php echo esc_url($product_link); ?>"></a>
 
