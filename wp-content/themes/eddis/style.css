@@ -925,6 +925,10 @@ p {
     }
 }
 
+#featuredCarousel .owl-carousel {
+    width: calc(100% + 5px); /* Agrego 5px para que se vea el sombreado del item de la derecha */
+}
+
 #featuredCarousel .owl-stage-outer {
     padding-bottom: 5px;
 }
@@ -951,7 +955,7 @@ p {
 #featuredCarousel .owl-nav {
     position: absolute;
     top: 50%;
-    left: -8%;
+    left: calc(-8% - 2px); /* Esto es por el ajuste del #featuredCarousel .owl-carousel */
     transform: translateY(-50%);
     width: 116%;
     display: flex;
