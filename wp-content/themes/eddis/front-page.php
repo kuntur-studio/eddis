@@ -1,5 +1,11 @@
 <?php
+/**
+ * Obtengo los datos de todos los widgets usados en la página salvo el formulario y
+ * el widget de sedes que utilizan otros mecanismos
+ */
 $front_page                = edd_widget_options('front_page');
+$mode_banner               = edd_widget_options('mode_banner');
+
 $slider_hero_slides        = [];
 $featured_carousel_options = [];
 
@@ -51,7 +57,15 @@ get_header(); ?>
 <?php
     }
 
-    get_template_part('template-parts/sedes'); ?>
+    get_template_part('template-parts/sedes');
+
+    if ($mode_banner['enable_mode_banner_widget']) {
+        get_template_part('template-parts/mode-banner', null, [
+            'options' => $mode_banner
+        ]);
+    }
+    
+?>
 </main>
 <?php get_footer(); ?>
 
