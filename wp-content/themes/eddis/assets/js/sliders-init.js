@@ -22,12 +22,21 @@ jQuery(function($) {
 
     initOwl('#featuredCarouselSlider', {
         ...baseOptions,
-        margin:20,
+        margin: 5,
         mouseDrag: true,
         responsive:{
             0: {items:1, nav:false},
             768: {items:2, nav:false},
             1200: {items:3, nav:true, loop:false}
         }
+    });
+
+    initOwl('#logosCarouselSlider', {
+        items:3,
+        loop:true,
+        margin:10,
+        autoplay:true,
+        autoplayTimeout:1000,
+        autoplayHoverPause:true
     });
 });
