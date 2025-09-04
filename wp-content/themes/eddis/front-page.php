@@ -39,7 +39,7 @@ get_header(); ?>
     }
 
     if (!empty($form['active'])) { ?>
-    <section class="form-home-container container">
+    <section class="container" id="formHomeContainer">
         <div class="row">
             <div class="col-12">
                 <div class="external-form-content">

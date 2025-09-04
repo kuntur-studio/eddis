@@ -129,7 +129,7 @@ do_action( 'woocommerce_before_single_product' ); ?>
 
             <?php if ($form['active'] && !empty($form['code'])): ?>
             <div class="col-lg-5 col-md-12 mt-4 mt-lg-0 d-flex justify-content-end">
-                <div id="#formProductContainer">
+                <div id="formProductContainer">
                     <div class="external-form-content">
                         <?php echo $form['code']; // Renderiza el código del formulario externo ?>
                     </div>

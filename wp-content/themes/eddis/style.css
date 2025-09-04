@@ -921,7 +921,7 @@ p {
 */
 @media (min-width: 1200px) {
     #featuredCarousel .container {
-        padding: 0 calc(var(--bs-gutter-x) * 2.6);
+        padding: 0 calc(var(--bs-gutter-x) * 2.8);
     }
 }
 
