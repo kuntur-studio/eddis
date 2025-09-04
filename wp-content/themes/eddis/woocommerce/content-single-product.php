@@ -13,7 +13,7 @@ $product_id = $product->get_id();
 $form_name = 'form-product';
 $form      = edd_get_eddis_form_data($form_name);
 
-$options = edd_widget_options('product_banner'); // < --- Obtengo los datos del banner inferior (Modalidad)
+$options = edd_widget_options('mode_banner'); // < --- Obtengo los datos del banner inferior (Modalidad)
 
 do_action( 'woocommerce_before_single_product' ); ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'course-single-wrapper my-4', $product ); ?>>
@@ -142,31 +142,31 @@ do_action( 'woocommerce_before_single_product' ); ?>
 </div>
 <?php 
 // Asumiendo que $options contiene todos los valores de configuración
-if ($options['enable_product_banner_widget']) : ?>
+if ($options['enable_mode_banner_widget']) : ?>
     <div class="banner-crop-container">
     <?php
     // Verificar si debemos envolver en un enlace
-    $should_wrap_link = $options['product_banner_enable_link'] && !empty($options['product_banner_link']);
+    $should_wrap_link = $options['mode_banner_enable_link'] && !empty($options['mode_banner_link']);
     
     // --- ALTERNATIVA AVANZADA PARA FALLBACK ---
-    $fallback_image = !empty($options['product_banner_lg']) ? $options['product_banner_lg'] : 
-                     (!empty($options['product_banner_md']) ? $options['product_banner_md'] : 
-                     (!empty($options['product_banner_sm']) ? $options['product_banner_sm'] : ''));
+    $fallback_image = !empty($options['mode_banner_lg']) ? $options['mode_banner_lg'] : 
+                     (!empty($options['mode_banner_md']) ? $options['mode_banner_md'] : 
+                     (!empty($options['mode_banner_sm']) ? $options['mode_banner_sm'] : ''));
     // -----------------------------------------
     
     if ($should_wrap_link) : ?>
-        <a href="<?php echo esc_url($options['product_banner_link']); ?>" id="product-banner-link">
+        <a href="<?php echo esc_url($options['mode_banner_link']); ?>" id="product-banner-link">
     <?php endif; ?>
     
     <picture id="widget-product-bottom-banner">
-        <?php if (!empty($options['product_banner_lg'])) : ?>
-            <source srcset="<?php echo esc_url($options['product_banner_lg']); ?>" media="(min-width: 1200px)">
+        <?php if (!empty($options['mode_banner_lg'])) : ?>
+            <source srcset="<?php echo esc_url($options['mode_banner_lg']); ?>" media="(min-width: 1200px)">
         <?php endif; ?>
-        <?php if (!empty($options['product_banner_md'])) : ?>
-            <source srcset="<?php echo esc_url($options['product_banner_md']); ?>" media="(min-width: 768px)">
+        <?php if (!empty($options['mode_banner_md'])) : ?>
+            <source srcset="<?php echo esc_url($options['mode_banner_md']); ?>" media="(min-width: 768px)">
         <?php endif; ?>
-        <?php if (!empty($options['product_banner_sm'])) : ?>
-            <source srcset="<?php echo esc_url($options['product_banner_sm']); ?>" media="(max-width: 767px)">
+        <?php if (!empty($options['mode_banner_sm'])) : ?>
+            <source srcset="<?php echo esc_url($options['mode_banner_sm']); ?>" media="(max-width: 767px)">
         <?php endif; ?>
         <!-- Fallback mejorado (usa lg > md > sm en ese orden) -->
         <img src="<?php echo esc_url($fallback_image); ?>" 
@@ -178,5 +178,5 @@ if ($options['enable_product_banner_widget']) : ?>
         </a>
     <?php endif; ?>
     </div>
-<?php endif; // enable_product_banner_widget ?>
+<?php endif; // enable_mode_banner_widget ?>
 <?php do_action( 'woocommerce_after_single_product' ); ?>
