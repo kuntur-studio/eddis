@@ -464,29 +464,29 @@ function edd_register_theme_options() {
 						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
 						->set_default_value(['home', '764', '770']),
 				]) // Sedes
-				->add_fields('product_banner', 'Banner modalidad', [
-					Field::make('checkbox', 'enable_product_banner_widget', 'Activo')
+				->add_fields('mode_banner', 'Banner modalidad', [
+					Field::make('checkbox', 'enable_mode_banner_widget', 'Activo')
 						->set_option_value('yes')
 						->set_default_value(false),
 
-					Field::make('image', 'product_banner_lg', 'Banner LG (≥1200px)')
+					Field::make('image', 'mode_banner_lg', 'Banner LG (≥1200px)')
 						->set_value_type('url')
 						->help_text('Tamaño recomendado: 1920px de ancho'),
-					Field::make('image', 'product_banner_md', 'Banner MD (≥768px)')
+					Field::make('image', 'mode_banner_md', 'Banner MD (≥768px)')
 						->set_value_type('url')
 						->help_text('Tamaño recomendado: 1200px de ancho'),
-					Field::make('image', 'product_banner_sm', 'Banner SM (<768px)')
+					Field::make('image', 'mode_banner_sm', 'Banner SM (<768px)')
 						->set_value_type('url')
 						->help_text('Tamaño recomendado: 768px de ancho'),
 
-					Field::make('checkbox', 'product_banner_enable_link', 'Habilitar enlace')
+					Field::make('checkbox', 'mode_banner_enable_link', 'Habilitar enlace')
 						->set_option_value('yes')
 						->set_default_value(false),
-					Field::make('text', 'product_banner_link', 'Enlace del Banner')
+					Field::make('text', 'mode_banner_link', 'Enlace del Banner')
 						->set_attribute('type', 'url')
 						->set_conditional_logic([
 							[
-								'field' => 'product_banner_enable_link',
+								'field' => 'mode_banner_enable_link',
 								'value' => true,
 							]
 						])
@@ -613,7 +613,7 @@ function edd_register_theme_options() {
 				]) // Página de inicio
 				->set_default_value([
 					['_type' => 'branches_widget'],
-					['_type' => 'product_banner'],
+					['_type' => 'mode_banner'],
 					['_type' => 'front_page'],
 				]),
 		]); // Widgets (último tab cierra con ; la sentencia Container::make)
