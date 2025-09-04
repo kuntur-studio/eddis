@@ -3,35 +3,9 @@
 Template Name: Página de Contacto
 */
 
-// --- Lógica para obtener el formulario de CPT 'eddis_form' ---
-$form_name = 'form-contacto'; // El Nombre de Identificación que se definio en el gestor de formularios
-
-$form_query_args = array(
-    'post_type'      => 'eddis_form',
-    'posts_per_page' => 1,
-    'post_status'    => 'publish',
-    'fields'         => 'ids',
-    'meta_query'     => array(
-        array(
-            'key'     => 'eddis_form_name', // Busca por la meta key 'eddis_form_name'
-            'value'   => $form_name, // Con este valor
-            'compare' => '=',
-        ),
-    ),
-);
-
-$form_posts = get_posts( $form_query_args );
-$form_id = ! empty( $form_posts ) ? $form_posts[0] : 0;
-
-$is_form_active = false;
-$form_code = '';
-
-if ( $form_id ) {
-    $is_form_active_value = carbon_get_post_meta( $form_id, 'eddis_form_active' );
-    $is_form_active = carbon_get_post_meta( $form_id, 'eddis_form_active' );
-    $form_code = carbon_get_post_meta( $form_id, 'eddis_form_code' );
-}
-// -------------------------------------------------------------
+// El "Nombre de Identificación" que se definio en el gestor de formularios
+$form_name = 'form-contact';
+$form      = edd_get_eddis_form_data($form_name);
 
 get_header();
 ?>
@@ -116,11 +90,11 @@ get_header();
                         <div class="row">
                             <div class="col-5">
                                 <h2 class="global-title text-white"><strong>Seguinos!</strong></h2>
-                                <?php if( have_rows('redes_sociales', 'option') ):?>
+                                <?php /*if( have_rows('redes_sociales', 'option') ):?>
                                     <?php while ( have_rows('redes_sociales', 'option') ) : the_row();?>
                                         <a class="social-icon transition-280"  target="_blank" href="<?php the_sub_field('link', 'option');?>" class="m-1"><?php the_sub_field('icon', 'option');?></a>
                                     <?php endwhile;?>
-                                <?php endif;?>
+                                <?php endif;*/?>
                             </div>
                         </div>
                     </div>
