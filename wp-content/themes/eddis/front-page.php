@@ -22,6 +22,14 @@ if ($front_page && !empty($front_page['home_widgets'])) {
             $featured_carousel_options['button_link'] = $widget['featured_carousel_button_link'] ?? '';
             $featured_carousel_options['category_id'] = $widget['featured_carousel_category_id'] ?? '';
         }
+
+        if ($widget['_type'] === 'banner_one' && !empty($widget['enable_banner_one'])) {
+            $banner_one_options['banner_lg'] = $widget['banner_one_lg'];
+            $banner_one_options['banner_md'] = $widget['banner_one_md'];
+            $banner_one_options['banner_sm'] = $widget['banner_one_sm'];
+            $banner_one_options['enable_link'] = $widget['banner_one_enable_link'];
+            $banner_one_options['banner_link'] = $widget['banner_one_link'];
+        }
     }
 }
 
@@ -55,6 +63,12 @@ get_header(); ?>
         </div>
     </section>
 <?php
+    }
+
+    if (!empty($banner_one_options)) {
+        get_template_part('template-parts/banner-one', null, [
+            'options' => $banner_one_options
+        ]);
     }
 
     get_template_part('template-parts/sedes');
