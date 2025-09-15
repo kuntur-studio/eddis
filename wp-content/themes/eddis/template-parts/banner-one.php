@@ -23,7 +23,7 @@ if ( ! empty( $banner_lg ) || ! empty( $banner_md ) || ! empty( $banner_sm ) ) {
     if ($should_wrap_link) : ?>
         <a href="<?php echo esc_url($banner_link); ?>">
     <?php endif; ?>
-    <div class="banner-full-width-container category-banner-wrapper">
+    <div class="banner-full-width-container banner-one-wrapper py-5">
         <picture id="widget-banner-one">
             <?php if (!empty($banner_lg)) : ?>
                 <source srcset="<?php echo esc_url($banner_lg); ?>" media="(min-width: 1200px)">
