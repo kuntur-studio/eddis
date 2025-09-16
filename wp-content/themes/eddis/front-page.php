@@ -79,7 +79,8 @@ get_header(); ?>
 
     if (!empty($banner_one_options)) {
         get_template_part('template-parts/responsive-banner', null, [
-            'options' => $banner_one_options
+            'options' => $banner_one_options,
+            'classes' => ['py-5']
         ]);
     }
 
