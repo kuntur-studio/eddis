@@ -17,14 +17,12 @@ $font-weight-bold: 700;
 
 $section-padding-top: 60px;
 $section-padding-bottom: 30px;
-$section-margin-bottom: 120px;
 
 // Estilos generales del widget
 #branches-widget-root {
     position: relative;
     padding-top: $section-padding-top;
     padding-bottom: $section-padding-bottom;
-    margin-bottom: $section-margin-bottom;
 
     &:before {
         position: absolute;

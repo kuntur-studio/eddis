@@ -626,6 +626,11 @@ p {
     }
 }
 
+/* ===== ESPACIADOR WIDGET DE SEDES ===== */
+.bottom_spacer_120 {
+    margin-bottom: 120px;
+}
+
 /* ===== TÍTULO DE LA PÁGINA ===== */
 .eddis-page-title {
     color: var(--gray-color);
