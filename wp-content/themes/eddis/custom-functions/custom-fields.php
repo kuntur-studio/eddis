@@ -460,6 +460,9 @@ function edd_register_theme_options() {
 					Field::make('checkbox', 'enable_branches_widget', 'Activo')
 						->set_option_value('yes')
 						->set_default_value(true),
+					Field::make('text', 'branches_widget_title', 'Título')
+						->set_required(true),
+					Field::make('text', 'branches_widget_subtitle', 'Subítulo'),
 					Field::make('multiselect', 'branches_widget_pages', 'Páginas donde cargar')
 						->set_options(['all' => 'Todas las páginas'] + edd_get_pages_list())
 						->set_default_value(['home', '764', '770']),
