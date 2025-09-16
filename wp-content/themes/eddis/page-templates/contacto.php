@@ -80,7 +80,9 @@ get_header();
         </div>
     </section>
 
-    <?php get_template_part('template-parts/sedes'); ?>
+    <?php get_template_part('template-parts/sedes', null, [
+            'classes' => ['bottom_spacer_120']
+          ]); ?>
 
     <section class="banner">
         <div class="container">
