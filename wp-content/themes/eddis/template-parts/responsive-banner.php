@@ -1,6 +1,7 @@
 <?php
 /**
- * Banner uno (seminarios)
+ * Banner responsivo con imágenes en tres dimensiones.
+ * Se puede usar con o sin un enlace.
  */
 
 if (empty($args['options']) || !is_array($args['options'])) {

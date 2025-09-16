@@ -8,27 +8,39 @@ $mode_banner               = edd_widget_options('mode_banner');
 
 $slider_hero_slides        = [];
 $featured_carousel_options = [];
+$banner_one_options        = [];
+$banner_two_options        = [];
 
 if ($front_page && !empty($front_page['home_widgets'])) {
     foreach ($front_page['home_widgets'] as $widget) {
-        if ($widget['_type'] === 'slider_hero' && !empty($widget['enable_slider_hero'])) {
-            $slider_hero_slides = $widget['slider_hero_slides'] ?? [];
-        }
-
-        if ($widget['_type'] === 'featured_carousel' && !empty($widget['enable_featured_carousel'])) {
-            $featured_carousel_options['title'] = $widget['featured_carousel_title'] ?? '';
-            $featured_carousel_options['subtitle'] = $widget['featured_carousel_subtitle'] ?? '';
-            $featured_carousel_options['button_text'] = $widget['featured_carousel_button_text'] ?? '';
-            $featured_carousel_options['button_link'] = $widget['featured_carousel_button_link'] ?? '';
-            $featured_carousel_options['category_id'] = $widget['featured_carousel_category_id'] ?? '';
-        }
-
-        if ($widget['_type'] === 'banner_one' && !empty($widget['enable_banner_one'])) {
-            $banner_one_options['banner_lg'] = $widget['banner_one_lg'];
-            $banner_one_options['banner_md'] = $widget['banner_one_md'];
-            $banner_one_options['banner_sm'] = $widget['banner_one_sm'];
-            $banner_one_options['enable_link'] = $widget['banner_one_enable_link'];
-            $banner_one_options['banner_link'] = $widget['banner_one_link'];
+        // Usa una condición genérica para verificar si el widget está habilitado
+        if (!empty($widget['enable_' . $widget['_type']])) {
+            switch ($widget['_type']) {
+                case 'slider_hero':
+                    $slider_hero_slides = $widget['slider_hero_slides'] ?? [];
+                    break;
+                case 'featured_carousel':
+                    $featured_carousel_options = [
+                        'title'       => $widget['featured_carousel_title'] ?? '',
+                        'subtitle'    => $widget['featured_carousel_subtitle'] ?? '',
+                        'button_text' => $widget['featured_carousel_button_text'] ?? '',
+                        'button_link' => $widget['featured_carousel_button_link'] ?? '',
+                        'category_id' => $widget['featured_carousel_category_id'] ?? '',
+                    ];
+                    break;
+                case 'banner_one':
+                case 'banner_two':
+                    $type = $widget['_type'];
+                    // Asigna a la variable dinámica correcta ($banner_one_options o $banner_two_options)
+                    ${$type . '_options'} = [
+                        'banner_lg'   => $widget[$type . '_lg'],
+                        'banner_md'   => $widget[$type . '_md'],
+                        'banner_sm'   => $widget[$type . '_sm'],
+                        'enable_link' => $widget[$type . '_enable_link'],
+                        'banner_link' => $widget[$type . '_link'],
+                    ];
+                    break;
+            }
         }
     }
 }
@@ -39,7 +51,7 @@ $form      = edd_get_eddis_form_data($form_name);
 
 get_header(); ?>
 <main>
-    <?php 
+    <?php
     if (!empty($slider_hero_slides)) {
         get_template_part('template-parts/slider-hero', null, [
             'slides' => $slider_hero_slides
@@ -66,20 +78,25 @@ get_header(); ?>
     }
 
     if (!empty($banner_one_options)) {
-        get_template_part('template-parts/banner-one', null, [
+        get_template_part('template-parts/responsive-banner', null, [
             'options' => $banner_one_options
         ]);
     }
 
     get_template_part('template-parts/sedes');
 
+    if (!empty($banner_two_options)) {
+        get_template_part('template-parts/responsive-banner', null, [
+            'options' => $banner_two_options
+        ]);
+    }
+
     if ($mode_banner['enable_mode_banner_widget']) {
         get_template_part('template-parts/mode-banner', null, [
             'options' => $mode_banner
         ]);
     }
-    
+
 ?>
 </main>
 <?php get_footer(); ?>
-
