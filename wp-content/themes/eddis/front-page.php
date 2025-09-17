@@ -10,6 +10,7 @@ $slider_hero_slides        = [];
 $featured_carousel_options = [];
 $banner_one_options        = [];
 $banner_two_options        = [];
+$youtube_video_options     = [];
 
 if ($front_page && !empty($front_page['home_widgets'])) {
     foreach ($front_page['home_widgets'] as $widget) {
@@ -38,6 +39,16 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                         'banner_sm'   => $widget[$type . '_sm'],
                         'enable_link' => $widget[$type . '_enable_link'],
                         'banner_link' => $widget[$type . '_link'],
+                    ];
+                    break;
+                case 'youtube_video':
+                    $youtube_video_options = [
+                        'enable'      => $widget['enable_youtube_video'] ?? false,
+                        'id'          => $widget['youtube_video_id'] ?? '',
+                        'content'     => $widget['youtube_video_content'] ?? '',
+                        'background_lg' => $widget['youtube_video_background_lg'] ?? '',
+                        'background_md' => $widget['youtube_video_background_md'] ?? '',
+                        'background_sm' => $widget['youtube_video_background_sm'] ?? '',
                     ];
                     break;
             }
@@ -84,11 +95,26 @@ get_header(); ?>
         ]);
     }
 
+
+
+
+
     get_template_part('template-parts/sedes');
+
+
+
+
+
 
     if (!empty($banner_two_options)) {
         get_template_part('template-parts/responsive-banner', null, [
             'options' => $banner_two_options
+        ]);
+    }
+
+    if (!empty($youtube_video_options['enable'])) {
+        get_template_part('template-parts/youtube-video', null, [
+            'options' => $youtube_video_options
         ]);
     }
 

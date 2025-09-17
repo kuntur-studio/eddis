@@ -605,6 +605,16 @@ function edd_register_theme_options() {
 								->set_option_value('yes')
 								->set_default_value(true),
 							Field::make('text', 'youtube_video_id', 'ID del video'),
+							Field::make('textarea', 'youtube_video_content', 'Contenido'),
+							Field::make('image', 'youtube_video_background_lg', 'Fondo LG (≥1200px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 1920px de ancho'),
+							Field::make('image', 'youtube_video_background_md', 'Fondo MD (≥768px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 1200px de ancho'),
+							Field::make('image', 'youtube_video_background_sm', 'Fondo SM (<768px)')
+								->set_value_type('url')
+								->help_text('Tamaño recomendado: 768px de ancho'),
 						])
 						->set_default_value([
 							['_type' => 'slider_hero'],
