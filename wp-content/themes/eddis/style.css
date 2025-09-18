@@ -919,6 +919,9 @@ p {
 }
 
 /* ===== HOME PAGE ===== */
+
+/* Carrusel de productos destacados */
+
 /*
 * Las flechas del carrusel aparecen a los costados (es una customización) y el conjunto
 * debe ocupar el 100% del ancho del contenedor para que se alinee con el resto del contenido.
@@ -997,4 +1000,59 @@ p {
 
 #formHomeContainer {
     margin-top: 70px;
+}
+
+
+/* Widget de video de youtube */
+
+/* Estilos para el contenedor de recorte del fondo */
+.youtube-banner-crop-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Estilos para el contenedor de la sección */
+.youtube-video-section {
+    overflow: hidden;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Asegura que la imagen de fondo no afecte el flujo del documento */
+.youtube-video-section .youtube-video-background-img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Estilos para superponer el contenido sobre el fondo */
+.youtube-video-content-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Media Queries para el ancho de la imagen */
+@media (min-width: 992px) {
+    .youtube-video-background-img {
+    width: 1920px !important; /* O el ancho real de tu imagen LG */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .youtube-video-background-img {
+    width: 1200px !important; /* O el ancho real de tu imagen MD */
+    }
+}
+
+@media (max-width: 767.98px) {
+    .youtube-video-background-img {
+    width: 100% !important;
+    left: 0;
+    transform: none;
+    }
 }
