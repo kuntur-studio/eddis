@@ -34,7 +34,7 @@ if (!empty($id)) {
 
     <div class="container youtube-video-content-container">
         <div class="row">
-            <div class="col-12 col-lg-6 video-column">
+            <div class="col-12 col-lg-7 video-column">
                 <div class="youtube-video-container">
                     <iframe
                         data-src="https://www.youtube.com/embed/<?php echo esc_attr($id); ?>?autoplay=1&amp;mute=1&amp;enablejsapi=1"
@@ -48,7 +48,7 @@ if (!empty($id)) {
                     </iframe>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 content-column">
+            <div class="col-12 col-lg-5 content-column">
                 <?php echo $content; ?>
             </div>
         </div>
