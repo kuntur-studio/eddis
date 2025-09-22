@@ -49,7 +49,7 @@ if (!empty($id)) {
                 </div>
             </div>
             <div class="col-12 col-lg-6 content-column">
-                <?php echo wp_kses_post($content ?? ''); ?>
+                <?php echo $content; ?>
             </div>
         </div>
     </div>
