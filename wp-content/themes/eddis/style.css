@@ -104,6 +104,12 @@ p {
     background-color: var(--primary-color);
 }
 
+.global-title {
+	font-family: Stolzl-Light,sans-serif;
+	font-size: 2em;
+	color: var(--secondary-color);
+}
+
 /******* Estilos de encabezado ********/
 /* ===== ESTILOS GENERALES DEL HEADER ===== */
 .bar-menu-utc {
