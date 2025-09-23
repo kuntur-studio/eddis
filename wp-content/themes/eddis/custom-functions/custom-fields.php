@@ -615,12 +615,29 @@ function edd_register_theme_options() {
 								->set_value_type('url')
 								->help_text('Tamaño recomendado: 768px de ancho'),
 						])
+						->add_fields('institutions_carousel', 'Carrusel instituciones', [
+							Field::make('checkbox', 'enable_institutions_carousel', 'Activar')
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('text', 'institutions_carousel_title', 'Título')
+								->set_default_value('<strong>Instituciones</strong> que nos <strong>AVALAN</strong>')
+								->set_help_text('Se pueden usar etiquetas HTML como &lt;strong&gt;.'),
+							Field::make('complex', 'institutions_carousel_logos', 'Logos')
+								->add_fields([
+									Field::make('image', 'logo_img', 'Logo')
+										->set_value_type('url')
+										->help_text('Tamaño recomendado: 295px x 152px'),									
+								])
+								->set_collapsed(true)
+								->set_header_template('Logo <%- $_index + 1 %>')
+						])
 						->set_default_value([
 							['_type' => 'slider_hero'],
 							['_type' => 'highlighted_carousel'],
 							['_type' => 'banner_one'],
 							['_type' => 'banner_two'],
 							['_type' => 'youtube_video'],
+							['_type' => 'institutions_carousel'],
 						]),
 				]) // Página de inicio
 				->set_default_value([
