@@ -1,29 +1,35 @@
+<?php
+/**
+ * Carrusel de logos de instituciones
+ */
+
+if (empty($args['options']) || !is_array($args['options'])) {
+    return;
+}
+
+extract($args['options']);
+
+// El array de logos puede estar vacío, así que lo comprobamos
+if (empty($logos) || !is_array($logos)) {
+    return;
+}
+?>
 <section class="mb-5" id="logosCarousel">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="global-title text-center"><?php the_sub_field('titulo');?></h2>
-                <h5 class="global-subtitle text-center"><?php the_sub_field('descripcion');?></h5>
-                <?php if( have_rows('logos') ):?>
-                    <div class="owl-carousel owl-theme" id="logosCarouselSlider">
-                        <?php while ( have_rows('logos') ) : the_row();?>
+                <h2 class="global-title text-center"><?php echo wp_kses_post($title); ?></h2>
+                <?php if (!empty($subtitle)) : ?>
+                    <h5 class="global-subtitle text-center"><?php echo wp_kses_post($subtitle); ?></h5>
+                <?php endif; ?>
+                
+                <div class="owl-carousel owl-theme" id="logosCarouselSlider">
+                    <?php foreach ($logos as $logo) : ?>
                         <div class="item">
-                            <?php if(get_sub_field('link_boton')):?>
-                            <a target="_blank" href="<?php the_sub_field('link_boton');?>">
-                                <img class="img-fluid" src="<?php the_sub_field('logo');?>" alt="">
-                            </a>
-                            <?php else : ?>
-                                <img class="img-fluid" src="<?php the_sub_field('logo');?>" alt="">
-                            <?php endif;?>
+                            <img class="img-fluid" src="<?php echo esc_url($logo['logo']); ?>" alt="">
                         </div>
-                        <?php endwhile;?>
-                    </div>
-                <?php endif;?>
-                <?php if(get_sub_field('link_boton')):?>
-                <div class="text-center mt-3">
-                    <a class="btn btn-primary" href="<?php the_sub_field('link_boton')?>"><?php the_sub_field('texto_boton')?></a>
+                    <?php endforeach; ?>
                 </div>
-                <?php endif;?>
             </div>
         </div>
     </div>

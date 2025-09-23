@@ -11,6 +11,7 @@ $featured_carousel_options = [];
 $banner_one_options        = [];
 $banner_two_options        = [];
 $youtube_video_options     = [];
+$institutions_carousel_options = [];
 
 if ($front_page && !empty($front_page['home_widgets'])) {
     foreach ($front_page['home_widgets'] as $widget) {
@@ -49,6 +50,13 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                         'background_lg' => $widget['youtube_video_background_lg'] ?? '',
                         'background_md' => $widget['youtube_video_background_md'] ?? '',
                         'background_sm' => $widget['youtube_video_background_sm'] ?? '',
+                    ];
+                    break;
+                case 'institutions_carousel':
+                    $institutions_carousel_options = [
+                        'title'    => $widget['institutions_carousel_title'] ?? '',
+                        'subtitle' => $widget['institutions_carousel_subtitle'] ?? '',
+                        'logos'    => $widget['institutions_carousel_logos'] ?? [],
                     ];
                     break;
             }
@@ -121,6 +129,12 @@ get_header(); ?>
     if ($mode_banner['enable_mode_banner_widget']) {
         get_template_part('template-parts/mode-banner', null, [
             'options' => $mode_banner
+        ]);
+    }
+
+    if (!empty($institutions_carousel_options['logos'])) {
+        get_template_part('template-parts/logos_carousel', null, [
+            'options' => $institutions_carousel_options
         ]);
     }
 
