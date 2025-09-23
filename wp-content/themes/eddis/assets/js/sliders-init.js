@@ -32,11 +32,18 @@ jQuery(function($) {
     });
 
     initOwl('#logosCarouselSlider', {
-        items:3,
-        loop:true,
-        margin:10,
-        autoplay:true,
-        autoplayTimeout:1000,
-        autoplayHoverPause:true
+        items: 3,
+        loop: true,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        responsiveClass: true,
+        mouseDrag: true,
+        responsive: {
+            0: {items:2, nav:false},
+            768: {items:3, nav:false},
+            1200: {items:4, nav:true, loop:false}
+        }
     });
 });
