@@ -988,7 +988,8 @@ p {
     padding-right: 15px;
 }
 
-#featuredCarouselSlider .owl-nav {
+#featuredCarouselSlider .owl-nav,
+#logosCarouselSlider .owl-nav {
     position: absolute;
     top: 50%;
     left: -8%;
@@ -999,7 +1000,8 @@ p {
     padding: 0 1rem;
 }
 
-#featuredCarousel .owl-dots {
+#featuredCarousel .owl-dots,
+#logosCarouselSlider .owl-dots {
     bottom: -60px;
 }
 

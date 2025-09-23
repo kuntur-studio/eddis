@@ -18,12 +18,12 @@ if (empty($logos) || !is_array($logos)) {
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="global-title text-center"><?php echo wp_kses_post($title); ?></h2>
+                <h2 class="global-title text-center mb-5"><?php echo wp_kses_post($title); ?></h2>
                 <?php if (!empty($subtitle)) : ?>
                     <h5 class="global-subtitle text-center"><?php echo wp_kses_post($subtitle); ?></h5>
                 <?php endif; ?>
                 
-                <div class="owl-carousel owl-theme" id="logosCarouselSlider">
+                <div class="owl-carousel owl-theme mb-5" id="logosCarouselSlider">
                     <?php foreach ($logos as $logo) : ?>
                         <div class="item">
                             <img class="img-fluid" src="<?php echo esc_url($logo['logo_img']); ?>" alt="">
