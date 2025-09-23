@@ -980,7 +980,8 @@ p {
     padding-bottom: 5px;
 }
 
-#featuredCarouselSlider .owl-nav .owl-prev, #featuredCarouselSlider .owl-nav .owl-next {
+#featuredCarouselSlider .owl-nav .owl-prev, #featuredCarouselSlider .owl-nav .owl-next,
+#logosCarouselSlider .owl-nav .owl-prev, #logosCarouselSlider .owl-nav .owl-next {
     background-color: #f58634!important;
 }
 
