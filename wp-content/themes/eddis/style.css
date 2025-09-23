@@ -57,6 +57,7 @@ Version: 2.0
     --orange-color: #f58634;
     --orange-hover-color: #ff6600;
     --gray-color: #888482;
+    --gray-global-text-color: #666;
     --dark-gray-color: #4c4c4c;
     --blue-color: #324192;
 }
@@ -108,6 +109,27 @@ p {
 	font-family: Stolzl-Light,sans-serif;
 	font-size: 2em;
 	color: var(--secondary-color);
+}
+
+.global-title strong {
+	font-family: Stolzl-Medium,sans-serif;
+}
+
+.global-subtitle {
+	font-family: Stolzl-regular,sans-serif;
+	font-size: .9em;
+	color: var(--secondary-color);
+}
+
+.global-subtitle strong {
+	font-family: Stolzl-Medium,sans-serif;
+}
+
+.global-text {
+	font-family: Stolzl-regular,sans-serif;
+	font-size: 16px;
+	line-height: 22px;
+	color: var(--gray-global-text-color);
 }
 
 /******* Estilos de encabezado ********/
