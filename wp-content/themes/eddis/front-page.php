@@ -6,11 +6,11 @@
 $front_page                = edd_widget_options('front_page');
 $mode_banner               = edd_widget_options('mode_banner');
 
-$slider_hero_slides        = [];
-$featured_carousel_options = [];
-$banner_one_options        = [];
-$banner_two_options        = [];
-$youtube_video_options     = [];
+$slider_hero_options        = [];
+$featured_carousel_options  = [];
+$banner_one_options         = [];
+$banner_two_options         = [];
+$youtube_video_options      = [];
 $institutions_carousel_options = [];
 
 if ($front_page && !empty($front_page['home_widgets'])) {
@@ -19,10 +19,16 @@ if ($front_page && !empty($front_page['home_widgets'])) {
         if (!empty($widget['enable_' . $widget['_type']])) {
             switch ($widget['_type']) {
                 case 'slider_hero':
-                    $slider_hero_slides = $widget['slider_hero_slides'] ?? [];
+                    $slider_hero_options = [
+                        'enabled' => $widget['enable_slider_hero'] ?? false,
+                        'slides' => $widget['slider_hero_slides'] ?? []
+                    ];
+                    
+                    
                     break;
                 case 'featured_carousel':
                     $featured_carousel_options = [
+                        'enabled'      => $widget['enable_featured_carousel'] ?? false,
                         'title'       => $widget['featured_carousel_title'] ?? '',
                         'subtitle'    => $widget['featured_carousel_subtitle'] ?? '',
                         'button_text' => $widget['featured_carousel_button_text'] ?? '',
@@ -35,6 +41,7 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                     $type = $widget['_type'];
                     // Asigna a la variable dinámica correcta ($banner_one_options o $banner_two_options)
                     ${$type . '_options'} = [
+                        'enabled'     => $widget['enable_' . $type],
                         'banner_lg'   => $widget[$type . '_lg'],
                         'banner_md'   => $widget[$type . '_md'],
                         'banner_sm'   => $widget[$type . '_sm'],
@@ -44,9 +51,9 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                     break;
                 case 'youtube_video':
                     $youtube_video_options = [
-                        'enable'      => $widget['enable_youtube_video'] ?? false,
-                        'id'          => $widget['youtube_video_id'] ?? '',
-                        'content'     => $widget['youtube_video_content'] ?? '',
+                        'enabled'        => $widget['enable_youtube_video'] ?? false,
+                        'id'            => $widget['youtube_video_id'] ?? '',
+                        'content'       => $widget['youtube_video_content'] ?? '',
                         'background_lg' => $widget['youtube_video_background_lg'] ?? '',
                         'background_md' => $widget['youtube_video_background_md'] ?? '',
                         'background_sm' => $widget['youtube_video_background_sm'] ?? '',
@@ -54,10 +61,11 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                     break;
                 case 'institutions_carousel':
                     $institutions_carousel_options = [
+                        'enabled'   => $widget['enable_institutions_carousel'] ?? false,
                         'title'    => $widget['institutions_carousel_title'] ?? '',
                         'subtitle' => $widget['institutions_carousel_subtitle'] ?? '',
                         'logos'    => $widget['institutions_carousel_logos'] ?? [],
-                    ];print_r($institutions_carousel_options);
+                    ];
                     break;
             }
         }
@@ -71,13 +79,13 @@ $form      = edd_get_eddis_form_data($form_name);
 get_header(); ?>
 <main>
     <?php
-    if (!empty($slider_hero_slides)) {
+    if (!empty($slider_hero_options) && $slider_hero_options['enabled']) {
         get_template_part('template-parts/slider-hero', null, [
-            'slides' => $slider_hero_slides
+            'options' => $slider_hero_options
         ]);
     }
 
-    if (!empty($featured_carousel_options)) {
+    if (!empty($featured_carousel_options) && $featured_carousel_options['enabled']) {
         get_template_part('template-parts/featured-carousel', null, [
             'options' => $featured_carousel_options
         ]);
@@ -96,7 +104,7 @@ get_header(); ?>
 <?php
     }
 
-    if (!empty($banner_one_options)) {
+    if (!empty($banner_one_options) && $banner_one_options['enabled']) {
         get_template_part('template-parts/responsive-banner', null, [
             'options' => $banner_one_options,
             'classes' => ['py-5']
@@ -114,13 +122,13 @@ get_header(); ?>
 
 
 
-    if (!empty($banner_two_options)) {
+    if (!empty($banner_two_options) && $banner_two_options['enabled']) {
         get_template_part('template-parts/responsive-banner', null, [
             'options' => $banner_two_options
         ]);
     }
 
-    if (!empty($youtube_video_options['enable'])) {
+    if (!empty($youtube_video_options) && $youtube_video_options['enabled']) {
         get_template_part('template-parts/youtube-video', null, [
             'options' => $youtube_video_options
         ]);
@@ -132,7 +140,7 @@ get_header(); ?>
         ]);
     }
 
-    if (!empty($institutions_carousel_options['logos'])) {
+    if (!empty($institutions_carousel_options) && $institutions_carousel_options['enabled']) {
         get_template_part('template-parts/logos_carousel', null, [
             'options' => $institutions_carousel_options
         ]);

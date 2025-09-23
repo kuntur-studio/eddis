@@ -2,7 +2,7 @@
 /**
  * Carrusel de logos de instituciones
  */
-
+echo 'I`m here!';
 if (empty($args['options']) || !is_array($args['options'])) {
     return;
 }

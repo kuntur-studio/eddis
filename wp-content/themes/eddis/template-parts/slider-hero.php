@@ -1,10 +1,12 @@
 <?php
-if (empty($args['slides']) || !is_array($args['slides'])) {
+if (empty($args['options']) || !is_array($args['options'])) {
     return;
 }
+
+extract($args['options']);
 ?>
 <section class="owl-carousel owl-theme" id="sliderHero">
-    <?php foreach ($args['slides'] as $slide): ?>
+    <?php foreach ($slides as $slide): ?>
         <div class="item">
             <?php if (!empty($slide['slide_enable_link']) && !empty($slide['slide_link'])): ?>
                 <a href="<?php echo esc_url($slide['slide_link']); ?>">
