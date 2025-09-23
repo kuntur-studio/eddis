@@ -1039,13 +1039,13 @@ p {
 /* Media Queries para el ancho de la imagen */
 @media (min-width: 992px) {
     .youtube-video-background-img {
-        width: 1920px !important; /* O el ancho real de tu imagen LG */
+        width: 1920px !important; /* O el ancho real de la imagen LG */
     }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     .youtube-video-background-img {
-        width: 1200px !important; /* O el ancho real de tu imagen MD */
+        width: 1200px !important; /* O el ancho real de la imagen MD */
     }
 }
 
@@ -1058,19 +1058,13 @@ p {
 }
 
 .youtube-video-container {
-    display: flex;
-    justify-content: right;
+    height: 100%;
     position: relative;
-    /* La solución de padding-bottom es la utilizada actualmente para mantener la relación de aspecto en un video de youtube */
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
+    padding-top: 40px;
+    overflow: hidden
 }
 
 .youtube-video-container iframe {
-    position: absolute;
-    top: 40px;
-    left: 0;
     width: 75%;
-    height: 100%;
+    height: calc(100% - 40px);
 }

@@ -33,9 +33,9 @@ if (!empty($id)) {
     </div>
 
     <div class="container youtube-video-content-container">
-        <div class="row">
+        <div class="row align-items-stretch">
             <div class="col-12 col-lg-7 video-column">
-                <div class="youtube-video-container">
+                <div class="youtube-video-container d-flex justify-content-end">
                     <iframe
                         data-src="https://www.youtube.com/embed/<?php echo esc_attr($id); ?>?autoplay=1&amp;mute=1&amp;enablejsapi=1"
                         title="YouTube video player"
