@@ -26,7 +26,7 @@ if (empty($logos) || !is_array($logos)) {
                 <div class="owl-carousel owl-theme" id="logosCarouselSlider">
                     <?php foreach ($logos as $logo) : ?>
                         <div class="item">
-                            <img class="img-fluid" src="<?php echo esc_url($logo['logo']); ?>" alt="">
+                            <img class="img-fluid" src="<?php echo esc_url($logo['logo_img']); ?>" alt="">
                         </div>
                     <?php endforeach; ?>
                 </div>
