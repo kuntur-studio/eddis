@@ -141,7 +141,7 @@ get_header(); ?>
     }
 
     if (!empty($institutions_carousel_options) && $institutions_carousel_options['enabled']) {
-        get_template_part('template-parts/logos_carousel', null, [
+        get_template_part('template-parts/logos-carousel', null, [
             'options' => $institutions_carousel_options
         ]);
     }
