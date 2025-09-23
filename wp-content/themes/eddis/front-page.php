@@ -57,7 +57,7 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                         'title'    => $widget['institutions_carousel_title'] ?? '',
                         'subtitle' => $widget['institutions_carousel_subtitle'] ?? '',
                         'logos'    => $widget['institutions_carousel_logos'] ?? [],
-                    ];
+                    ];print_r($institutions_carousel_options);
                     break;
             }
         }
