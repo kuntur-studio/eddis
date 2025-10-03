@@ -46,4 +46,18 @@ jQuery(function($) {
             1200: {items:4, nav:true, loop:false}
         }
     });
+
+    initOwl('.full-width-carousel', {
+        ...baseOptions,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        responsiveClass: true,
+        mouseDrag: true,
+        responsive: {
+            0: {items: 1, nav: false, dots: false},
+            768: {items: 1, nav: false, dots: false},
+            1200: {items: 1, nav: false, dots: false}        
+        }
+    });
 });
