@@ -12,6 +12,7 @@ $banner_one_options         = [];
 $banner_two_options         = [];
 $youtube_video_options      = [];
 $institutions_carousel_options = [];
+$testimonials_carousel_options = [];
 
 if ($front_page && !empty($front_page['home_widgets'])) {
     foreach ($front_page['home_widgets'] as $widget) {
@@ -66,10 +67,8 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                     ];
                     break;
                 case 'testimonials_carousel':
-                    // 1. Replicar la estructura de opciones
                     $testimonials_carousel_options = [
                         'enabled' => $widget['enable_testimonials_carousel'] ?? false,
-                        // El nombre del campo complex es 'testimonials_carousel_slides'
                         'slides' => $widget['testimonials_carousel_slides'] ?? []
                     ];
                     break;
@@ -153,7 +152,7 @@ get_header(); ?>
     }
 
      if (!empty($testimonials_carousel_options) && $testimonials_carousel_options['enabled']) {
-        get_template_part('template-parts/full_width_carousel', null, [
+        get_template_part('template-parts/full-width-carousel', null, [
             'options' => $testimonials_carousel_options
         ]);
     }
