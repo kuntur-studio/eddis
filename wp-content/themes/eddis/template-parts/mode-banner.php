@@ -1,6 +1,11 @@
 <?php
 /**
- * Banner de modalidad
+ * Template Part: mode-banner.php
+ *
+ * Banner de modalidad.
+ * Utiliza <picture> para imágenes responsivas.
+ *
+ * @param array $args Los argumentos pasados a get_template_part.
  */
 
 if (empty($args['options']) || !is_array($args['options'])) {

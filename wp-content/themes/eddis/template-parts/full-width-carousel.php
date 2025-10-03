@@ -1,9 +1,9 @@
 <?php
 /**
- * Template Part: slider-hero.php
+ * Template Part: full-width-carousel.php
  *
- * Slider Hero.
- * Utiliza Owl Carousel y <picture> para imágenes de fondo responsivas.
+ * Carrusel de Ancho Completo.
+ * Utiliza Owl Carousel y <picture> para imágenes responsivas.
  *
  * @param array $args Los argumentos pasados a get_template_part.
  */
@@ -18,7 +18,7 @@ if (empty($slides) || !is_array($slides)) {
     return;
 }
 ?>
-<section class="owl-carousel owl-theme" id="sliderHero">
+<section class="owl-carousel owl-theme full-width-carousel">
     <?php foreach ($slides as $slide): ?>
         <div class="item">
             <?php if (!empty($slide['slide_enable_link']) && !empty($slide['slide_link'])): ?>

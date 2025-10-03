@@ -1,6 +1,13 @@
 <?php
 /**
- * Bloque del widget de YouTube
+ * Template Part: youtube-video.php
+ *
+ * YouTube Video.
+ * Utiliza <picture> para imágenes de fondo responsivas, iframe para incluir el video y 
+ * clases de bootstrap para la visualización en columnas, posicionamiento y estilos
+ * en general.
+ *
+ * @param array $args Los argumentos pasados a get_template_part.
  */
 
 // Verifica si los datos de configuración están presentes

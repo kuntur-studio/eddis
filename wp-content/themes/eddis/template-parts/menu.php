@@ -1,4 +1,10 @@
-<?php 
+<?php
+/**
+ * Template Part: menu.php
+ *
+ * Menú principal del sitio.
+ */
+
 $menu_items = carbon_get_theme_option('menu_items');
 if (!empty($menu_items)): ?>
     <?php foreach ($menu_items as $item): ?>

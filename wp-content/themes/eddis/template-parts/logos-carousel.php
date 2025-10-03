@@ -1,6 +1,11 @@
 <?php
 /**
- * Carrusel de logos de instituciones
+ * Template Part: logos-carousel.php
+ *
+ * Carrusel de logos de instituciones.
+ * Utiliza Owl Carousel.
+ *
+ * @param array $args Los argumentos pasados a get_template_part.
  */
 
 if (empty($args['options']) || !is_array($args['options'])) {
@@ -9,7 +14,6 @@ if (empty($args['options']) || !is_array($args['options'])) {
 
 extract($args['options']);
 
-// El array de logos puede estar vacío, así que lo comprobamos
 if (empty($logos) || !is_array($logos)) {
     return;
 }

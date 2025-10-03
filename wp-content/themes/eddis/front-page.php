@@ -22,9 +22,7 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                     $slider_hero_options = [
                         'enabled' => $widget['enable_slider_hero'] ?? false,
                         'slides' => $widget['slider_hero_slides'] ?? []
-                    ];
-                    
-                    
+                    ];                    
                     break;
                 case 'featured_carousel':
                     $featured_carousel_options = [
@@ -65,6 +63,14 @@ if ($front_page && !empty($front_page['home_widgets'])) {
                         'title'    => $widget['institutions_carousel_title'] ?? '',
                         'subtitle' => $widget['institutions_carousel_subtitle'] ?? '',
                         'logos'    => $widget['institutions_carousel_logos'] ?? [],
+                    ];
+                    break;
+                case 'testimonials_carousel':
+                    // 1. Replicar la estructura de opciones
+                    $testimonials_carousel_options = [
+                        'enabled' => $widget['enable_testimonials_carousel'] ?? false,
+                        // El nombre del campo complex es 'testimonials_carousel_slides'
+                        'slides' => $widget['testimonials_carousel_slides'] ?? []
                     ];
                     break;
             }
@@ -143,6 +149,12 @@ get_header(); ?>
     if ($mode_banner['enable_mode_banner_widget']) {
         get_template_part('template-parts/mode-banner', null, [
             'options' => $mode_banner
+        ]);
+    }
+
+     if (!empty($testimonials_carousel_options) && $testimonials_carousel_options['enabled']) {
+        get_template_part('template-parts/full_width_carousel', null, [
+            'options' => $testimonials_carousel_options
         ]);
     }
 ?>

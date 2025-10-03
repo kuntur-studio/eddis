@@ -631,6 +631,25 @@ function edd_register_theme_options() {
 								->set_collapsed(true)
 								->set_header_template('Logo <%- $_index + 1 %>')
 						])
+						->add_fields('testimonials_carousel', 'Carrusel testimonios', [
+							Field::make('checkbox', 'enable_testimonials_carousel', 'Activar')
+								->set_option_value('yes')
+								->set_default_value(true),
+							Field::make('complex', 'testimonials_carousel_slides', 'Slides')
+								->add_fields([
+									Field::make('image', 'slide_lg', 'Slide LG (≥1200px)')
+										->set_value_type('url')
+										->help_text('Tamaño recomendado: 1920px de ancho'),
+									Field::make('image', 'slide_md', 'Slide MD (≥768px)')
+										->set_value_type('url')
+										->help_text('Tamaño recomendado: 1200px de ancho'),
+									Field::make('image', 'slide_sm', 'Slide SM (<768px)')
+										->set_value_type('url')
+										->help_text('Tamaño recomendado: 768px de ancho'),									
+								])
+								->set_collapsed(true)
+								->set_header_template('Slide <%- $_index + 1 %>')
+						])
 						->set_default_value([
 							['_type' => 'slider_hero'],
 							['_type' => 'highlighted_carousel'],
@@ -638,6 +657,7 @@ function edd_register_theme_options() {
 							['_type' => 'banner_two'],
 							['_type' => 'youtube_video'],
 							['_type' => 'institutions_carousel'],
+							['_type' => 'testimonials_carousel'],
 						]),
 				]) // Página de inicio
 				->set_default_value([

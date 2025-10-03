@@ -1,6 +1,12 @@
 <?php
 /**
- * Carrusel de productos "Cursos Destacados"
+ * Template Part: featured-carousel.php
+ *
+ * Carrusel de productos
+ * Originalmente creado para mostrar los productos de la categoría Cursos destacados, 
+ * sin embargo la categoría a mostrar es un parámetro.
+ *
+ * @param array $args Los argumentos pasados a get_template_part.
  */
 
 if (empty($args['options']) || !is_array($args['options'])) {

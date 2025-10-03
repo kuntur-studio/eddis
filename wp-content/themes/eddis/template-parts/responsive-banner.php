@@ -1,5 +1,7 @@
 <?php
 /**
+ * Template Part: responsive-banner.php
+ * 
  * Banner responsivo con imágenes en tres dimensiones.
  * Se puede usar con o sin un enlace.
  */
