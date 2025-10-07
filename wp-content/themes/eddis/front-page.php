@@ -3,14 +3,14 @@
  * Obtengo los datos de todos los widgets usados en la página salvo el formulario y
  * el widget de sedes que utilizan otros mecanismos
  */
-$front_page                = edd_widget_options('front_page');
-$mode_banner               = edd_widget_options('mode_banner');
+$front_page                    = edd_widget_options('front_page');
+$mode_banner                   = edd_widget_options('mode_banner');
 
-$slider_hero_options        = [];
-$featured_carousel_options  = [];
-$banner_one_options         = [];
-$banner_two_options         = [];
-$youtube_video_options      = [];
+$slider_hero_options           = [];
+$featured_carousel_options     = [];
+$banner_one_options            = [];
+$banner_two_options            = [];
+$youtube_video_options         = [];
 $institutions_carousel_options = [];
 $testimonials_carousel_options = [];
 
