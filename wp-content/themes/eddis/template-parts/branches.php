@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Part: sedes.php
+ * Template Part: branches.php
  *
  * Estructura raíz para inclusión del widget de sedes
  */

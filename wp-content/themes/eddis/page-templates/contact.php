@@ -80,7 +80,7 @@ get_header();
         </div>
     </section>
 
-    <?php get_template_part('template-parts/sedes', null, [
+    <?php get_template_part('template-parts/branches', null, [
             'classes' => ['bottom_spacer_120']
           ]); ?>
 
