@@ -32,7 +32,7 @@ get_header();
         </div>
     </section>
 
-    <?php if (!empty($form['active']) && !empty($form_code)): ?>
+    <?php if (!empty($form['active']) && !empty($form['code'])): ?>
     <section class="contacto">
         <div class="container">
             <div class="row">
