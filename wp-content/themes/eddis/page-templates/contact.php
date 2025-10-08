@@ -39,7 +39,7 @@ get_header();
                 <div class="col-xl-8 col-lg-8 col-sm-6 col-md-6 col-xs-12 col-12">
                     <h2 class="global-title"><strong>Formulario</strong></h2>
                     <p class="global-subtitle">Completá el siguiente formulario para obtener más información.</p>
-					<?php echo $form_code; // Renderiza el código del formulario externo ?>
+					<?php echo $form['code']; // Renderiza el código del formulario externo ?>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-sm-6 col-md-6 col-xs-12 col-12">
                     <h2 class="global-title mb-5"><strong>Contacto</strong></h2>
