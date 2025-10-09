@@ -9,7 +9,7 @@ $form      = edd_get_eddis_form_data($form_name);
 
 get_header();
 ?>
-    <section class="portada" style="background-image: url(<?php bloginfo('template_directory');?>/assets/images/bg-portada-contacto.jpg)">
+    <section class="portada" style="background-image: url(<?php bloginfo('template_directory');?>/assets/img/bg-portada-contacto.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -63,7 +63,7 @@ get_header();
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="banner-content" style="background-image: url(<?php bloginfo('template_directory');?>/assets/images/bg-banner.jpg)">
+                    <div class="banner-content" style="background-image: url(<?php bloginfo('template_directory');?>/assets/img/bg-banner.jpg)">
                         <div class="row">
                             <div class="col-5">
                                 <h2 class="global-title text-white"><strong>Seguinos!</strong></h2>
