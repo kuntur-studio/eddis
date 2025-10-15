@@ -1086,6 +1086,18 @@ p {
     }
 }
 
+.youtube-video-container {
+    height: 100%;
+    position: relative;
+    padding-top: 40px;
+    overflow: hidden
+}
+
+.youtube-video-container iframe {
+    width: 75%;
+    height: calc(100% - 40px);
+}
+
 @media (max-width: 767.98px) {
     .youtube-video-background-img {
         width: 100% !important;
@@ -1102,18 +1114,6 @@ p {
         height: 300px;
         margin-top: 110px;
     }
-}
-
-.youtube-video-container {
-    height: 100%;
-    position: relative;
-    padding-top: 40px;
-    overflow: hidden
-}
-
-.youtube-video-container iframe {
-    width: 75%;
-    height: calc(100% - 40px);
 }
 
 /* ===== CONTACT PAGE ===== */
