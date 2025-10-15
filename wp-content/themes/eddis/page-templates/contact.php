@@ -100,25 +100,5 @@ get_header();
             'classes' => ['bottom_spacer_120']
           ]); ?>
 
-    <section class="banner">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="banner-content" style="background-image: url(<?php bloginfo('template_directory');?>/assets/images/bg-banner.jpg)">
-                        <div class="row">
-                            <div class="col-5">
-                                <h2 class="global-title text-white"><strong>Seguinos!</strong></h2>
-                                <?php /*if( have_rows('redes_sociales', 'option') ):?>
-                                    <?php while ( have_rows('redes_sociales', 'option') ) : the_row();?>
-                                        <a class="social-icon transition-280"  target="_blank" href="<?php the_sub_field('link', 'option');?>" class="m-1"><?php the_sub_field('icon', 'option');?></a>
-                                    <?php endwhile;?>
-                                <?php endif;*/?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 <?php get_footer(); ?>
 
