@@ -52,3 +52,18 @@ wp-content/themes/eddis/custom-functions/assets.php
 ```
 
 Este archivo también se encarga de incrustar un script adicional en la página que contiene un objeto JSON con los datos de sedes requeridos por el widget, utilizando `wp_localize_script`.
+
+### Actualización del Widget de Sedes
+
+Para facilitar la actualización del widget, se creó un script en el directorio /home/eddisar/ llamado pull-git-and-build-branches-widget.sh y el comando:
+
+```bash
+updbranches
+```
+
+definido como alias en el .bashrc del usuario root que permite ejecutar el script fácilmente desde cualquier ubicación.
+Al ejecutar el comando y correr el script, se establece el directorio actual al directorio raíz del proyecto y luego ejecuta el comando git pull, que obtiene todos lis cambios desde el repositorio remoto en github (requiere el usuario/email y token de autenticación).
+
+**Cuidado**, al obtener los cambios desde el repositorio remoto se obtienen  para todo el proyecto, no solo los que aplican al widget.
+
+Finalmente, se posiciona en el directorio contenedor de los archivos del widget y ejecuta el script build.sh para reconstruirlo incorporando los últimos cambios.

@@ -1099,3 +1099,46 @@ p {
     width: 75%;
     height: calc(100% - 40px);
 }
+
+/* ===== CONTACT PAGE ===== */
+
+.page-template-page-templatescontact-php .portada {
+	padding-top: 60px;
+	padding-bottom: 60px;
+	margin-bottom: 60px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+.page-template-page-templatescontact-php .banner-content {
+	padding: 60px;
+	margin-top: 60px;
+	margin-bottom: 60px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-o-border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: center right;
+	background-size: cover;
+}
+
+@media screen and (max-width:992px) {
+	.page-template-page-templatescontact-php .banner-content {
+		padding: 60px 15px;
+		margin-top: 60px;
+		margin-bottom: 60px;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-o-border-radius: 10px;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+
+	.page-template-page-templatescontact-php .banner-content .btn {
+		display: block;
+	}
+}
