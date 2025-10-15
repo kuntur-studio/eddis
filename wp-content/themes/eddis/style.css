@@ -1108,7 +1108,8 @@ p {
 
 /* ===== CONTACT PAGE ===== */
 
-.page-template-page-templatescontact-php .portada {
+.page-template-contact .portada,
+.page-template-branches  .portada {
 	padding-top: 60px;
 	padding-bottom: 60px;
 	margin-bottom: 60px;
