@@ -275,9 +275,16 @@ p {
 }
 
 .cart-icon {
-	width: 65%;
-	vertical-align: sub;
-	margin-top: 19px;
+    width: 6%;
+    margin-top: 1rem;
+    vertical-align: sub;
+}
+
+@media (min-width: 992px) {
+    .cart-icon {
+        width: 65%;
+        margin-top: 1.2rem;
+    }   
 }
 
 /* ===== RESPONSIVE ===== */
@@ -458,11 +465,6 @@ p {
     transition: color 0.28s ease;
 }
 
-.cart-icon {
-    width: 65%;
-    margin-top: 1.2rem;
-}
-
 .button-primary-white {
     display: inline-block;
     padding: 0.9em 2.5em;
@@ -493,6 +495,10 @@ p {
     .navbarlogo {
         height: auto;
     }
+
+    .navbarlogo img {
+		padding: 15px 0;
+	}
     
     .navbarprincipal {
         line-height: 3.125rem;
