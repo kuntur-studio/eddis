@@ -81,7 +81,7 @@ get_header();
                                 <?php 
                                 // REDES SOCIALES
                                 $social_networks = carbon_get_theme_option('social_networks');
-                                if(have_rows('redes_sociales', 'option')):?>
+                                if (!empty($social_networks)) : ?>
                                     <?php foreach ($social_networks as $network) : ?>
                                         <a class="social-icon transition-280"  target="_blank" href="<?php echo esc_url($network['link']); ?>" class="m-1">
                                             <i class="<?php echo esc_attr($network['icon']); ?>"></i>

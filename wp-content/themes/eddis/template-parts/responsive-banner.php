@@ -45,9 +45,7 @@ if ( ! empty( $banner_lg ) || ! empty( $banner_md ) || ! empty( $banner_sm ) ) {
                 <source srcset="<?php echo esc_url($banner_sm); ?>" media="(max-width: 767px)">
             <?php endif; ?>
             <?php if ( ! empty( $fallback_image ) ) : ?>
-                <img src="<?php echo esc_url($fallback_image); ?>"
-                        alt="<?php echo esc_attr( $term->name ); ?> Banner"
-                        class="banner-full-width-image">
+                <img src="<?php echo esc_url($fallback_image); ?>" class="banner-full-width-image">
             <?php endif; ?>
         </picture>
     </div>
