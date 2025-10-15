@@ -61,7 +61,7 @@ get_header();
                     <?php endif;
 
                     if (!empty($email_active) && !empty($email_address)) : ?>
-                        <a target="_blank" href="mailto:<?php echo $email_address;?>" class="global-subtitle d-block mb-3"><i class="fas fa-envelope"></i> <?php echo $email_address;?></a>
+                        <a target="_blank" href="mailto:<?php echo $email_address;?>" class="global-subtitle d-block mb-3"><i class="far fa-envelope"></i> <?php echo $email_address;?></a>
                     <?php endif;?>
                 </div>
                 
