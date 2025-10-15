@@ -1092,6 +1092,16 @@ p {
         left: 0;
         transform: none;
     }
+
+    .youtube-video-content-container {
+        padding-right: 0;
+    }
+
+    .youtube-video-container iframe {
+        width: 100vw;
+        height: 300px;
+        margin-top: 110px;
+    }
 }
 
 .youtube-video-container {
