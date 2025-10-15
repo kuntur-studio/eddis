@@ -1124,6 +1124,10 @@ p {
 	background-size: cover;
 }
 
+.page-template-page-templatescontact-php .banner-content .social-icon {
+    font-size: 2.6rem;
+}
+
 @media screen and (max-width:992px) {
 	.page-template-page-templatescontact-php .banner-content {
 		padding: 60px 15px;
