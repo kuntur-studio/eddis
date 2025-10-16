@@ -24,7 +24,6 @@ sudo -u eddisar wp plugin update --all
 
 Este método asegura que las actualizaciones se apliquen de forma segura y controlada, evitando posibles problemas de permisos o corrupción de archivos.
 
-
 ## Desarrollo y Gestión del Widget de Sedes
 
 Para el desarrollo del widget de sedes se utilizó la librería `@wordpress/components`, que proporciona una personalización de React optimizada para el ecosistema de WordPress.
@@ -62,8 +61,8 @@ updbranches
 ```
 
 definido como alias en el .bashrc del usuario root que permite ejecutar el script fácilmente desde cualquier ubicación.
-Al ejecutar el comando y correr el script, se establece el directorio actual al directorio raíz del proyecto y luego ejecuta el comando git pull, que obtiene todos lis cambios desde el repositorio remoto en github (requiere el usuario/email y token de autenticación).
+Al ejecutar el comando y correr el script, se establece el directorio actual al directorio raíz del proyecto y luego ejecuta el comando git pull, que obtiene todos los cambios desde el repositorio remoto en github (requiere el usuario/email y token de autenticación).
 
-**Cuidado**, al obtener los cambios desde el repositorio remoto se obtienen  para todo el proyecto, no solo los que aplican al widget.
+**CUIDADO**, al obtener los cambios desde el repositorio remoto se obtienen para todo el proyecto, no solo los que aplican al widget.
 
 Finalmente, se posiciona en el directorio contenedor de los archivos del widget y ejecuta el script build.sh para reconstruirlo incorporando los últimos cambios.
