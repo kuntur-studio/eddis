@@ -35,23 +35,22 @@ if (!defined('ABSPATH')) {
 <div class='mp-checkout-container'>
     <?php if ($amount === null) : ?>
         <?php Template::render('public/checkouts/alert-message', ['message' => $message_error_amount]) ?>
-    <?php else : ?> 
+    <?php else : ?>
         <div class="mp-checkout-ticket-container">
             <div class="mp-checkout-ticket-content">
                 <?php if ($test_mode) : ?>
-                    <div class="mp-checkout-ticket-test-mode">
-                        <test-mode
-                            title="<?= esc_html($test_mode_title); ?>"
-                            description="<?= esc_html($test_mode_description); ?>"
-                            link-text="<?= esc_html($test_mode_link_text); ?>"
-                            link-src="<?= esc_html($test_mode_link_src); ?>">
-                        </test-mode>
-                    </div>
+                    <test-mode
+                        title="<?= esc_html($test_mode_title); ?>"
+                        description="<?= esc_html($test_mode_description); ?>"
+                        link-text="<?= esc_html($test_mode_link_text); ?>"
+                        link-src="<?= esc_html($test_mode_link_src); ?>">
+                    </test-mode>
                 <?php endif; ?>
 
                 <?php if ($site_id === 'MLU') : ?>
                     <div class="mp-checkout-ticket-input-document">
                         <input-document
+                            input-id="mp-ticket-gateway-document-input"
                             label-message="<?= esc_html($input_document_label); ?>"
                             helper-invalid="<?= esc_html($input_document_helper_invalid); ?>"
                             helper-empty="<?= esc_html($input_document_helper_empty); ?>"
@@ -110,7 +109,7 @@ if (!defined('ABSPATH')) {
                 </terms-and-conditions>
             </div>
         </div>
-    <?php endif; ?> 
+    <?php endif; ?>
 </div>
 
 <script type="text/javascript">
@@ -118,5 +117,16 @@ if (!defined('ABSPATH')) {
         jQuery("form.checkout").on("checkout_place_order_woo-mercado-pago-ticket", function() {
             window.mpEventHandler.setCardFormLoadInterval();
         });
+    }
+
+    if (typeof MPCheckoutFieldsDispatcher !== 'undefined') {
+        MPCheckoutFieldsDispatcher?.addEventListenerDispatcher(
+            document.getElementById("mp-ticket-gateway-document-input"),
+            "focusout",
+            "ticket_document_filled",
+            {
+                dispatchOnlyIf: (e) => e?.target?.value.length
+            }
+        );
     }
 </script>

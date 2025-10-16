@@ -22,6 +22,7 @@ use MercadoPago\Woocommerce\Helpers\Url;
 use MercadoPago\Woocommerce\WoocommerceMercadoPago;
 use WC_Order;
 use WC_Order_Item_Product;
+use MercadoPago\Woocommerce\Helpers\Form;
 
 abstract class AbstractTransaction
 {
@@ -196,10 +197,35 @@ abstract class AbstractTransaction
         $metadata->theme                         = new ThemeMetadata();
         $metadata->theme->theme_name             = $theme->get('Name');
         $metadata->theme->theme_version          = $theme->get('Version');
+        $metadata->flow_id = $this->getCheckoutSessionData()['_mp_flow_id'] ?? null;
 
         $this->extendInternalMetadata($metadata);
 
         return $metadata;
+    }
+
+    private function getAndDeleteCheckoutSessionDataOnHelperSessionByOrderId(string $orderId)
+    {
+        $checkoutSessionData = $this->mercadopago->helpers->session->getSession('mp_checkout_session_' . $orderId);
+
+        $this->mercadopago->helpers->session->deleteSession('mp_checkout_session_' . $orderId);
+
+        return $checkoutSessionData;
+    }
+
+    private function getCheckoutSessionData()
+    {
+        $mercado_pago_checkout_session = $this->getAndDeleteCheckoutSessionDataOnHelperSessionByOrderId($this->order->get_id()) ?? [];
+
+        if (isset($_POST['mercadopago_checkout_session'])) {
+            // Classic Checkout
+            $mercado_pago_checkout_session = array_merge($mercado_pago_checkout_session, Form::sanitizedPostData('mercadopago_checkout_session'));
+        } else {
+            // Blocks Checkout
+            $mercado_pago_checkout_session = array_merge($mercado_pago_checkout_session, $this->gateway->processBlocksCheckoutData('mercadopago_checkout_session', Form::sanitizedPostData()));
+        }
+
+        return $mercado_pago_checkout_session;
     }
 
     /**
@@ -222,6 +248,22 @@ abstract class AbstractTransaction
         $shipments->receiver_address->state       = $this->mercadopago->orderShipping->getState($this->order);
         $shipments->receiver_address->country     = $this->mercadopago->orderShipping->getCountry($this->order);
         $shipments->receiver_address->apartment   = $this->mercadopago->orderShipping->getAddress2($this->order);
+    }
+
+    /**
+     * Set checkout data after instantiation (for wallet button)
+     *
+     * @param array $checkout
+     * @return self
+     */
+    public function setCheckoutData(array $checkout): self
+    {
+        $this->checkout = $checkout;
+
+        // Recreate metadata with the new checkout data
+        $this->transaction->metadata = (array) $this->getInternalMetadata();
+
+        return $this;
     }
 
     /**
