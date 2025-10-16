@@ -66,3 +66,10 @@ Al ejecutar el comando y correr el script, se establece el directorio actual al 
 **CUIDADO**, al obtener los cambios desde el repositorio remoto se obtienen para todo el proyecto, no solo los que aplican al widget.
 
 Finalmente, se posiciona en el directorio contenedor de los archivos del widget y ejecuta el script build.sh para reconstruirlo incorporando los últimos cambios.
+
+
+---
+
+## IMPORTANTE
+
+Al utilizar el ciclo de desarrollo actual, que contempla un repositorio local GIT en el servidor y un repositorio remoto en github y uno local en la máquina del desarrollador, es importante tener en cuenta que todos los cambios deben ser impactados y sincronizados al menos en los repositorios local del servidor y en github, esto incluye actualizaciones de plugins y core ya que de no ser así, al descargar cambios desde github al servidor, además de los últimos, cambios se restaurarán las versiones viejas de los archivos cambiados en el servidor que no estén incluídos en los repositorios provocando así inconsistencias además de problemas de sincronización entre los repositorios.
