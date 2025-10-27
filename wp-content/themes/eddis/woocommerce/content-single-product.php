@@ -59,13 +59,25 @@ do_action( 'woocommerce_before_single_product' ); ?>
                         if (!$product) return;
                         $product_id = $product->get_id();
 
+                        // ID de la categoría de cursos que requieren consulta por WhatsApp
+                        $whatsapp_category_id = 215;
+
+                        // Comprobar si el producto (curso) pertenece a la categoría 215
+                        $is_whatsapp_course = has_term($whatsapp_category_id, 'product_cat', $product_id);
+
                         echo '<div class="course-card">';
 
-                        // Precio
-                        echo '<div class="course-price">' . $product->get_price_html() . '</div>';
+                        if ($is_whatsapp_course) {
+                            // Obtengo y muestro el botón de whatsapp personalizado para este producto
+                            echo edd_whatsapp_product_button($product);
+                        }
+                        else {
+                            // Precio
+                            echo '<div class="course-price">' . $product->get_price_html() . '</div>';
 
-                        // Botón de inscripción (add to cart)
-                        woocommerce_template_single_add_to_cart();
+                            // Botón de inscripción (add to cart)
+                            woocommerce_template_single_add_to_cart();
+                        }
 
                         // Especificaciones del curso ?>
                         <div class="course-specifications">

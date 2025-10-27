@@ -52,6 +52,55 @@ function edd_normalize_link($link) {
     return home_url('/' . ltrim($link, '/'));
 }
 
+/**
+ * Función para generar el botón de WhatsApp para consulta sobre productos de WC
+ *
+ * @param WC_Product $product El objeto del producto de WooCommerce.
+ * @return string El código HTML del botón de WhatsApp.
+ */
+function edd_whatsapp_product_button($product) {
+    
+    // Obtener el número de WhatsApp de la configuración del tema (Carbon Fields)
+    $wsapp_number = carbon_get_theme_option('contact_whatsapp');
+    
+    // Si no hay número configurado, no se muestra el botón
+    if (empty($wsapp_number)) {
+        return '';
+    }
+
+    // Limpiar el número para el enlace (solo dígitos, sin símbolos ni espacios)
+    $clean_number = preg_replace('/[^0-9]/', '', $wsapp_number);
+
+    // Configuración del mensaje y del botón
+    $product_name = $product->get_name();
+    $config = [
+        // El número limpio. Usamos '54911...' como ejemplo si el campo solo guarda '11...'
+        // Es crucial que el número tenga el código de país y de área (sin el signo +).
+        'number'  => $clean_number,
+        'message' => 'Quiero consultar sobre el curso: ' . $product_name,
+        'text'    => 'Hablemos por Whatsapp',
+        'icon'    => 'fab fa-whatsapp'
+    ];
+
+    // Generar enlace de WhatsApp con mensaje pre-rellenado y URL del producto
+    // Usamos rawurlencode() para codificar la URL del producto y el mensaje.
+    $full_message = $config['message'] . ' - ' . get_permalink( $product->get_id() );
+    $url = 'https://wa.me/' . $config['number'] . '?text=' . rawurlencode( $full_message );
+
+    // Generar el HTML del botón
+    $html = sprintf(
+        '<a href="%s" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" style="%s">
+            <span class="whatsapp-btn-content" style="%s">%s %s</span>
+        </a>',
+        esc_url( $url ),
+        'display:flex; justify-content:center; width:100%;', // Contenedor principal
+        'display:inline-flex; align-items:center; gap:8px;', // Contenido interno
+        $config['icon'] ? '<i class="' . esc_attr( $config['icon'] ) . '"></i>' : '',
+        esc_html( $config['text'] )
+    );
+
+    return $html;
+}
 
 // Este hook se utiliza para imprimir html en el encabezado de las páginas del frontend
 function wp_head_hook() {
