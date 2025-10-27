@@ -135,8 +135,11 @@ p {
 .whatsapp-btn {
     background-color: #25D366 !important;
     color: white !important;
+    margin: 0 auto;
+    margin-top: 40px;
     padding: 12px 20px !important;
-    border-radius: 4px !important;
+    border-radius: 20px !important;
+    max-width: 290px;
     text-decoration: none !important;
     border: none !important;
     cursor: pointer !important;
