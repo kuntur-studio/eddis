@@ -112,7 +112,7 @@ get_header(); ?>
     if (!empty($testimonials_carousel_options) && $testimonials_carousel_options['enabled']) {
         get_template_part('template-parts/full-width-carousel', null, [
             'options' => $testimonials_carousel_options,
-            'classes' => ['mt-5']
+            'classes' => ['my-5']
         ]);
     }
 
