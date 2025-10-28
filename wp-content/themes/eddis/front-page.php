@@ -109,6 +109,13 @@ get_header(); ?>
 <?php
     }
 
+    if (!empty($testimonials_carousel_options) && $testimonials_carousel_options['enabled']) {
+        get_template_part('template-parts/full-width-carousel', null, [
+            'options' => $testimonials_carousel_options,
+            'classes' => ['mt-5']
+        ]);
+    }
+
     if (!empty($banner_one_options) && $banner_one_options['enabled']) {
         get_template_part('template-parts/responsive-banner', null, [
             'options' => $banner_one_options,
@@ -148,12 +155,6 @@ get_header(); ?>
     if ($mode_banner['enable_mode_banner_widget']) {
         get_template_part('template-parts/mode-banner', null, [
             'options' => $mode_banner
-        ]);
-    }
-
-     if (!empty($testimonials_carousel_options) && $testimonials_carousel_options['enabled']) {
-        get_template_part('template-parts/full-width-carousel', null, [
-            'options' => $testimonials_carousel_options
         ]);
     }
 ?>
