@@ -24,8 +24,9 @@ function edd_force_first_category($pieces, $taxonomies, $args) {
         // Se podría usar orden manual utilizando drag & drop en la página de categorías 
         // de wordpress, pero eso requiere modificar además el join con la tabla termmeta
         // y ordenar por meta_key = order con meta_value ASC
+        // Ver https://gemini.google.com/app/c5dd00577476a27e
         
-        $pieces['orderby'] = "ORDER BY FIELD(t.term_id, {$category_id}) DESC, t.name ASC";
+        $pieces['orderby'] = "ORDER BY FIELD(t.term_id, {$category_id}) DESC, t.name";
     }
 
     // 3. Devuelve las cláusulas modificadas
