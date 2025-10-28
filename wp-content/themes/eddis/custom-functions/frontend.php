@@ -1,5 +1,41 @@
 <?php
 
+/**
+ * Función para forzar que la categoría de producto con ID 215 aparezca primero
+ * en las consultas de términos (get_terms).
+ *
+ * @param array $pieces Componentes de la cláusula SQL (SELECT, FROM, WHERE, ORDER BY, etc.).
+ * @param array $taxonomies Los nombres de las taxonomías consultadas.
+ * @param array $args Los argumentos originales de la consulta get_terms().
+ * @return array Los componentes de la cláusula SQL modificados.
+ */
+function edd_force_first_category($pieces, $taxonomies, $args) {
+    
+    // 1. Define la ID de la categoría que debe aparecer primero
+    $category_id = 215;
+
+    // 2. Solo aplica el cambio si la consulta es para categorías de producto ('product_cat')
+    if (in_array('product_cat', $taxonomies)) {
+        
+        // Usa la función FIELD() de MySQL para ordenar específicamente la categoría $category_id
+        // FIELD(t.term_id, 215) hace que solo esta ID tenga un valor que se puede ordenar.
+        // ORDER BY ... DESC garantiza que 215 esté al principio.
+        // El 't.name ASC' se usa como orden secundario para el resto de categorías.
+        // Se podría usar orden manual utilizando drag & drop en la página de categorías 
+        // de wordpress, pero eso requiere modificar además el join con la tabla termmeta
+        // y ordenar por meta_key = order con meta_value ASC
+        
+        $pieces['orderby'] = "ORDER BY FIELD(t.term_id, {$category_id}) DESC, t.name ASC";
+    }
+
+    // 3. Devuelve las cláusulas modificadas
+    return $pieces;
+}
+
+// Engancha la función al filtro 'terms_clauses' con prioridad 10 y acepta 3 argumentos.
+add_filter('terms_clauses', 'edd_force_first_category', 10, 3);
+
+
 /*
  * Toma desde la configuración general los valores relacionados con GTM,
  * verifica si está activa la configuración e imprime al output el script 
