@@ -69,7 +69,7 @@ Template name: Pago Ok
                         
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <label for="genero">Género</label>
-                            <select class="custom-select" id="genero" required>
+                            <select class="form-select" id="genero" required>
                                 <option selected disabled value="">Selecciona...</option>
                                 <option value="1">Hombre</option>
                                 <option value="2">Mujer</option>
