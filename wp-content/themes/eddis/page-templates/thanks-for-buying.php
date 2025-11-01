@@ -7,7 +7,7 @@ Template Name: Página de Agradecimiento
 get_header();
 
 // Obtengo parámetros extra del widget
-$widget_options = edd_widget_options('branches_widget');
+$widget_options = edd_widget_options('thanks_banner');
 
 $normalized_options = [
     'banner_lg'   => $widget_options['thanks_banner_lg'],
