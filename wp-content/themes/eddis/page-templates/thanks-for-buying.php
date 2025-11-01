@@ -10,9 +10,9 @@ get_header();
 $widget_options = edd_widget_options('branches_widget');
 
 $normalized_options = [
-    'banner_lg'   => $widget['thanks_banner_lg'],
-    'banner_md'   => $widget['thanks_banner_md'],
-    'banner_sm'   => $widget['thanks_banner_sm'],
+    'banner_lg'   => $widget_options['thanks_banner_lg'],
+    'banner_md'   => $widget_options['thanks_banner_md'],
+    'banner_sm'   => $widget_options['thanks_banner_sm'],
 ];
 
 if (!empty($widget_options)) {
