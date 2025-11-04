@@ -6,7 +6,7 @@
 add_action('wp_ajax_consultaEddis', 'edd_query');
 add_action('wp_ajax_nopriv_consultaEddis', 'edd_query');
 function edd_query() {
-	require_once(get_stylesheet_directory().'/common/xml.php');
+	// require_once(get_stylesheet_directory().'/classes/XML.php');
 	/*
         Consultas:
                 obtener_planes
@@ -111,7 +111,7 @@ function edd_enroll_student_local($title, $data){
 add_action('wp_ajax_enroll_student', 'edd_enroll_student');
 add_action('wp_ajax_nopriv_enroll_student', 'edd_enroll_student');
 function edd_enroll_student(){
-	require_once(get_stylesheet_directory().'/common/xml.php');
+	// require_once(get_stylesheet_directory().'/classes/XML.php');
 
 	// Enviar email
 	$nombre      = $_POST["nombre"];
