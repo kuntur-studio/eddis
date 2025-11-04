@@ -36,7 +36,7 @@ if ($product) {
                 <h3><?php echo esc_html($product_name); ?></h3>
                 <div class="d-flex justify-content-between align-items-center">
                     <h6><?php echo wp_kses_post($product_price); ?></h6>
-                    <a href="<?php echo esc_url($product_link); ?>">Ver curso</a>
+                    <a href="<?php echo esc_url($product_link); ?>" id="viewCourseButton">Ver curso</a>
                 </div>
             </div>
         </div>

@@ -60,7 +60,7 @@ function edd_custom_loop_add_to_cart_button($button, $product) {
         $url = get_permalink($product->get_id());
         $label = __('Más información', 'woocommerce');
 
-        return '<a href="' . esc_url($url) . '" class="button">' . esc_html($label) . '</a>';
+        return '<a href="' . esc_url($url) . '" class="button more-info-button">' . esc_html($label) . '</a>';
     }
 
     return $button;

@@ -126,7 +126,7 @@ function edd_whatsapp_product_button($product) {
 
     // Generar el HTML del botón
     $html = sprintf(
-        '<a href="%s" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" style="%s">
+        '<a id="whatsappCourseButton" href="%s" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" style="%s">
             <span class="whatsapp-btn-content" style="%s">%s %s</span>
         </a>',
         esc_url( $url ),
