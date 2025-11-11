@@ -20,7 +20,7 @@ $class_string = implode(' ', $classes);
 extract($args['options']);
 
 // Verificar si debemos envolver en un enlace
-$should_wrap_link = $enable_link && !empty($banner_link);
+$should_wrap_link = ($enable_link ?? false) && !empty($banner_link);
 
 // --- ALTERNATIVA AVANZADA PARA FALLBACK ---
 $fallback_image = !empty($banner_lg) ? $banner_lg :
