@@ -69,7 +69,7 @@ function edd_custom_loop_add_to_cart_button($button, $product) {
 // Añade el campo DNI, lo hace requerido, y hace que el teléfono sea requerido.
 add_filter('woocommerce_checkout_fields', 'customize_checkout_fields', 10, 1);
 function customize_checkout_fields($fields) {
-    
+    edd_write_log('Agregando campo DNI');
     // --- Campo DNI (billing_dni) ---
     // Añade el campo DNI a la sección 'billing' (Facturación)
     $fields['billing']['billing_dni'] = [
@@ -84,7 +84,7 @@ function customize_checkout_fields($fields) {
     // --- Campo Teléfono (billing_phone) ---
     // Asegura que el campo de teléfono sea requerido
     $fields['billing']['billing_phone']['required'] = true;
-    
+    edd_write_log($fields);
     return $fields;
 }
 
