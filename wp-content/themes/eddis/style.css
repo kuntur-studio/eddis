@@ -1157,7 +1157,8 @@ p {
 /* ===== CONTACT PAGE ===== */
 
 .page-template-contact .portada,
-.page-template-branches  .portada {
+.page-template-branches  .portada,
+.search .portada {
 	padding-top: 60px;
 	padding-bottom: 60px;
 	margin-bottom: 60px;
@@ -1273,4 +1274,9 @@ p {
 label {
   display: inline-block;
   margin-bottom: .5rem;
+}
+
+/* ===== SEARCH PAGE ===== */
+section.search-page {
+	padding-bottom: 4em;
 }
