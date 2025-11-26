@@ -1280,3 +1280,10 @@ label {
 section.search-page {
 	padding-bottom: 4em;
 }
+
+.card-search {
+	padding-top: 2em;
+	padding-bottom: 2em;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #ccc;
+}
