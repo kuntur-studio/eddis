@@ -1021,6 +1021,7 @@ p {
 
 #featuredCarouselSlider .owl-stage-outer {
     padding-bottom: 5px;
+    z-index: 1000;
 }
 
 #featuredCarouselSlider .owl-nav .owl-prev, #featuredCarouselSlider .owl-nav .owl-next,

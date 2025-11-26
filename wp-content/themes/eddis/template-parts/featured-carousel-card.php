@@ -20,6 +20,7 @@ if ($product) {
 
         <?php if ($product && has_post_thumbnail()): ?>
             <div class="image-container">
+                <a href="<?php echo esc_url($product_link); ?>">
                 <?php
                     // Muestra la imagen destacada del producto con los atributos correctos
                     echo get_the_post_thumbnail(get_the_ID(), 'woocommerce_thumbnail', array(
@@ -28,6 +29,7 @@ if ($product) {
                         'alt' => esc_attr($product_alt ? $product_alt : $product_name)
                     ));
                 ?>
+                </a>
             </div>
         <?php endif; ?>
 
