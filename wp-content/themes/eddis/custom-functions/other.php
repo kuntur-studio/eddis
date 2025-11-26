@@ -10,3 +10,12 @@ function edd_limit_search_to_products($wp_query) {
 
 	return $wp_query;
 }
+
+// Modifico el parámetro de búsqueda para mitigar spam
+add_filter('request', function ($request) {
+	if (isset($_REQUEST['busqueda'])) {
+		$request['s'] = $_REQUEST['busqueda'];
+	}
+
+	return $request;
+});
