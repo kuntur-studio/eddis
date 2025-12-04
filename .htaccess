@@ -48,3 +48,35 @@ RewriteRule . /index.php [L]
 </Files>
 
 # END Wordfence WAF
+
+# Redirecciones personalizadas
+RewriteCond %{HTTP_HOST} ^demo2.eddis.edu.ar [OR]
+RewriteCond %{HTTP_HOST} ^www.demo2.eddis.edu.ar$
+RewriteRule ^(.*)$ https://servidoreddis.com.ar [R=301,L]
+RewriteCond %{HTTP_HOST} ^eintegrado.eddis.edu.ar [OR]
+RewriteCond %{HTTP_HOST} ^www.eintegrado.eddis.edu.ar$
+RewriteRule ^(.*)$ https://servidoreddis.com.ar [R=301,L]
+RewriteCond %{HTTP_HOST} ^ruleta.eddis.edu.ar [OR]
+RewriteCond %{HTTP_HOST} ^www.ruleta.eddis.edu.ar$
+RewriteRule ^(.*)$ https://servidoreddis.com.ar/ruleta [R=301,L]
+
+# Optimizaciónes
+<IfModule mod_headers.c>
+    # Unificar reglas para todos los assets estáticos
+    # Extensiones incluidas: imágenes, video, fuentes, css y js
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|svg|css|js|woff|woff2|ttf)$">
+        
+        # max-age=2592000 (1 Mes)
+        # public: indica que proxies intermedios (CDNs) también pueden cachearlo
+        Header set Cache-Control "max-age=2592000, public"
+        
+        # Eliminar la cabecera ETag para evitar validaciones redundantes (opcional pero recomendado)
+        Header unset ETag
+    </FilesMatch>
+    
+    # Asegurarnos de NO cachear HTML dinámico ni PHP para evitar problemas de contenido
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
+FileETag None
