@@ -148,3 +148,13 @@ function wp_head_hook() {
     edd_google_tag_manager(); // Imprime la etiqueta de GTM
 }
 add_action('wp_head', 'wp_head_hook');
+
+// Optimización, preconecto dominios sugeridos por lighthouse
+function edd_preconnect_domains() {
+    // CRM: Ventux (Para el iframe del formulario)
+    echo '<link rel="preconnect" href="https://link.ventux.io">' . "\n";
+    
+    // CRM Backend: Infraestructura de LeadConnector (Scripts y datos)
+    echo '<link rel="preconnect" href="https://backend.leadconnectorhq.com">' . "\n";
+}
+add_action('wp_head', 'edd_preconnect_domains', 1);
