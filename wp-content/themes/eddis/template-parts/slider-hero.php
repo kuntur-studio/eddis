@@ -28,7 +28,7 @@ if (empty($slides) || !is_array($slides)) {
             <picture>
                 <source media="(min-width: 1200px)" srcset="<?php echo esc_url($slide['slide_lg']); ?>">
                 <source media="(min-width: 768px)" srcset="<?php echo esc_url($slide['slide_md']); ?>">
-                <img src="<?php echo esc_url($slide['slide_sm']); ?>" alt="" class="img-fluid">
+                <img src="<?php echo esc_url($slide['slide_sm']); ?>" alt="" class="img-fluid" fetchpriority=high>
             </picture>
 
             <?php if (!empty($slide['slide_enable_link']) && !empty($slide['slide_link'])): ?>
