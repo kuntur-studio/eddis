@@ -65,6 +65,7 @@ class PseGateway extends AbstractGateway
         $this->mercadopago->hooks->cart->registerCartCalculateFees([$this, 'registerDiscountAndCommissionFeesOnCart']);
 
         $this->mercadopago->helpers->currency->handleCurrencyNotices($this);
+        $this->paymentMethodName = self::ID;
     }
 
     public function getCheckoutName(): string
@@ -182,7 +183,7 @@ class PseGateway extends AbstractGateway
             'terms_and_conditions_link_src'    => $this->links['mercadopago_terms_and_conditions'],
             'woocommerce_currency'             => get_woocommerce_currency(),
             'account_currency'                 => $this->mercadopago->helpers->country->getCountryConfigs(),
-            'financial_institutions'           => json_encode($this->getFinancialInstitutions()),
+            'financial_institutions'           => wp_json_encode($this->getFinancialInstitutions()),
             'person_type_label'                => $this->storeTranslations['person_type_label'],
             'financial_institutions_label'     => $this->storeTranslations['financial_institutions_label'],
             'financial_institutions_helper'    => $this->storeTranslations['financial_institutions_helper'],
@@ -206,7 +207,7 @@ class PseGateway extends AbstractGateway
         if (!$this->isCheckoutValid($checkout)) {
             return $this->processReturnFail(
                 new InvalidCheckoutDataException(),
-                $this->mercadopago->storeTranslations->commonMessages['cho_form_error'],
+                'cho_form_error',
                 self::LOG_SOURCE,
                 $checkout,
                 true
@@ -237,7 +238,7 @@ class PseGateway extends AbstractGateway
             }
             return $this->processReturnFail(
                 new ResponseStatusException('exception : Invalid status or status_detail on ' . __METHOD__),
-                $this->mercadopago->storeTranslations->commonMessages['cho_form_error'],
+                'cho_form_error',
                 self::LOG_SOURCE,
                 $response
             );
@@ -247,14 +248,14 @@ class PseGateway extends AbstractGateway
     }
 
     /**
-     * Get payment methods
+     * Get financial institutions
      *
      * @return array
      */
     private function getFinancialInstitutions(): array
     {
         $psePaymentMethods = $this->mercadopago->sellerConfig->getCheckoutPsePaymentMethods();
-        return $psePaymentMethods[0]['financial_institutions'];
+        return $psePaymentMethods[0]['financial_institutions'] ?? [];
     }
 
     /**

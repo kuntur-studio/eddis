@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
 
 class WoocommerceMercadoPago
 {
-    private const PLUGIN_VERSION = '8.5.6';
+    private const PLUGIN_VERSION = '8.7.14';
 
     private const PLUGIN_MIN_PHP = '7.4';
 
@@ -46,6 +46,10 @@ class WoocommerceMercadoPago
     private const PLATFORM_NAME = 'woocommerce';
 
     private const PLUGIN_NAME = 'woocommerce-mercadopago/woocommerce-mercadopago.php';
+
+    private const PLUGIN_SUPER_TOKEN_USE_BUNDLE = true;
+
+    private const PLUGIN_SDK_ENV = 'prod';
 
     public WooCommerce $woocommerce;
 
@@ -175,6 +179,31 @@ class WoocommerceMercadoPago
     }
 
     /**
+     * Register filter to remove pay and cancel actions from My Account orders
+     *
+     * @return void
+     */
+    public function registerMyAccountOrderActionsFilter(): void
+    {
+        add_filter(
+            'woocommerce_my_account_my_orders_actions',
+            function ($actions, $order) {
+                if (!is_wc_endpoint_url('order-received') || !$order instanceof \WC_Order) {
+                    return $actions;
+                }
+
+                if (strpos($order->get_payment_method(), 'woo-mercado-pago') === 0) {
+                    unset($actions['pay'], $actions['cancel']);
+                }
+
+                return $actions;
+            },
+            50,
+            2
+        );
+    }
+
+    /**
      * Init plugin
      *
      * @return void
@@ -210,6 +239,7 @@ class WoocommerceMercadoPago
         $this->registerBlocks();
         $this->registerGateways();
         $this->registerActionsWhenGatewayIsNotCalled();
+        $this->registerMyAccountOrderActionsFilter();
 
         $this->hooks->plugin->registerEnableCreditsAction([$this->helpers->creditsEnabled, 'enableCreditsAction']);
         $this->hooks->plugin->executeCreditsAction();
@@ -402,6 +432,8 @@ class WoocommerceMercadoPago
         $this->define('MP_PLATFORM_NAME', self::PLATFORM_NAME);
         $this->define('MP_PRODUCT_ID_DESKTOP', self::PRODUCT_ID_DESKTOP);
         $this->define('MP_PRODUCT_ID_MOBILE', self::PRODUCT_ID_MOBILE);
+        $this->define('MP_SUPER_TOKEN_USE_BUNDLE', self::PLUGIN_SUPER_TOKEN_USE_BUNDLE);
+        $this->define('MP_SDK_ENV', self::PLUGIN_SDK_ENV);
     }
 
     /**

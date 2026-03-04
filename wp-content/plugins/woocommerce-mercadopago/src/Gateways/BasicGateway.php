@@ -61,6 +61,7 @@ class BasicGateway extends AbstractGateway
         $this->mercadopago->hooks->cart->registerCartCalculateFees([$this, 'registerDiscountAndCommissionFeesOnCart']);
 
         $this->mercadopago->helpers->currency->handleCurrencyNotices($this);
+        $this->paymentMethodName = self::ID;
     }
 
     public function getCheckoutName(): string
@@ -174,7 +175,7 @@ class BasicGateway extends AbstractGateway
 
         $this->mercadopago->hooks->scripts->registerCheckoutScript(
             'wc_mercadopago_sdk',
-            'https://sdk.mercadopago.com/js/v2'
+            $this->mercadopago->helpers->url->getMercadoPagoSdkUrl()
         );
     }
 
@@ -237,7 +238,7 @@ class BasicGateway extends AbstractGateway
         } catch (Exception $e) {
             return $this->processReturnFail(
                 $e,
-                $this->mercadopago->storeTranslations->buyerRefusedMessages['buyer_default'],
+                'buyer_default',
                 self::LOG_SOURCE,
                 (array) $order,
                 true

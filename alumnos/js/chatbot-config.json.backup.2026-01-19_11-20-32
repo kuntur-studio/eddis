@@ -1,0 +1,83 @@
+{
+    "config": {
+        "whatsappNumber": "5491127833949",
+        "whatsappMessage": "¡Hola! Necesito ayuda con la plataforma EDDIS.",
+        "title": "Asistente EDDIS",
+        "subtitle": "Estamos aquí para ayudarte"
+    },
+    "topics": [
+        {
+            "id": "inicio",
+            "title": "CAMPUS EDUCATIVO",
+            "icon": "fa-rocket",
+            "questions": [
+                {
+                    "id": "inicio-1",
+                    "question": "¿Cómo inicio sesión en el Campus Educativo ?",
+                    "answer": "Para iniciar sesión en tu campus educativo, simplemente debes hacer clic en el botón que dice \"CAMPUS\" en el margen izquierdo de este portal."
+                },
+                {
+                    "id": "inicio-2",
+                    "question": "¿Qué pasa si cierro sesión desde el campus?",
+                    "answer": "¡No pasa nada! Cerra sesión desde el panel también y volve a abrirlo poniendo tu usuario y contraseña."
+                },
+                {
+                    "id": "inicio-3",
+                    "question": "¿Puedo acceder desde mi celular?",
+                    "answer": "¡Por supuesto! La plataforma es totalmente compatible y funciona perfectamente en dispositivos móviles. Solo necesitas un navegador web actualizado y buena conexión a internet."
+                }
+            ]
+        },
+        {
+            "id": "perfil",
+            "title": "PAGO DE CUOTAS",
+            "icon": "fa-user-circle",
+            "questions": [
+                {
+                    "id": "perfil-1",
+                    "question": "¿Cómo puedo abonar mi cuota mensual?",
+                    "answer": "La cuota debes abonarla mensualmente en la sede donde estas inscripto. ¡Recordá que abonando del 1 al 10 contás con un descuento!"
+                },
+                {
+                    "id": "perfil-2",
+                    "question": "¿Cómo abono mi cuota de examen final?",
+                    "answer": "Una vez que hayas finalizado tu cursada, deberás rendir el examen final para acceder al certificado. Para poder rendir, debes abonar tu derecho de examen debes descarga el cupón de pago que figura en el portal en la sección \"DERECHO DE EXAMEN\". Tu derecho de examen lo podes abonar con tarjeta de debito/crédito o escaneando el código de barras del cupón."
+                }
+            ]
+        },
+        {
+            "id": "certificados",
+            "title": "CERTIFICACIONES",
+            "icon": "fa-certificate",
+            "questions": [
+                {
+                    "id": "cert-1",
+                    "question": "¿Cómo obtengo mi certificado?",
+                    "answer": "Una vez que completes todos los requisitos del curso, apruebes las evaluaciones necesarias y tengas todos tus pagos al día, el certificado estará disponible en la sección 'Mis Certificados' para descargar en formato PDF."
+                },
+                {
+                    "id": "cert-2",
+                    "question": "¿Cuánto tarda en estar disponible el certificado?",
+                    "answer": "Los certificados digitales están disponibles inmediatamente después de aprobar el curso. Si tu certificado es físico, tene en cuenta que este puede demorar hasta 90 días hábiles, y mientras tanto podrás descargar la constancia de certificado en trámite.."
+                }
+            ]
+        },
+        {
+            "id": "contacto",
+            "title": "INFORMACIÓN DE CONTACTO",
+            "icon": "fa-phone",
+            "questions": [
+                {
+                    "id": "contact-1",
+                    "question": "¿Cuál es el horario de atención?",
+                    "answer": "El horario de atención al estudiante es de lunes a viernes de 9:00 a 18:00 hs."
+                },
+                {
+                    "id": "contact-3",
+                    "question": "¿Hay atención telefónica?",
+                    "answer": "Sí, puedes comunicarte telefónicamente en el horario de atención. Los números están disponibles en la sección de contacto. Para una respuesta más rápida, recomendamos usar el chat de WhatsApp."
+                }
+            ]
+        }
+    ]
+}

@@ -17,7 +17,7 @@ use MercadoPago\Woocommerce\Helpers\Template;
  * @var string $payment_methods
  * @var string $amount
  * @var string $currency_ratio
- * @var array  $financial_institutions
+ * @var string $financial_institutions
  * @var string $person_type_label
  * @var string $financial_institutions_label
  * @var string $financial_institutions_helper
@@ -84,7 +84,7 @@ if (! defined('ABSPATH')) {
                         name="mercadopago_pse[bank]"
                         label="<?= esc_html($financial_institutions_label); ?>"
                         optional="false"
-                        options='<?php print_r($financial_institutions); ?>'
+                        options='<?= esc_attr($financial_institutions); ?>'
                         hidden-id= "hidden-financial-pse"
                         helper-message="<?= esc_html($financial_institutions_helper); ?>"
                         default-option="<?= esc_html($financial_placeholder); ?>">
@@ -120,12 +120,6 @@ if (! defined('ABSPATH')) {
 <div>
 </div>
 <script type="text/javascript">
-    if (document.getElementById("payment_method_woo-mercado-pago-custom")) {
-        jQuery("form.checkout").on("checkout_place_order_woo-mercado-pago-pse", function() {
-            window.mpEventHandler.setCardFormLoadInterval();
-        });
-    }
-
     if (typeof MPCheckoutFieldsDispatcher !== 'undefined') {
         MPCheckoutFieldsDispatcher?.addEventListenerDispatcher(
             document.getElementById("mp-pse-gateway-document-input"),

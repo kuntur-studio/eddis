@@ -22,7 +22,7 @@ class Datadog extends Singleton
         $this->sdk = new Sdk();
     }
 
-    public function sendEvent(string $event_type, $value, $message = null): void
+    public function sendEvent(string $event_type, $value, $message = null, $paymentMethod = null, $details = []): void
     {
         try {
             $datadogEvent = $this->sdk->getDatadogEventInstance();
@@ -37,7 +37,15 @@ class Datadog extends Singleton
             $datadogEvent->platform->version = $this->getWoocommerceVersion();
             $datadogEvent->platform->url = site_url();
 
-            $datadogEvent->register(array("team" => "smb", "event_type" => $event_type));
+            if (! is_null($paymentMethod)) {
+                $datadogEvent->details = ["payment_method" => $paymentMethod];
+            }
+
+            if (! empty($details)) {
+                $datadogEvent->details = array_merge($datadogEvent->details ?? [], $details);
+            }
+
+            $datadogEvent->register(array("team" => "smb", "event_type" => $event_type, "details" => $datadogEvent->details));
         } catch (Exception $e) {
             return;
         }

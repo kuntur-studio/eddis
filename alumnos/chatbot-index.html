@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Chatbot - Índice de Documentación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+
+        .card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-demo {
+            background: #f59e0b;
+        }
+
+        .badge-docs {
+            background: #3b82f6;
+        }
+
+        .badge-examples {
+            background: #8b5cf6;
+        }
+
+        .quick-links {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .quick-links h3 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .quick-link {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .quick-link:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateX(4px);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Sistema de Chatbot</h1>
+            <p>Documentación, Ejemplos y Recursos</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Archivos Creados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">17</div>
+                <div class="stat-label">Temas Incluidos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Preguntas FAQ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Configurable</div>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <h3><i class="fas fa-rocket"></i> Inicio Rápido</h3>
+            <div class="links-grid">
+                <a href="pages/chatbot-demo.html" class="quick-link">
+                    <i class="fas fa-play-circle"></i>
+                    Ver Demo
+                </a>
+                <a href="INICIO-RAPIDO.md" class="quick-link">
+                    <i class="fas fa-bolt"></i>
+                    Guía Rápida
+                </a>
+                <a href="CHATBOT-README.md" class="quick-link">
+                    <i class="fas fa-book"></i>
+                    Documentación
+                </a>
+                <a href="RESUMEN.md" class="quick-link">
+                    <i class="fas fa-list"></i>
+                    Resumen
+                </a>
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            <i class="fas fa-rocket"></i>
+            Comenzar
+        </h2>
+
+        <div class="grid">
+            <a href="pages/chatbot-demo.html" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h2>Demo Interactiva <span class="badge badge-demo">Demo</span></h2>
+                <p>Prueba el chatbot en acción con una página de demostración completa e interactiva.</p>
+                <div class="card-footer">
+                    Abrir demo <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="INICIO-RAPIDO.md" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h2>Inicio Rápido</h2>
+                <p>Guía para empezar a usar el chatbot en menos de 5 minutos.</p>
+                <div class="card-footer">
+                    Leer guía <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="RESUMEN.md" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-list-check"></i>
+                </div>
+                <h2>Resumen Ejecutivo</h2>
+                <p>Vista general de todo lo implementado, características y checklist completo.</p>
+                <div class="card-footer">
+                    Ver resumen <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+
+        <h2 class="section-title">
+            <i class="fas fa-book"></i>
+            Documentación
+        </h2>
+
+        <div class="grid">
+            <a href="CHATBOT-README.md" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h2>Documentación Completa <span class="badge badge-docs">Docs</span></h2>
+                <p>Guía detallada con instalación, configuración, API, personalización y troubleshooting.</p>
+                <div class="card-footer">
+                    Leer documentación <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="js/chatbot-examples.js" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h2>Ejemplos de Código <span class="badge badge-examples">Ejemplos</span></h2>
+                <p>12+ ejemplos prácticos de personalización, tracking, y casos de uso avanzados.</p>
+                <div class="card-footer">
+                    Ver ejemplos <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="components/chatbot-component.html" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h2>Componente Reutilizable</h2>
+                <p>Componente HTML listo para incluir en cualquier página de tu proyecto.</p>
+                <div class="card-footer">
+                    Ver componente <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+
+        <h2 class="section-title">
+            <i class="fas fa-cog"></i>
+            Configuración
+        </h2>
+
+        <div class="grid">
+            <a href="js/chatbot-config.json" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2>Config EDDIS</h2>
+                <p>Archivo de configuración con 9 temas y 40+ preguntas para EDDIS.</p>
+                <div class="card-footer">
+                    Editar config <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="js/chatbot-config-studio.json" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h2>Config Studio Beauty</h2>
+                <p>Archivo de configuración con 8 temas y 30+ preguntas para Studio Beauty.</p>
+                <div class="card-footer">
+                    Editar config <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="css/chatbot.css" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h2>Estilos CSS</h2>
+                <p>Archivo de estilos con variables CSS personalizables para colores y diseño.</p>
+                <div class="card-footer">
+                    Personalizar estilos <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+
+        <h2 class="section-title">
+            <i class="fas fa-tools"></i>
+            Archivos del Sistema
+        </h2>
+
+        <div class="grid">
+            <a href="js/chatbot.js" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-file-code"></i>
+                </div>
+                <h2>chatbot.js</h2>
+                <p>Sistema principal del chatbot con toda la lógica y funcionalidad.</p>
+                <div class="card-footer">
+                    Ver código <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="css/chatbot.css" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-file-code"></i>
+                </div>
+                <h2>chatbot.css</h2>
+                <p>Estilos completos del chatbot con animaciones y responsive design.</p>
+                <div class="card-footer">
+                    Ver estilos <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href="install-chatbot.sh" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <h2>install-chatbot.sh</h2>
+                <p>Script bash para instalación automática en todas las páginas HTML.</p>
+                <div class="card-footer">
+                    Ver script <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 32px; margin-top: 50px; text-align: center; color: white;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 16px;">
+                <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                Sistema Completamente Instalado
+            </h3>
+            <p style="font-size: 1.1rem; margin-bottom: 24px; opacity: 0.9;">
+                El chatbot está listo para usar en tu plataforma EDDIS/Studio Beauty
+            </p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="pages/chatbot-demo.html" style="background: white; color: #667eea; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-play"></i>
+                    Probar Ahora
+                </a>
+                <a href="INICIO-RAPIDO.md" style="background: rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-book"></i>
+                    Leer Documentación
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

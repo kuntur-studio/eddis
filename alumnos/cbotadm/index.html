@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Chatbot - EDDIS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-robot"></i> Administrador de Chatbot</h1>
+                <p>Gestiona las preguntas y respuestas del chatbot</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="location.reload()">
+                    <i class="fas fa-sync"></i> Recargar
+                </button>
+                <a href="../?page=dash" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> Volver al Dashboard
+                </a>
+            </div>
+        </header>
+
+        <!-- Entity Selector -->
+        <div class="entity-selector">
+            <label for="entitySelect">
+                <i class="fas fa-building"></i> Selecciona la entidad:
+            </label>
+            <select id="entitySelect" class="select-entity">
+                <option value="eddis">EDDIS (Argentina, Uruguay, Paraguay)</option>
+                <option value="studio">Studio Beauty</option>
+            </select>
+        </div>
+
+        <!-- Config Section -->
+        <div class="config-section">
+            <h2><i class="fas fa-cog"></i> Configuración General</h2>
+            <div class="config-grid">
+                <div class="form-group">
+                    <label for="whatsappNumber">Número de WhatsApp</label>
+                    <input type="text" id="whatsappNumber" class="form-control" placeholder="5491112345678">
+                </div>
+                <div class="form-group">
+                    <label for="whatsappMessage">Mensaje de WhatsApp</label>
+                    <input type="text" id="whatsappMessage" class="form-control" placeholder="¡Hola! Necesito ayuda...">
+                </div>
+                <div class="form-group">
+                    <label for="chatbotTitle">Título del Chatbot</label>
+                    <input type="text" id="chatbotTitle" class="form-control" placeholder="Asistente EDDIS">
+                </div>
+                <div class="form-group">
+                    <label for="chatbotSubtitle">Subtítulo del Chatbot</label>
+                    <input type="text" id="chatbotSubtitle" class="form-control" placeholder="Estamos aquí para ayudarte">
+                </div>
+            </div>
+            <button class="btn btn-success" onclick="saveConfig()">
+                <i class="fas fa-save"></i> Guardar Configuración
+            </button>
+        </div>
+
+        <!-- Topics Section -->
+        <div class="topics-section">
+            <div class="section-header">
+                <h2><i class="fas fa-list"></i> Temas y Preguntas</h2>
+                <button class="btn btn-primary" onclick="openTopicModal()">
+                    <i class="fas fa-plus"></i> Nuevo Tema
+                </button>
+            </div>
+
+            <div id="topicsList" class="topics-list">
+                <!-- Topics will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Topic Modal -->
+    <div id="topicModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="topicModalTitle">Nuevo Tema</h3>
+                <button class="modal-close" onclick="closeTopicModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="topicIndex">
+                <div class="form-group">
+                    <label for="topicId">ID del Tema *</label>
+                    <input type="text" id="topicId" class="form-control" placeholder="ej: soporte-tecnico">
+                    <small>Solo letras minúsculas, números y guiones</small>
+                </div>
+                <div class="form-group">
+                    <label for="topicTitle">Título del Tema *</label>
+                    <input type="text" id="topicTitle" class="form-control" placeholder="ej: Soporte Técnico">
+                </div>
+                <div class="form-group">
+                    <label for="topicIcon">Ícono Font Awesome *</label>
+                    <div class="icon-input">
+                        <input type="text" id="topicIcon" class="form-control" placeholder="ej: fa-wrench">
+                        <span class="icon-preview"><i id="iconPreview" class="fas fa-wrench"></i></span>
+                    </div>
+                    <small>Buscar íconos en: <a href="https://fontawesome.com/icons" target="_blank">fontawesome.com/icons</a></small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeTopicModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveTopic()">
+                    <i class="fas fa-save"></i> Guardar Tema
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Modal -->
+    <div id="questionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="questionModalTitle">Nueva Pregunta</h3>
+                <button class="modal-close" onclick="closeQuestionModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="questionTopicIndex">
+                <input type="hidden" id="questionIndex">
+                <div class="form-group">
+                    <label for="questionId">ID de la Pregunta *</label>
+                    <input type="text" id="questionId" class="form-control" placeholder="ej: pregunta-1">
+                    <small>Solo letras minúsculas, números y guiones</small>
+                </div>
+                <div class="form-group">
+                    <label for="questionText">Pregunta *</label>
+                    <input type="text" id="questionText" class="form-control" placeholder="¿Cuál es tu pregunta?">
+                </div>
+                <div class="form-group">
+                    <label for="answerText">Respuesta *</label>
+                    <textarea id="answerText" class="form-control" rows="5" placeholder="Escribe la respuesta aquí..."></textarea>
+                    <small>Puedes usar HTML para dar formato</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeQuestionModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveQuestion()">
+                    <i class="fas fa-save"></i> Guardar Pregunta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

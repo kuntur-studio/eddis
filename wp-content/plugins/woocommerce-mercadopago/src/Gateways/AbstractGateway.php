@@ -11,6 +11,7 @@ use MercadoPago\Woocommerce\WoocommerceMercadoPago;
 use MercadoPago\Woocommerce\Interfaces\MercadoPagoGatewayInterface;
 use MercadoPago\Woocommerce\Notification\NotificationFactory;
 use MercadoPago\Woocommerce\Exceptions\RejectedPaymentException;
+use MercadoPago\Woocommerce\Libraries\Metrics\Datadog;
 use Mockery\Exception\MockeryExceptionInterface;
 use WC_Payment_Gateway;
 use MercadoPago\Woocommerce\Helpers\RefundStatusCodes;
@@ -28,6 +29,8 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
     protected const ENABLED_OPTION = 'enabled';
 
     protected const ENABLED_DEFAULT = 'no';
+
+    protected string $paymentMethodName = '';
 
     public string $iconAdmin;
 
@@ -65,7 +68,10 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
 
     public $transaction;
 
+    public Datadog $datadog;
+
     /**
+     * @codeCoverageIgnore
      * Abstract Gateway constructor
      * @throws Exception
      */
@@ -74,7 +80,7 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
         global $mercadopago;
 
         $this->mercadopago = $mercadopago;
-
+        $this->datadog = Datadog::getInstance();
         if (!$this->mercadopago->booted()) {
             return;
         }
@@ -90,6 +96,7 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
         $this->init_settings();
         $this->loadResearchComponent();
         $this->loadMelidataStoreScripts();
+        $this->loadMpWooCommerceScripts();
     }
 
     abstract public function getCheckoutName(): string;
@@ -449,6 +456,17 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
             $this->mercadopago->orderMetadata->setIsProductionModeData($order, $isProductionMode);
             $this->mercadopago->orderMetadata->setUsedGatewayData($order, static::ID);
 
+            if ($this->settings['currency_conversion'] === 'yes') {
+                $ratio = $this->mercadopago->helpers->currency->getRatio($this);
+
+                // Validate ratio is positive and not zero
+                if ($ratio > 0) {
+                    $this->mercadopago->orderMetadata->setCurrencyRatioData($order, $ratio);
+                } else {
+                    throw new Exception("Invalid currency ratio received: {$ratio}. Ratio must be positive and greater than zero.");
+                }
+            }
+
             if ($this->discount != 0) {
                 $percentage  = Numbers::getPercentageFromParcialValue($discount, $order->get_total());
                 $translation = $this->mercadopago->storeTranslations->commonCheckout['discount_title'];
@@ -562,6 +580,11 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
         );
     }
 
+    public function loadMpWooCommerceScripts(): void
+    {
+        $this->mercadopago->hooks->scripts->registerMpBehaviorTrackingScript();
+    }
+
     /**
      * Load melidata script on store
      *
@@ -612,30 +635,20 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
 
         $this->mercadopago->logs->file->error("Message: {$e->getMessage()} \n\n\nStacktrace: {$e->getTraceAsString()} \n\n\n", $source, $context);
 
-        $errorMessages = [
-            "Invalid test user email"          => $this->mercadopago->storeTranslations->commonMessages['invalid_users'],
-            "Invalid users involved"           => $this->mercadopago->storeTranslations->commonMessages['invalid_users'],
-            "Invalid operators users involved" => $this->mercadopago->storeTranslations->commonMessages['invalid_operators'],
-            "exception"                        => $this->mercadopago->storeTranslations->buyerRefusedMessages['buyer_default'],
-            "400"                              => $this->mercadopago->storeTranslations->buyerRefusedMessages['buyer_default'],
-            "Invalid card_number_validation"   => $this->mercadopago->storeTranslations->customCheckout['card_number_validation_error'],
-        ];
+        $originalMessage = $message;
 
-        foreach ($errorMessages as $keyword => $replacement) {
-            if (strpos($message, $keyword) !== false) {
-                $message = $replacement;
-                break;
-            }
-        }
+        $translatedMessage = $this->mercadopago->helpers->errorMessages->findErrorMessage($message);
+
+        $this->datadog->sendEvent('woo_checkout_error', $translatedMessage, $originalMessage, $this->paymentMethodName);
 
         if ($notice) {
-            $this->mercadopago->helpers->notices->storeNotice($message, 'error');
+            $this->mercadopago->helpers->notices->storeNotice($translatedMessage, 'error');
         }
 
         return [
             'result'   => 'fail',
             'redirect' => '',
-            'message'  => $message,
+            'message'  => $translatedMessage,
         ];
     }
 
@@ -942,23 +955,26 @@ abstract class AbstractGateway extends WC_Payment_Gateway implements MercadoPago
         if ($response['status'] === 'rejected') {
             $statusDetail = $response['status_detail'];
 
-            $errorMessage = $this->getRejectedPaymentErrorMessage($statusDetail);
+            $errorMessage = $this->getRejectedPaymentErrorKey($statusDetail);
 
             throw new RejectedPaymentException($errorMessage);
         }
     }
 
     /**
-     * Get payment rejected error message
+     * Get payment rejected error message translation key
      *
      * @param string $statusDetail statusDetail.
      *
      * @return string
      */
-    public function getRejectedPaymentErrorMessage(string $statusDetail): string
+    public function getRejectedPaymentErrorKey(string $statusDetail): string
     {
-        return $this->mercadopago->storeTranslations->buyerRefusedMessages[ 'buyer_' . $statusDetail ] ??
-               $this->mercadopago->storeTranslations->buyerRefusedMessages['buyer_default'];
+        $key = 'buyer_' . $statusDetail;
+        if (isset($this->mercadopago->storeTranslations->buyerRefusedMessages[$key])) {
+            return $key;
+        }
+        return 'buyer_default';
     }
 
     /**

@@ -61,6 +61,7 @@ class CreditsGateway extends AbstractGateway
 
         $this->mercadopago->helpers->currency->handleCurrencyNotices($this);
         $this->setDefaultTooltip();
+        $this->paymentMethodName = self::ID;
     }
 
     public function getCheckoutName(): string
@@ -206,7 +207,7 @@ class CreditsGateway extends AbstractGateway
         } catch (Exception $e) {
             return $this->processReturnFail(
                 $e,
-                $this->mercadopago->storeTranslations->buyerRefusedMessages['buyer_default'],
+                'buyer_default',
                 self::LOG_SOURCE,
                 (array) $order,
                 true
